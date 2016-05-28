@@ -30,8 +30,6 @@ class MainViewController : UIViewController, UINavigationControllerDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        print("CHECKKKKKKKKK")
-//        self.presentViewController(self, animated: false, completion: nil)
-//        self.performSegueWithIdentifier("loginView", sender: self)
+        print("Hello Mr. User you are in the main hashtag screen")
     }
 }

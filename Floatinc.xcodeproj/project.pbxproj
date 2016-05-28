@@ -17,6 +17,10 @@
 		EAB60C3F1CF6F74800303A3B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB60C3E1CF6F74800303A3B /* SplashViewController.swift */; };
 		EAB60C411CF7123600303A3B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB60C401CF7123600303A3B /* RegisterViewController.swift */; };
 		EAB60C431CF7398900303A3B /* MainViewController .swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB60C421CF7398900303A3B /* MainViewController .swift */; };
+		EAD6ABB71CF99BC500205430 /* FloatStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD6ABB61CF99BC500205430 /* FloatStory.swift */; };
+		EAD6ABB91CF9A1EB00205430 /* StoryListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD6ABB81CF9A1EB00205430 /* StoryListTableView.swift */; };
+		EAD6ABBC1CF9B84400205430 /* FloatStoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD6ABBB1CF9B84400205430 /* FloatStoryStore.swift */; };
+		EAD6ABBF1CF9BE7B00205430 /* StoryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD6ABBE1CF9BE7B00205430 /* StoryListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		EAB60C3E1CF6F74800303A3B /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		EAB60C401CF7123600303A3B /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		EAB60C421CF7398900303A3B /* MainViewController .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainViewController .swift"; sourceTree = "<group>"; };
+		EAD6ABB61CF99BC500205430 /* FloatStory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatStory.swift; sourceTree = "<group>"; };
+		EAD6ABB81CF9A1EB00205430 /* StoryListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryListTableView.swift; sourceTree = "<group>"; };
+		EAD6ABBB1CF9B84400205430 /* FloatStoryStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatStoryStore.swift; sourceTree = "<group>"; };
+		EAD6ABBE1CF9BE7B00205430 /* StoryListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryListTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,18 +94,86 @@
 		EA04C3F81CED9EF900839C8C /* Floatinc */ = {
 			isa = PBXGroup;
 			children = (
-				EA04C3F91CED9EF900839C8C /* AppDelegate.swift */,
-				EA04C3FB1CED9EF900839C8C /* LoginViewController.swift */,
-				EAB60C401CF7123600303A3B /* RegisterViewController.swift */,
-				EAB60C421CF7398900303A3B /* MainViewController .swift */,
-				EAB60C3E1CF6F74800303A3B /* SplashViewController.swift */,
-				EA04C3FD1CED9EF900839C8C /* Main.storyboard */,
+				EAD6ABB01CF996DD00205430 /* Controllers */,
+				EAD6ABB41CF9977900205430 /* Layouts */,
+				EAD6ABB31CF9976C00205430 /* Models */,
+				EAD6ABB51CF9979100205430 /* Delegate */,
 				EA04C4001CED9EF900839C8C /* Assets.xcassets */,
-				EA04C4021CED9EF900839C8C /* LaunchScreen.storyboard */,
 				EA04C4051CED9EF900839C8C /* Info.plist */,
 				EA5FF15F1CEF0AED00D860D9 /* GoogleService-Info.plist */,
 			);
 			path = Floatinc;
+			sourceTree = "<group>";
+		};
+		EAD6ABB01CF996DD00205430 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EAD6ABBA1CF9AA9600205430 /* tableViews */,
+				EAD6ABB21CF9972600205430 /* Workflow */,
+				EAD6ABB11CF996F600205430 /* Login */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		EAD6ABB11CF996F600205430 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				EA04C3FB1CED9EF900839C8C /* LoginViewController.swift */,
+				EAB60C401CF7123600303A3B /* RegisterViewController.swift */,
+				EAB60C3E1CF6F74800303A3B /* SplashViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		EAD6ABB21CF9972600205430 /* Workflow */ = {
+			isa = PBXGroup;
+			children = (
+				EAB60C421CF7398900303A3B /* MainViewController .swift */,
+			);
+			name = Workflow;
+			sourceTree = "<group>";
+		};
+		EAD6ABB31CF9976C00205430 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EAD6ABB61CF99BC500205430 /* FloatStory.swift */,
+				EAD6ABBB1CF9B84400205430 /* FloatStoryStore.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		EAD6ABB41CF9977900205430 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				EA04C3FD1CED9EF900839C8C /* Main.storyboard */,
+				EA04C4021CED9EF900839C8C /* LaunchScreen.storyboard */,
+			);
+			name = Layouts;
+			sourceTree = "<group>";
+		};
+		EAD6ABB51CF9979100205430 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				EA04C3F91CED9EF900839C8C /* AppDelegate.swift */,
+			);
+			name = Delegate;
+			sourceTree = "<group>";
+		};
+		EAD6ABBA1CF9AA9600205430 /* tableViews */ = {
+			isa = PBXGroup;
+			children = (
+				EAD6ABBD1CF9BE3D00205430 /* storyList */,
+			);
+			name = tableViews;
+			sourceTree = "<group>";
+		};
+		EAD6ABBD1CF9BE3D00205430 /* storyList */ = {
+			isa = PBXGroup;
+			children = (
+				EAD6ABB81CF9A1EB00205430 /* StoryListTableView.swift */,
+				EAD6ABBE1CF9BE7B00205430 /* StoryListTableViewCell.swift */,
+			);
+			name = storyList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,10 +300,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAD6ABBF1CF9BE7B00205430 /* StoryListTableViewCell.swift in Sources */,
 				EA04C3FC1CED9EF900839C8C /* LoginViewController.swift in Sources */,
 				EAB60C431CF7398900303A3B /* MainViewController .swift in Sources */,
+				EAD6ABB91CF9A1EB00205430 /* StoryListTableView.swift in Sources */,
 				EA04C3FA1CED9EF900839C8C /* AppDelegate.swift in Sources */,
+				EAD6ABBC1CF9B84400205430 /* FloatStoryStore.swift in Sources */,
 				EAB60C411CF7123600303A3B /* RegisterViewController.swift in Sources */,
+				EAD6ABB71CF99BC500205430 /* FloatStory.swift in Sources */,
 				EAB60C3F1CF6F74800303A3B /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

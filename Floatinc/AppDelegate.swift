@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         print("saving the token, will refresh if expired")
                         self.tokenId = tokenId
                         //Taking them to the main screen
-                        let mainViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewControllerWithIdentifier("mainVC")
+                        let mainViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewControllerWithIdentifier("storyListVC")
                         navController.pushViewController(mainViewController, animated: false)
                     }
                 })

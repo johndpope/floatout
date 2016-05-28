@@ -47,9 +47,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         print("Pushing the main controller on the root controller and popping the login Controller off")
         let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
         let navRootController = appDelegate.window!.rootViewController as! UINavigationController
-        let mainViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewControllerWithIdentifier("mainVC")
         navRootController.popViewControllerAnimated(true)
-        navRootController.pushViewController(mainViewController, animated: false)
     }
     
     override func didReceiveMemoryWarning() {
