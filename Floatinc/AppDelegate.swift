@@ -15,18 +15,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     private var tokenId: String?
+  
+    var listener : FIRAuthStateDidChangeListenerHandle? {
+        didSet {
+            FIRAuth.auth()?.removeAuthStateDidChangeListener(listener!)
+        }
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         let navController = self.window?.rootViewController as! UINavigationController
-        
+
         //FirApp user setup
         FIRApp.configure()
 
-        FIRAuth.auth()?.addAuthStateDidChangeListener({ (auth, user) in
+       listener = FIRAuth.auth()?.addAuthStateDidChangeListener({ (auth, user) in
             if let user = user {
                 print("lord has floated in with his identity email \(user.email)")
-                
                 user.getTokenForcingRefresh(false, completion: { (tokenId, error) in
                     if let error = error {
                         print("Could not get the token, let the login begin \(error)")
@@ -36,8 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         print("saving the token, will refresh if expired")
                         self.tokenId = tokenId
                         //Taking them to the main screen
-                        let mainViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewControllerWithIdentifier("storyListVC")
-                        navController.pushViewController(mainViewController, animated: false)
+                        let storyViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewControllerWithIdentifier("storyListVC")
+                        navController.pushViewController(storyViewController, animated: false)
                     }
                 })
             }
@@ -45,14 +50,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("No baby no user is logged in let me take them to the log in screen")
                 self.navToLogin(navController)
             }
-        })
-
+       })
+      
         return true
     }
     
     func navToLogin(navController: UINavigationController){
-        let spViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewControllerWithIdentifier("loginVC")
-        navController.pushViewController(spViewController, animated: false)
+        print("Pushing login controller on the navController")
+        let loginViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewControllerWithIdentifier("loginVC")
+        navController.pushViewController(loginViewController, animated: false)
     }
 
     func applicationWillResignActive(application: UIApplication) {

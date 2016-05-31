@@ -21,7 +21,7 @@ class FloatStoryStore {
     }
     
     func initWithStories() {
-        let hashOneStory = Story(heading: "Heavy gaanja scenes",overview: "give us proofs as to what exactly is going wrong and where, get creative boys", bucket: .Graduate)
+        let hashOneStory = Story(heading: "No, I snooze more",overview: "give us proofs as to what exactly is going wrong and where, get creative boys", bucket: .Graduate)
         self.storyList.append(hashOneStory)
         
         let hashTwoStory = Story(heading: "LCBO TIME, who is paying :P", overview: "Show off your shopping, or too broke like us :P ", bucket: .Graduate)
@@ -38,5 +38,8 @@ class FloatStoryStore {
         
         let hashSixStory = Story(heading: "Standup Meeting", overview: "How often do you feel to skip the meeting or sleep in ? +1", bucket: .Graduate)
         self.storyList.append(hashSixStory)
+        
+        let hashSevenStory = Story(heading: "Wednesday open mike john mayer", overview: "Who feels like chilling in this awesome weather", bucket: .Graduate)
+        self.storyList.append(hashSevenStory)
     }
 }

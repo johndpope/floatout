@@ -24,8 +24,10 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 180
+//        self.navigationController?.navigationBarHidden = true
     }
     
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -51,6 +53,7 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func recordStory(sender: UIButton) {
         print("ohhhh yeah baby record me all night all long")
+        
     }
     
 }
