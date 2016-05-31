@@ -7,17 +7,38 @@
 //
 
 import UIKit
+import Firebase
 
 class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    let rootRef = FIRDatabase.database().reference()
+ 
     
     @IBOutlet weak var tableView: UITableView!
     let storyList: FloatStoryStore = FloatStoryStore()
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        
+        
+        let storyTagsRef = self.rootRef.child("storyTags")
+        let refHandle = storyTagsRef.observeEventType(FIRDataEventType.Value, withBlock: {
+            snapshot in
+            for item in snapshot.children{
+                let storyTagMain = (item as! FIRDataSnapshot).childSnapshotForPath("main")
+                let storyTag = StoryTag(snapshot: storyTagMain)
+                print(storyTagMain)
+                self.storyList.addStory(storyTag)
+                self.tableView.reloadData()
+            }
+            }, withCancelBlock: {
+                error in (print(error.description))
+        })
+        
+        
         //Making the hashTag stories ready
 
-        storyList.initWithStories()
+//          storyList.initWithStories()
         
         //These two lines are mandatory for making the rows dynamic in height,
         //atleast the first one. Second is for performance.
