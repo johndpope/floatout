@@ -8,27 +8,34 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    //Firebase refs
     let rootRef = FIRDatabase.database().reference()
- 
+//    var storyTagsRef = FIRDatabaseReference()
     
     @IBOutlet weak var tableView: UITableView!
-    let storyList: FloatStoryStore = FloatStoryStore()
+    let storyListStore: FloatStoryStore = FloatStoryStore()
     
     override func viewDidLoad(){
         super.viewDidLoad()
         
         
         let storyTagsRef = self.rootRef.child("storyTags")
-        let refHandle = storyTagsRef.observeEventType(FIRDataEventType.Value, withBlock: {
+        
+    
+    storyTagsRef.observeSingleEventOfType(FIRDataEventType.Value, withBlock: {
             snapshot in
-            for item in snapshot.children{
-                let storyTagMain = (item as! FIRDataSnapshot).childSnapshotForPath("main")
-                let storyTag = StoryTag(snapshot: storyTagMain)
-                print(storyTagMain)
-                self.storyList.addStory(storyTag)
+            for item in snapshot.children {
+                let storyTagItem = item as! FIRDataSnapshot
+            
+                //saving in the local datastore created in storylist
+                let storyTag = StoryTag(snapshot: storyTagItem)
+                self.storyListStore.addStory(storyTag)
+                
+                //forcing a refresh on the table to reload the data
                 self.tableView.reloadData()
             }
             }, withCancelBlock: {
@@ -36,16 +43,11 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         })
         
         
-        //Making the hashTag stories ready
-
-//          storyList.initWithStories()
-        
         //These two lines are mandatory for making the rows dynamic in height,
         //atleast the first one. Second is for performance.
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 180
-//        self.navigationController?.navigationBarHidden = true
     }
     
 
@@ -54,7 +56,7 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return storyList.storyCount()
+        return storyListStore.storyCount()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -62,7 +64,7 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! StoryListTableViewCell
         
         //set up the cell here like setting the image etc 
-        let story = storyList.storyList[indexPath.row]
+        let story = storyListStore.storyList[indexPath.row]
         cell.label.text = story.heading
         
         cell.layer.borderColor = UIColor.lightGrayColor().CGColor
@@ -70,6 +72,14 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         cell.layer.cornerRadius = 4.0
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let story = storyListStore.storyList[indexPath.row]
+        
+
+       
+
     }
     
     @IBAction func recordStory(sender: UIButton) {

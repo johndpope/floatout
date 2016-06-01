@@ -21,17 +21,26 @@ class StoryTag : NSObject {
     var bucket: storyBucket?
     var image: UIImage?
     var date: String?
+    var id: String
+    var ref: FIRDatabaseReference?
     
-    init(heading: String, overview: String, bucket: storyBucket){
+    init(heading: String, overview: String, bucket: storyBucket, id: String){
         self.heading = heading
         self.overview = overview
         self.bucket = bucket
+        let rad = rand()
+        self.id = "check\(rad)"
     }
     
     init(snapshot: FIRDataSnapshot){
-        self.heading = snapshot.childSnapshotForPath("storyName").value as! String
-        self.overview = snapshot.childSnapshotForPath("storyOverview").value as! String
-        self.date = snapshot.childSnapshotForPath("dateCreated").value as? String
-        self.bucket = .College
+        let snapshotMain = (snapshot).childSnapshotForPath("main")
+        
+        self.id = snapshot.key
+        self.heading = snapshotMain.childSnapshotForPath("storyName").value as? String ?? ""
+        self.overview = snapshotMain.childSnapshotForPath("storyOverview").value as? String ?? ""
+        self.date = snapshotMain.childSnapshotForPath("dateCreated").value as? String
+        self.bucket = .Graduate
+        self.ref = snapshotMain.ref
+ 
     }
 }
