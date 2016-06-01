@@ -18,25 +18,44 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var tableView: UITableView!
     let storyListStore: FloatStoryStore = FloatStoryStore()
+    let storyStatsStore: StoryStatsStore = StoryStatsStore()
+    
+    var Tryref = FIRDatabaseReference()
     
     override func viewDidLoad(){
         super.viewDidLoad()
         
         
         let storyTagsRef = self.rootRef.child("storyTags")
+        let storyTagStatsRef = self.rootRef.child("storyTagStats")
         
-    
-    storyTagsRef.observeSingleEventOfType(FIRDataEventType.Value, withBlock: {
+        
+        storyTagsRef.observeSingleEventOfType(FIRDataEventType.Value, withBlock: {
             snapshot in
             for item in snapshot.children {
                 let storyTagItem = item as! FIRDataSnapshot
-            
+                
                 //saving in the local datastore created in storylist
                 let storyTag = StoryTag(snapshot: storyTagItem)
                 self.storyListStore.addStory(storyTag)
                 
                 //forcing a refresh on the table to reload the data
                 self.tableView.reloadData()
+            }
+            }, withCancelBlock: {
+                error in (print(error.description))
+        })
+        
+        storyTagStatsRef.observeEventType(.Value, withBlock: {
+            snapshot in
+            for item in snapshot.children{
+                let viewItem = item as! FIRDataSnapshot
+                //key: storyID children: "totalViews: . value = count
+                
+                //saving the in the local datastore
+                let storyStatsItem = StoryStats(snapshot: viewItem)
+                self.storyStatsStore.addItem(storyStatsItem)
+                
             }
             }, withCancelBlock: {
                 error in (print(error.description))
@@ -75,11 +94,31 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let story = storyListStore.storyList[indexPath.row]
+        let storyID = storyListStore.storyList[indexPath.row].id
         
-
-       
-
+        //get the clicked story reference
+            
+            
+        //Update the number of views:
+        .runTransactionBlock { (currentData: FIRMutableData) -> FIRTransactionResult in
+            if currentData.value != nil {
+                var storyTagStatsID = currentData.value as![String:AnyObject]
+                var totalViews = storyTagStatsID["totalViews"] as? Int ?? 0
+                
+                //increming the totalviews on the story
+                totalViews += 1
+                //update the value in the database as well
+                storyTagStatsID["totalViews"] = totalViews
+                currentData.value = storyTagStatsID
+            }
+            return FIRTransactionResult.successWithValue(currentData)
+        }
+        
+    
+        
+        
+        //This created the node if not there.
+//        storyStats.updateChildValues(["totalViews":1])
     }
     
     @IBAction func recordStory(sender: UIButton) {
