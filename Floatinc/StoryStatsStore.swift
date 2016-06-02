@@ -11,12 +11,14 @@ import Firebase
 
 
 class StoryStatsStore {
-    var storyStatsList = [StoryStats] ()
     
-    func addItem(stat: StoryStats){
-        self.storyStatsList.append(stat)
+    var storyStatsDict = [String: [String: AnyObject]] ()
+    
+    func add(storyStat: StoryStats){
+        self.storyStatsDict[storyStat.id] = ["ref": storyStat.ref!, "viewCount": storyStat.totalViews]
     }
-    
-//    var storyStatsDict = [String:[Int, Int]] ()
-    
 }
+
+////                var storyStatsDict = [String: [String: AnyObject]]? ()
+//var item = ["ref": viewItem.ref, "viewCount": viewItem.childSnapshotForPath("totalViews").value as? Int ?? 0]
+//self.storyStatsStore.storyStatsDict[viewItem.key] = item

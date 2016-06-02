@@ -52,9 +52,9 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
                 let viewItem = item as! FIRDataSnapshot
                 //key: storyID children: "totalViews: . value = count
                 
-                //saving the in the local datastore
+                //saving the in the local datastore's dictionary
                 let storyStatsItem = StoryStats(snapshot: viewItem)
-                self.storyStatsStore.addItem(storyStatsItem)
+                self.storyStatsStore.add(storyStatsItem)
                 
             }
             }, withCancelBlock: {
@@ -94,31 +94,42 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let storyID = storyListStore.storyList[indexPath.row].id
+        //getting the reference from the store
+        let storyID = self.storyListStore.storyList[indexPath.row].id
+        var storyTagStatsRef = self.storyStatsStore.storyStatsDict[storyID]?["ref"]
         
-        //get the clicked story reference
+        //create the object in FIREBASE if the storyStat for this story does not exist
+        //This is done only the first time the user clicks on the story
+        if storyTagStatsRef == nil{
+          storyTagStatsRef = rootRef.child("storyTagStats/\(storyID)")
+            //adding the totalViews
+            storyTagStatsRef!.updateChildValues(["totalViews":1])
+            //adding userViews
+            let userStatsobj = [(FIRAuth.auth()?.currentUser?.uid)! : ["views": 1]]
+            storyTagStatsRef!.updateChildValues(["users": userStatsobj])
+        }
+        else {
             
-            
-        //Update the number of views:
-        .runTransactionBlock { (currentData: FIRMutableData) -> FIRTransactionResult in
-            if currentData.value != nil {
-                var storyTagStatsID = currentData.value as![String:AnyObject]
-                var totalViews = storyTagStatsID["totalViews"] as? Int ?? 0
-                
-                //increming the totalviews on the story
-                totalViews += 1
-                //update the value in the database as well
-                storyTagStatsID["totalViews"] = totalViews
-                currentData.value = storyTagStatsID
+            //Update the number of views:
+            storyTagStatsRef?.runTransactionBlock { (currentData: FIRMutableData) -> FIRTransactionResult in
+                if currentData.value != nil {
+                    var storyTagStatsID = currentData.value as! [String:AnyObject]
+                    var totalViews = storyTagStatsID["totalViews"] as? Int ?? 1
+                    
+                    
+                    
+                    //increming the totalviews on the story
+                    totalViews += 1
+                    //update the value in the firebase as well
+                    storyTagStatsID["totalViews"] = totalViews
+                    currentData.value = storyTagStatsID
+                }
+                return FIRTransactionResult.successWithValue(currentData)
             }
-            return FIRTransactionResult.successWithValue(currentData)
         }
         
-    
-        
-        
-        //This created the node if not there.
-//        storyStats.updateChildValues(["totalViews":1])
+        //        storyStats.updateChildValues(["totalViews":1])
+
     }
     
     @IBAction func recordStory(sender: UIButton) {
