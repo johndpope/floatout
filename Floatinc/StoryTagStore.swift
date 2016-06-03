@@ -9,15 +9,35 @@
 import UIKit
 
 
-class FloatStoryStore {
-    var storyList = [StoryTag] ()
+class StoryTagStore {
     
-    func addStory(story: StoryTag){
-        self.storyList.append(story)
+    var storyTagList = [StoryTag] ()
+    
+    var sstoryTagList = [Int: [String: [String: AnyObject]]] ()
+    
+    func add(storyTag: StoryTag){
+        
+        self.sstoryTagList[storyTag.id] =
+            ["main":
+                ["dateCreated": storyTag.dateCreated!,
+                    "storyName": storyTag.storyName,
+                    "storyOverview": storyTag.storyOverview
+                ]
+        ]
+        
+//        self.storyStatsDict[storyStat.id] = ["ref": storyStat.ref!, "viewCount": storyStat.totalViews]
+    }
+  
+    func addStoryTag(story: StoryTag){
+       self.storyTagList.append(story)
     }
     
-    func storyCount() -> Int{
-        return self.storyList.count
+    func storyTagCount() -> Int{
+        return self.storyTagList.count
+    }
+    
+    func storyTagListCount() -> Int{
+        return self.sstoryTagList.count
     }
     
 //    func initWithStories() {
