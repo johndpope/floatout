@@ -17,21 +17,46 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     //Firebase refs
     let rootRef = FIRDatabase.database().reference()
     var storyTagsRef : FIRDatabaseReference!
+    var storyTagStatsRef: FIRDatabaseReference!
     var handle = UInt?()
     
+    //Data stores
     //StoryListStore: Contains the storyTags, its references
     let storyTagStore: StoryTagStore = StoryTagStore()
-    
     //StoryStatsStore
-    //let storyStatsStore: StoryStatsStore = StoryStatsStore()
+    let storyTagStatsStore: StoryTagStatsStore = StoryTagStatsStore()
     
     override func viewDidLoad(){
         super.viewDidLoad()
         
         storyTagsRef = self.rootRef.child("storyTags")
-        //let storyTagStatsRef = self.rootRef.child("storyTagStats")
+        storyTagStatsRef = self.rootRef.child("storyTagStats")
         
+        //StoryTagStats Observers/////////////////////////////////////////////////////////////////////
         
+        //Adding and setting up initially
+        storyTagStatsRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
+            let storyTagStats = StoryTagStats(snapshot:snapshot)
+            self.storyTagStatsStore.add(storyTagStats)
+        })
+        
+        //Should delete the refs whenever they are deleted
+        storyTagStatsRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
+            let storyTagStats = StoryTagStats(snapshot:snapshot)
+            self.storyTagStatsStore.remove(storyTagStats)
+            
+        })
+        
+        //childChanged should update the stale refs
+        storyTagStatsRef.observeEventType(.ChildChanged, withBlock: { (snapshot) in
+            let storyTagStats = StoryTagStats(snapshot:snapshot)
+            self.storyTagStatsStore.update(storyTagStats)
+        
+        })
+
+        //StoryTags Observers////////////////////////////////////////////////////////////////////////////////////
+        
+        //ChildAdded for storyTags
         storyTagsRef.observeEventType(.ChildAdded, withBlock: {(snapshot) in
             let storyTag = StoryTag(snapshot: snapshot)
             self.storyTagStore.add(storyTag)
@@ -54,9 +79,10 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
             let storyTag = StoryTag(snapshot: snapshot)
             //This will take O(n) you suck really and will delete it lets see
             let index = self.storyTagStore.remove(storyTag)
-            //            self.tableView.reloadData()
             let indexPath = NSIndexPath(forRow: index, inSection: 0)
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
         })
         
         //These two lines are mandatory for making the rows dynamic in height,
@@ -68,10 +94,8 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
-        
     }
     
-   
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -92,6 +116,47 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         
         return cell
     }
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let storyTagKey = self.storyTagStore.storyTagList[indexPath.row].id
+        let storyTagStatsRefForKey = self.storyTagStatsStore.storyTagStatsList[indexPath.row].ref
+        ////////Assuming right now that the object storyTagStats/StoryID/totalViews is already created and initialised to zero
+        
+        storyTagStatsRefForKey?.runTransactionBlock({ (currentData) -> FIRTransactionResult in
+            if currentData.value != nil {
+                var storyTagStatsObject = currentData.value as! [String:AnyObject]
+                //reading the total number of views (totalViews)
+                var totalViews = storyTagStatsObject["totalViews"] as! Int
+                //Incrementing it with 1
+                totalViews+=1
+                //Appending to the storyTagStatsObject
+                storyTagStatsObject["totalViews"] = totalViews
+                //Writing currenData's value to be equal to the new object that is updated
+                currentData.value = storyTagStatsObject
+                //Hoping for it to work now
+                return FIRTransactionResult.successWithValue(currentData)
+            }
+            return FIRTransactionResult.successWithValue(currentData)
+        })
+    }
+    
+    
+    
+    ////            //Update the number of totalViews:
+    ////            storyTagStatsRef?.runTransactionBlock({(currentData: FIRMutableData) -> FIRTransactionResult in
+    ////                if currentData.value != nil {
+    ////                    var storyTagStatsID = currentData.value as! [String:AnyObject]
+    ////                    //getting the totalViews
+    ////                    var totalViews = storyTagStatsID["totalViews"] as? Int ?? 1
+    ////                    totalViews += 1
+    ////                    //update the value in the firebase as well
+    ////                    storyTagStatsID["totalViews"] = totalViews
+    ////                    currentData.value = storyTagStatsID
+    ////                    return FIRTransactionResult.successWithValue(currentData)
+    ////                }
+    ////                return FIRTransactionResult.successWithValue(currentData)
+    ////            })
 
     
     @IBAction func recordStory(sender: UIButton) {
@@ -135,8 +200,7 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
 ////                }
 ////                return FIRTransactionResult.successWithValue(currentData)
 ////            })
-////
-//
+
 ////            var users = storyTagStatsID["users"] as? [String:[String:Int]] ?? [:]
 ////            //check if this user has ever entered here or not, this for tracking user views
 ////            if(users[uid] == nil){

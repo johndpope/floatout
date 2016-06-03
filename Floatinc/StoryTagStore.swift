@@ -25,7 +25,7 @@ class StoryTagStore {
         for storyTagItem in self.storyTagList{
             
             if(storyTag.id == storyTagItem.id){
-                print ("remove from the list")
+                print ("remove from the storyTaglist")
                 storyTagList.removeAtIndex(index)
                 return index
             }
@@ -44,8 +44,6 @@ class StoryTagStore {
 
         return -1
     }
-    
-    
     
     func indexOfStoryTag(storyTag: StoryTag) -> Int {
         var index = 0

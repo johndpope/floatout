@@ -10,19 +10,15 @@ import Foundation
 import UIKit
 import Firebase
 
-class StoryStats : NSObject {
+class StoryTagStats : NSObject {
     
     var id: String
     var totalViews: Int
     var ref: FIRDatabaseReference?
     
     init(snapshot: FIRDataSnapshot){
-    
-//        Snap (storyFive) {
-//            totalViews = 2;
-//        }
-        self.id = snapshot.key ?? ""
-        self.totalViews = snapshot.childSnapshotForPath("totalViews").value as? Int ?? 0
+        self.id = snapshot.key
+        self.totalViews = snapshot.childSnapshotForPath("totalViews").value as! Int
         self.ref = snapshot.ref
     }
 }
