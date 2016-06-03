@@ -119,26 +119,29 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let storyTagKey = self.storyTagStore.storyTagList[indexPath.row].id
-        let storyTagStatsRefForKey = self.storyTagStatsStore.storyTagStatsList[indexPath.row].ref
-        ////////Assuming right now that the object storyTagStats/StoryID/totalViews is already created and initialised to zero
-        
-        storyTagStatsRefForKey?.runTransactionBlock({ (currentData) -> FIRTransactionResult in
-            if currentData.value != nil {
-                var storyTagStatsObject = currentData.value as! [String:AnyObject]
-                //reading the total number of views (totalViews)
-                var totalViews = storyTagStatsObject["totalViews"] as! Int
-                //Incrementing it with 1
-                totalViews+=1
-                //Appending to the storyTagStatsObject
-                storyTagStatsObject["totalViews"] = totalViews
-                //Writing currenData's value to be equal to the new object that is updated
-                currentData.value = storyTagStatsObject
-                //Hoping for it to work now
+        let storyTag = self.storyTagStore.storyTagList[indexPath.row]
+        let index = self.storyTagStatsStore.indexOfStoryTag(storyTag)
+        if(index != -1){
+            let storyTagStatsRefForKey = self.storyTagStatsStore.storyTagStatsList[index].ref
+            ////////Assuming right now that the object storyTagStats/StoryID/totalViews is already created and initialised to zero
+            
+            storyTagStatsRefForKey?.runTransactionBlock({ (currentData) -> FIRTransactionResult in
+                if currentData.value != nil {
+                    var storyTagStatsObject = currentData.value as! [String:AnyObject]
+                    //reading the total number of views (totalViews)
+                    var totalViews = storyTagStatsObject["totalViews"] as! Int
+                    //Incrementing it with 1
+                    totalViews+=1
+                    //Appending to the storyTagStatsObject
+                    storyTagStatsObject["totalViews"] = totalViews
+                    //Writing currenData's value to be equal to the new object that is updated
+                    currentData.value = storyTagStatsObject
+                    //Hoping for it to work now
+                    return FIRTransactionResult.successWithValue(currentData)
+                }
                 return FIRTransactionResult.successWithValue(currentData)
-            }
-            return FIRTransactionResult.successWithValue(currentData)
-        })
+            })
+        }
     }
     
     

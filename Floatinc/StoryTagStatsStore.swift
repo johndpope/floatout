@@ -41,18 +41,31 @@ class StoryTagStatsStore {
     }
     
     func update(storyTagStats: StoryTagStats){
-        let index = indexOfStoryTag(storyTagStats)
+        let index = indexOfStoryTagStat(storyTagStats)
         if(index != -1){
             self.storyTagStatsList[index] = storyTagStats
         }
     }
     
-    func indexOfStoryTag(storyTagStats: StoryTagStats) -> Int {
+    func indexOfStoryTagStat(storyTagStats: StoryTagStats) -> Int {
         var index = 0
         for storyTagStatsItem in self.storyTagStatsList{
             
             if(storyTagStats.id == storyTagStatsItem.id){
                 print ("getting index storyTagStatsList")
+                return index
+            }
+            
+            index+=1
+        }
+        return -1
+    }
+    
+    func indexOfStoryTag(storyTag:StoryTag) -> Int{
+        var index = 0
+        for storyTagStatsItem in self.storyTagStatsList{
+            if(storyTagStatsItem.id == storyTag.id){
+                print("lets check it")
                 return index
             }
             

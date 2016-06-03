@@ -48,7 +48,6 @@ class StoryTagStore {
     func indexOfStoryTag(storyTag: StoryTag) -> Int {
         var index = 0
         for storyTagItem in self.storyTagList{
-    
             if(storyTag.id == storyTagItem.id){
                 print ("check this")
                 return index
