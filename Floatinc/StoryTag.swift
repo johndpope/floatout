@@ -21,14 +21,13 @@ class StoryTag : NSObject {
     var bucket: storyBucket?
     var image: UIImage?
     var dateCreated: String?
-    var id: Int
+    var id: String
     var ref: FIRDatabaseReference?
 
     
     init(snapshot: FIRDataSnapshot){
         let snapshotMain = (snapshot).childSnapshotForPath("main")
-        let intID = Int(snapshot.key)
-        self.id = intID!
+        self.id = snapshot.key
         self.storyName = snapshotMain.childSnapshotForPath("storyName").value as? String ?? ""
         self.storyOverview = snapshotMain.childSnapshotForPath("storyOverview").value as? String ?? ""
         self.dateCreated = snapshotMain.childSnapshotForPath("dateCreated").value as? String

@@ -16,6 +16,8 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     
     //Firebase refs
     let rootRef = FIRDatabase.database().reference()
+    var storyTagsRef : FIRDatabaseReference!
+    var handle = UInt?()
     
     //StoryListStore: Contains the storyTags, its references
     let storyTagStore: StoryTagStore = StoryTagStore()
@@ -26,60 +28,50 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        let storyTagsRef = self.rootRef.child("storyTags")
+        storyTagsRef = self.rootRef.child("storyTags")
         //let storyTagStatsRef = self.rootRef.child("storyTagStats")
         
-        //This should be called when the first time the list is populated
-        storyTagsRef.observeSingleEventOfType(FIRDataEventType.Value, withBlock: {
-            snapshot in
-            for item in snapshot.children {
-                
-                //Making a storyTag object and saving in the storyTagListStore Dictionary
-                let storyTagItem = item as! FIRDataSnapshot
-                let storyTag = StoryTag(snapshot: storyTagItem)
-                self.storyTagStore.add(storyTag)
-                
-                //forcing a refresh on the table to reload the data
-                self.tableView.reloadData()
-            }
-            }, withCancelBlock: {
-                error in (print(error.description))
-        })
         
-        //This should be called when storyTag is updated such as a particular story name or its overview.
-        storyTagsRef.observeEventType(.ChildChanged , withBlock: {(snapshot) in
-            print("ohh lalala \(snapshot)")
+        storyTagsRef.observeEventType(.ChildAdded, withBlock: {(snapshot) in
             let storyTag = StoryTag(snapshot: snapshot)
-            
-            
-//            self.storyTagStore.storyTagList[storyTag.id] 
+            self.storyTagStore.add(storyTag)
+            let index = self.storyTagStore.storyTagListCount()-1
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+        })
+        
+        //Call it when a storyTag gets updated.
+        storyTagsRef.observeEventType(.ChildChanged, withBlock: {(snapshot) in
+            let storyTag = StoryTag(snapshot: snapshot)
+            let index = self.storyTagStore.updateStoryTag(storyTag)
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             
         })
-//        
-//        storyTagStatsRef.observeEventType(.Value, withBlock: {
-//            snapshot in
-//            for item in snapshot.children{
-//                let viewItem = item as! FIRDataSnapshot
-//                //key: storyID children: "totalViews: . value = count
-//                
-//                //saving the in the local datastore's dictionary
-//                let storyStatsItem = StoryStats(snapshot: viewItem)
-//                self.storyStatsStore.add(storyStatsItem)
-//                
-//            }
-//            }, withCancelBlock: {
-//                error in (print(error.description))
-//        })
         
+        //Gets called when a soryTag is deleted
+        storyTagsRef.observeEventType(.ChildRemoved, withBlock: {(snapshot) in
+            let storyTag = StoryTag(snapshot: snapshot)
+            //This will take O(n) you suck really and will delete it lets see
+            let index = self.storyTagStore.remove(storyTag)
+            //            self.tableView.reloadData()
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        })
         
         //These two lines are mandatory for making the rows dynamic in height,
         //atleast the first one. Second is for performance.
-        
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 180
     }
-    
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+        
+    }
+    
+   
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -92,26 +84,31 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         let cellIdentifier = "StoryListTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! StoryListTableViewCell
         
-        //Adding 1 as keys index start with 1
-        let index = indexPath.row + 1
-        let main = storyTagStore.storyTagList[index]?["main"]
-        let name:String = main?["storyName"] as! String
+        cell.label.text = storyTagStore.storyTagList[indexPath.row].storyName
         
-        //set up the cell here like setting the image etc
-        cell.label.text = name
         cell.layer.borderColor = UIColor.lightGrayColor().CGColor
         cell.layer.borderWidth = 0.1
         cell.layer.cornerRadius = 4.0
         
         return cell
     }
-//    
+
+    
+    @IBAction func recordStory(sender: UIButton) {
+        print("ohhhh yeah baby record me all night all long")
+        
+    }
+    
+}
+
+
+//
 //    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 ////        //getting the reference from the store
 ////        let storyID = self.storyListStore.storyList[indexPath.row].id
 ////        var storyTagStatsRef = self.storyStatsStore.storyStatsDict[storyID]?["ref"]
 ////        let uid = (FIRAuth.auth()?.currentUser?.uid)!
-////        
+////
 ////        //create the object in FIREBASE if the storyStat for this story does not exist
 ////        //This is done only the first time the user clicks on the story
 ////        if storyTagStatsRef == nil{
@@ -123,7 +120,7 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
 ////            storyTagStatsRef!.updateChildValues(["users": userStatsobj])
 ////        }
 ////        else {
-////            
+////
 ////            //Update the number of totalViews:
 ////            storyTagStatsRef?.runTransactionBlock({(currentData: FIRMutableData) -> FIRTransactionResult in
 ////                if currentData.value != nil {
@@ -138,19 +135,19 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
 ////                }
 ////                return FIRTransactionResult.successWithValue(currentData)
 ////            })
-////            
-//        
+////
+//
 ////            var users = storyTagStatsID["users"] as? [String:[String:Int]] ?? [:]
 ////            //check if this user has ever entered here or not, this for tracking user views
 ////            if(users[uid] == nil){
 ////                print("MR NEW USSER")
-////                
+////
 ////                //This is for the case when an user clicks on the story for the first Time.
 ////                storyTagStatsRef?.child!("users").updateChildValues([uid:["views": 1]])
 ////                storyTagStatsRef?.child!("totalViews").setValue((totalViews+1))
-////                
+////
 ////            }
-////                
+////
 ////            else {
 ////                print("welcome again you like this story eh, hot girls in it ? :P ")
 ////                //getting the values
@@ -162,10 +159,9 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
 ////            }
 //        }
 //    }
-    
-    @IBAction func recordStory(sender: UIButton) {
-        print("ohhhh yeah baby record me all night all long")
-        
-    }
-    
-}
+
+
+//    override func viewWillAppear(animated: Bool) {
+//        super.viewWillAppear(true)
+//        self.tableView.reloadData()
+//    }
