@@ -18,28 +18,26 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     let rootRef = FIRDatabase.database().reference()
     
     //StoryListStore: Contains the storyTags, its references
-    let storyTagListStore: StoryTagStore = StoryTagStore()
-//    let storyStatsStore: StoryStatsStore = StoryStatsStore()
+    let storyTagStore: StoryTagStore = StoryTagStore()
+    
+    //StoryStatsStore
+    //let storyStatsStore: StoryStatsStore = StoryStatsStore()
     
     override func viewDidLoad(){
         super.viewDidLoad()
         
         let storyTagsRef = self.rootRef.child("storyTags")
-//        let storyTagStatsRef = self.rootRef.child("storyTagStats")
+        //let storyTagStatsRef = self.rootRef.child("storyTagStats")
         
         //This should be called when the first time the list is populated
         storyTagsRef.observeSingleEventOfType(FIRDataEventType.Value, withBlock: {
             snapshot in
             for item in snapshot.children {
+                
+                //Making a storyTag object and saving in the storyTagListStore Dictionary
                 let storyTagItem = item as! FIRDataSnapshot
-                
-                //saving in the local datastore created in storylist
                 let storyTag = StoryTag(snapshot: storyTagItem)
-//                self.storyTagListStore.addStoryTag(storyTag)
-                
-                self.storyTagListStore.add(storyTag)
-                
-                
+                self.storyTagStore.add(storyTag)
                 
                 //forcing a refresh on the table to reload the data
                 self.tableView.reloadData()
@@ -53,8 +51,8 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
             print("ohh lalala \(snapshot)")
             let storyTag = StoryTag(snapshot: snapshot)
             
-            self.storyTagListStore.add(storyTag)
-            print(self.storyTagListStore.sstoryTagList[storyTag.id])
+            
+//            self.storyTagStore.storyTagList[storyTag.id] 
             
         })
 //        
@@ -87,23 +85,20 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return storyTagListStore.storyTagCount()
-        return self.storyTagListStore.storyTagListCount()
+        return self.storyTagStore.storyTagListCount()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "StoryListTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! StoryListTableViewCell
         
-        //set up the cell here like setting the image etc
         //Adding 1 as keys index start with 1
-        
         let index = indexPath.row + 1
-        let main = storyTagListStore.sstoryTagList[index]?["main"]
+        let main = storyTagStore.storyTagList[index]?["main"]
         let name:String = main?["storyName"] as! String
-
-        cell.label.text = name
         
+        //set up the cell here like setting the image etc
+        cell.label.text = name
         cell.layer.borderColor = UIColor.lightGrayColor().CGColor
         cell.layer.borderWidth = 0.1
         cell.layer.cornerRadius = 4.0

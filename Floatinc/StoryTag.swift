@@ -23,14 +23,7 @@ class StoryTag : NSObject {
     var dateCreated: String?
     var id: Int
     var ref: FIRDatabaseReference?
-    
-//    init(heading: String, overview: String, bucket: storyBucket, id: String){
-//        self.heading = heading
-//        self.overview = overview
-//        self.bucket = bucket
-//        let rad = rand()
-//        self.id = "check\(rad)"
-//    }
+
     
     init(snapshot: FIRDataSnapshot){
         let snapshotMain = (snapshot).childSnapshotForPath("main")
