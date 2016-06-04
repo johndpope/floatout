@@ -120,47 +120,83 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let storyTag = self.storyTagStore.storyTagList[indexPath.row]
+        
+        //finding the index for getting the reference to the storyTagStatsStore
+        //Then updating the totalViews on the story
         let index = self.storyTagStatsStore.indexOfStoryTag(storyTag)
         if(index != -1){
             let storyTagStatsRefForKey = self.storyTagStatsStore.storyTagStatsList[index].ref
-            ////////Assuming right now that the object storyTagStats/StoryID/totalViews is already created and initialised to zero
+            //Assuming right now that the object storyTagStats/StoryID/totalViews is already created and initialised to zero
             
+            //updating the number of totaViews
             storyTagStatsRefForKey?.runTransactionBlock({ (currentData) -> FIRTransactionResult in
                 if currentData.value != nil {
                     var storyTagStatsObject = currentData.value as! [String:AnyObject]
-                    //reading the total number of views (totalViews)
+                    
+                    /*Reading the total number of views (totalViews)
+                    Appending to the storyTagStatsObject, Writing currenData's
+                    value to be equal to the new object that is updated*/
+                    
                     var totalViews = storyTagStatsObject["totalViews"] as! Int
-                    //Incrementing it with 1
                     totalViews+=1
-                    //Appending to the storyTagStatsObject
                     storyTagStatsObject["totalViews"] = totalViews
-                    //Writing currenData's value to be equal to the new object that is updated
                     currentData.value = storyTagStatsObject
-                    //Hoping for it to work now
+                    
                     return FIRTransactionResult.successWithValue(currentData)
                 }
                 return FIRTransactionResult.successWithValue(currentData)
             })
+            
+            let uid = FIRAuth.auth()!.currentUser!.uid
+            let userStatsRef = storyTagStatsRefForKey?.child("users").child(uid)
+            
+            userStatsRef?.runTransactionBlock({ (currentData) -> FIRTransactionResult in
+                if currentData.value != nil {
+                    var userViewsObject = currentData.value as? [String:Int]
+                    //if the user Object does not exist
+                    if(userViewsObject == nil){
+                        let userViewsObject = ["views":1]
+                        currentData.value = userViewsObject
+                    }
+                    else{
+                        var userViews = userViewsObject!["views"]!
+                        userViews += 1
+                        userViewsObject!["views"] = userViews
+                        currentData.value = userViewsObject
+                    }
+                    return FIRTransactionResult.successWithValue(currentData)
+                }
+                return FIRTransactionResult.successWithValue(currentData)
+            })
+            
+            
+            //First Time user is clickin on a story
+            
+//            
+
+//            
+//            
+//                
+            
+            
+            
+            
+        
+//            //Adding user specific stats on the story
+//            let uid = FIRAuth.auth()?.currentUser!.uid
+//            let userStats = [uid : ["views": 1]]
+//            let userStatsRef = storyTagStatsRefForKey?.child("users")
+//            if userStatsRef == nil{
+//                print("check")
+            //            }
+            
+            //storyTagStatsRef!.updateChildValues(["users": userStats])
+            //storyTagStats
+            
         }
+        
     }
     
-    
-    
-    ////            //Update the number of totalViews:
-    ////            storyTagStatsRef?.runTransactionBlock({(currentData: FIRMutableData) -> FIRTransactionResult in
-    ////                if currentData.value != nil {
-    ////                    var storyTagStatsID = currentData.value as! [String:AnyObject]
-    ////                    //getting the totalViews
-    ////                    var totalViews = storyTagStatsID["totalViews"] as? Int ?? 1
-    ////                    totalViews += 1
-    ////                    //update the value in the firebase as well
-    ////                    storyTagStatsID["totalViews"] = totalViews
-    ////                    currentData.value = storyTagStatsID
-    ////                    return FIRTransactionResult.successWithValue(currentData)
-    ////                }
-    ////                return FIRTransactionResult.successWithValue(currentData)
-    ////            })
-
     
     @IBAction func recordStory(sender: UIButton) {
         print("ohhhh yeah baby record me all night all long")
