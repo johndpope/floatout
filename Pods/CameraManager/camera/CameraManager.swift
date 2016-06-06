@@ -56,7 +56,7 @@ public class CameraManager: NSObject, AVCaptureFileOutputRecordingDelegate, UIGe
     }
 
     /// Property to determine if manager should write the resources to the phone library. Default value is true.
-    public var writeFilesToPhoneLibrary = true
+    public var writeFilesToPhoneLibrary = false
     
     /// Property to determine if manager should follow device orientation. Default value is true.
     public var shouldRespondToOrientationChanges = true {
@@ -563,6 +563,11 @@ public class CameraManager: NSObject, AVCaptureFileOutputRecordingDelegate, UIGe
         if !shouldReinitializeMovieOutput {
             if let connection = movieOutput!.connectionWithMediaType(AVMediaTypeVideo) {
                 shouldReinitializeMovieOutput = shouldReinitializeMovieOutput || !connection.active
+            
+                //FIX FOR Selfie
+//                if connection.supportsVideoMirroring {
+//                    connection.videoMirrored = true
+//                }
             }
         }
         
@@ -582,6 +587,11 @@ public class CameraManager: NSObject, AVCaptureFileOutputRecordingDelegate, UIGe
         if !shouldReinitializeStillImageOutput {
             if let connection = stillImageOutput!.connectionWithMediaType(AVMediaTypeVideo) {
                 shouldReinitializeStillImageOutput = shouldReinitializeStillImageOutput || !connection.active
+                
+                //FIX FOR Selfie
+//                if connection.supportsVideoMirroring {
+//                    connection.videoMirrored = true
+//                }
             }
         }
         if shouldReinitializeStillImageOutput {
@@ -904,3 +914,27 @@ public class CameraManager: NSObject, AVCaptureFileOutputRecordingDelegate, UIGe
         _stopFollowingDeviceOrientation()
     }
 }
+
+//public extension CameraManager {
+//    
+//    public func focus(atPoint: CGPoint) {
+//        if let currentDevice = self.cameraDevice{
+//            if currentDevice.isFocusModeSupported(AVCaptureFocusMode.AutoFocus) && currentDevice.focusPointOfInterestSupported {
+//                let focusPoint = self.previewLayer.captureDevicePointOfInterestForPoint(atPoint)
+//                do {
+//                    try currentDevice.lockForConfiguration()
+//                    currentDevice.focusPointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
+//                    currentDevice.focusMode = AVCaptureFocusMode.AutoFocus
+//                    
+//                    if currentDevice.isExposureModeSupported(AVCaptureExposureMode.AutoExpose) {
+//                        currentDevice.exposureMode = AVCaptureExposureMode.AutoExpose
+//                    }
+//                    currentDevice.unlockForConfiguration()
+//                }
+//                catch {
+//                    fatalError("[CameraEngine] error lock configuration device")
+//                }
+//            }
+//        }
+//    }
+//}

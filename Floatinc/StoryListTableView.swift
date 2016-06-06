@@ -150,15 +150,19 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
             let uid = FIRAuth.auth()!.currentUser!.uid
             let userStatsRef = storyTagStatsRefForKey?.child("users").child(uid)
             
+            //Tracking number of views by an user
             userStatsRef?.runTransactionBlock({ (currentData) -> FIRTransactionResult in
                 if currentData.value != nil {
                     var userViewsObject = currentData.value as? [String:Int]
-                    //if the user Object does not exist
-                    if(userViewsObject == nil){
+                    
+                    //if the user Object does not exist, i.e the user has never 
+                    //seen the story before and clicked for the first time.
+                    if userViewsObject == nil {
                         let userViewsObject = ["views":1]
                         currentData.value = userViewsObject
                     }
-                    else{
+                        
+                    else {
                         var userViews = userViewsObject!["views"]!
                         userViews += 1
                         userViewsObject!["views"] = userViews
@@ -168,103 +172,11 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
                 }
                 return FIRTransactionResult.successWithValue(currentData)
             })
-            
-            
-            //First Time user is clickin on a story
-            
-//            
-
-//            
-//            
-//                
-            
-            
-            
-            
-        
-//            //Adding user specific stats on the story
-//            let uid = FIRAuth.auth()?.currentUser!.uid
-//            let userStats = [uid : ["views": 1]]
-//            let userStatsRef = storyTagStatsRefForKey?.child("users")
-//            if userStatsRef == nil{
-//                print("check")
-            //            }
-            
-            //storyTagStatsRef!.updateChildValues(["users": userStats])
-            //storyTagStats
-            
         }
-        
     }
     
     
     @IBAction func recordStory(sender: UIButton) {
-        print("ohhhh yeah baby record me all night all long")
-        
+        print("recording is being pressed baby")
     }
-    
 }
-
-
-//
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-////        //getting the reference from the store
-////        let storyID = self.storyListStore.storyList[indexPath.row].id
-////        var storyTagStatsRef = self.storyStatsStore.storyStatsDict[storyID]?["ref"]
-////        let uid = (FIRAuth.auth()?.currentUser?.uid)!
-////
-////        //create the object in FIREBASE if the storyStat for this story does not exist
-////        //This is done only the first time the user clicks on the story
-////        if storyTagStatsRef == nil{
-////          storyTagStatsRef = rootRef.child("storyTagStats/\(storyID)")
-////            //adding the totalViews
-////            storyTagStatsRef!.updateChildValues(["totalViews":1])
-////            //adding userViews
-////            let userStatsobj = [uid : ["views": 1]]
-////            storyTagStatsRef!.updateChildValues(["users": userStatsobj])
-////        }
-////        else {
-////
-////            //Update the number of totalViews:
-////            storyTagStatsRef?.runTransactionBlock({(currentData: FIRMutableData) -> FIRTransactionResult in
-////                if currentData.value != nil {
-////                    var storyTagStatsID = currentData.value as! [String:AnyObject]
-////                    //getting the totalViews
-////                    var totalViews = storyTagStatsID["totalViews"] as? Int ?? 1
-////                    totalViews += 1
-////                    //update the value in the firebase as well
-////                    storyTagStatsID["totalViews"] = totalViews
-////                    currentData.value = storyTagStatsID
-////                    return FIRTransactionResult.successWithValue(currentData)
-////                }
-////                return FIRTransactionResult.successWithValue(currentData)
-////            })
-
-////            var users = storyTagStatsID["users"] as? [String:[String:Int]] ?? [:]
-////            //check if this user has ever entered here or not, this for tracking user views
-////            if(users[uid] == nil){
-////                print("MR NEW USSER")
-////
-////                //This is for the case when an user clicks on the story for the first Time.
-////                storyTagStatsRef?.child!("users").updateChildValues([uid:["views": 1]])
-////                storyTagStatsRef?.child!("totalViews").setValue((totalViews+1))
-////
-////            }
-////
-////            else {
-////                print("welcome again you like this story eh, hot girls in it ? :P ")
-////                //getting the values
-////                var userViews = users[uid]?["views"] ?? 1
-////                userViews += 1
-////                //setting the values
-////                users[uid]?["views"] = userViews
-////                storyTagStatsID["users"] = users
-////            }
-//        }
-//    }
-
-
-//    override func viewWillAppear(animated: Bool) {
-//        super.viewWillAppear(true)
-//        self.tableView.reloadData()
-//    }

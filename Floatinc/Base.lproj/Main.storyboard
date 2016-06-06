@@ -48,7 +48,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oup-fm-1xF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="-1190"/>
+            <point key="canvasLocation" x="-1530" y="-1438"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="9T3-Jy-rSV">
@@ -118,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5BI-YK-0a2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="588" y="-291"/>
+            <point key="canvasLocation" x="-78" y="-806"/>
         </scene>
         <!--Scroll View Controller-->
         <scene sceneID="bhC-ls-9m1">
@@ -150,7 +150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="blb-AT-0Ph" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1881" y="313"/>
+            <point key="canvasLocation" x="-2225" y="527"/>
         </scene>
         <!--Story List Table View-->
         <scene sceneID="Dv5-pz-Xcc">
@@ -239,6 +239,7 @@
                                 <state key="normal" backgroundImage="camera"/>
                                 <connections>
                                     <action selector="recordStory:" destination="oe1-Yt-oKk" eventType="touchUpInside" id="pFk-U0-SV6"/>
+                                    <segue destination="WLN-AP-MOc" kind="show" id="fG4-lA-Bce"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -272,7 +273,93 @@
                     <nil key="highlightedColor"/>
                 </label>
             </objects>
-            <point key="canvasLocation" x="-588" y="-531"/>
+            <point key="canvasLocation" x="-816" y="-806"/>
+        </scene>
+        <!--Camera-->
+        <scene sceneID="haY-DP-HKl">
+            <objects>
+                <viewController storyboardIdentifier="cameraViewController" title="Camera" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WLN-AP-MOc" customClass="CameraViewController" customModule="Floatinc" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ARX-Fp-mdN"/>
+                        <viewControllerLayoutGuide type="bottom" id="xSm-QW-cRC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6Tv-Bd-03v">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AqB-lW-SsS">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bdy-GH-bbP">
+                                <rect key="frame" x="264" y="478" width="73" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="ch0-3D-kZH"/>
+                                    <constraint firstAttribute="width" constant="73" id="euC-hK-qIz"/>
+                                </constraints>
+                                <state key="normal" title="click" image="imageClick"/>
+                                <connections>
+                                    <action selector="mediaCaptureButtonTapped:" destination="WLN-AP-MOc" eventType="touchUpInside" id="d6M-AV-H8r"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pB-i1-Agm">
+                                <rect key="frame" x="537" y="20" width="43" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="V1f-VP-dwG"/>
+                                    <constraint firstAttribute="width" constant="43" id="zUp-mH-1uW"/>
+                                </constraints>
+                                <state key="normal" title="flash" image="flash"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLO-4V-CHT">
+                                <rect key="frame" x="20" y="493" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="BjN-e8-a3q"/>
+                                </constraints>
+                                <state key="normal" title="back" image="back"/>
+                                <connections>
+                                    <action selector="backToStory:" destination="WLN-AP-MOc" eventType="touchUpInside" id="MmO-QD-2Ss"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ikl-Nt-eeh">
+                                <rect key="frame" x="20" y="20" width="50" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="DxD-pD-s9f"/>
+                                    <constraint firstAttribute="width" constant="50" id="zct-Mh-gZf"/>
+                                </constraints>
+                                <state key="normal" title="selfie" image="selfie"/>
+                                <connections>
+                                    <action selector="flipTheCamera:" destination="WLN-AP-MOc" eventType="touchUpInside" id="zOK-ud-QRc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7pB-i1-Agm" firstAttribute="top" secondItem="ARX-Fp-mdN" secondAttribute="bottom" id="06O-ym-Z34"/>
+                            <constraint firstItem="Bdy-GH-bbP" firstAttribute="centerX" secondItem="6Tv-Bd-03v" secondAttribute="centerX" id="5na-wR-LVY"/>
+                            <constraint firstItem="AqB-lW-SsS" firstAttribute="centerY" secondItem="6Tv-Bd-03v" secondAttribute="centerY" id="Hfm-RL-oH8"/>
+                            <constraint firstItem="7pB-i1-Agm" firstAttribute="trailing" secondItem="6Tv-Bd-03v" secondAttribute="trailingMargin" id="JvI-EZ-4Uk"/>
+                            <constraint firstItem="ikl-Nt-eeh" firstAttribute="leading" secondItem="gLO-4V-CHT" secondAttribute="leading" id="KIy-R6-Lj2"/>
+                            <constraint firstItem="ikl-Nt-eeh" firstAttribute="top" secondItem="ARX-Fp-mdN" secondAttribute="bottom" id="KXs-zU-h5g"/>
+                            <constraint firstItem="gLO-4V-CHT" firstAttribute="centerY" secondItem="Bdy-GH-bbP" secondAttribute="centerY" id="XDx-g5-BMS"/>
+                            <constraint firstItem="7pB-i1-Agm" firstAttribute="top" secondItem="ARX-Fp-mdN" secondAttribute="bottom" id="hCk-6x-7o7"/>
+                            <constraint firstItem="AqB-lW-SsS" firstAttribute="centerX" secondItem="6Tv-Bd-03v" secondAttribute="centerX" id="hUs-8O-3XF"/>
+                            <constraint firstItem="AqB-lW-SsS" firstAttribute="width" secondItem="6Tv-Bd-03v" secondAttribute="width" id="lNk-un-bvL"/>
+                            <constraint firstItem="ikl-Nt-eeh" firstAttribute="leading" secondItem="6Tv-Bd-03v" secondAttribute="leadingMargin" id="lYk-j1-jqf"/>
+                            <constraint firstItem="AqB-lW-SsS" firstAttribute="height" secondItem="6Tv-Bd-03v" secondAttribute="height" id="sAt-MN-Tom"/>
+                            <constraint firstItem="xSm-QW-cRC" firstAttribute="top" secondItem="Bdy-GH-bbP" secondAttribute="bottom" constant="8" id="xnf-DX-x5z"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backToStoryButton" destination="gLO-4V-CHT" id="Pak-T6-Fgb"/>
+                        <outlet property="cameraView" destination="AqB-lW-SsS" id="awr-nr-gB7"/>
+                        <outlet property="flashModeButton" destination="7pB-i1-Agm" id="Iwl-Lm-Bl2"/>
+                        <outlet property="mediaCaptureButton" destination="Bdy-GH-bbP" id="Qt5-14-1CL"/>
+                        <outlet property="selfieToggleButton" destination="ikl-Nt-eeh" id="3Oy-GW-xcr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Joe-mE-en4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-807" y="64"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -398,7 +485,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1372" y="-424"/>
+            <point key="canvasLocation" x="-2192" y="-806"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="Dux-TF-bTe">
@@ -514,7 +601,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="187-0Q-qkI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1189" y="367"/>
+            <point key="canvasLocation" x="-2199" y="-135"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GP5-DG-si0">
@@ -532,14 +619,17 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="33t-il-gSS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-672" y="-1190"/>
+            <point key="canvasLocation" x="-2192" y="-1438"/>
         </scene>
     </scenes>
     <resources>
         <image name="back" width="40" height="40"/>
         <image name="boat" width="1097" height="780"/>
         <image name="camera" width="64" height="64"/>
+        <image name="flash" width="128" height="128"/>
         <image name="float" width="48" height="58"/>
         <image name="go" width="40" height="40"/>
+        <image name="imageClick" width="256" height="256"/>
+        <image name="selfie" width="256" height="256"/>
     </resources>
 </document>

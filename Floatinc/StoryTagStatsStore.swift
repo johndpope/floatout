@@ -12,12 +12,6 @@ import Firebase
 
 class StoryTagStatsStore {
     
-//    var storyStatsDict = [String: [String: AnyObject]] ()
-//    
-//    func add(storyStat: StoryTagStats){
-//        self.storyStatsDict[storyStat.id] = ["ref": storyStat.ref!, "viewCount": storyStat.totalViews]
-//    }
-    
     var storyTagStatsList = [StoryTagStats]()
     
     func add(storyTagStats: StoryTagStats){
