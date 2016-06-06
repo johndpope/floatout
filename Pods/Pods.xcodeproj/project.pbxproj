@@ -10,6 +10,17 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
+		<key>00F53BEBF80AA6AAA197956A7F10EC73</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>PBJVideoPlayer</string>
+			<key>target</key>
+			<string>74BDE5EB0BB3CFCB6EE2405B094E42F1</string>
+			<key>targetProxy</key>
+			<string>84FCC63E8D63EF2D58189F9D4F7E0DA6</string>
+		</dict>
 		<key>014671A220C32B8F068806BBBB8E0BBF</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -23,7 +34,38 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>03E0106265A217ACC218EA2235104FBF</key>
+		<key>047B3D1D898A577E8B89576370BBCFE6</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>04D9243D3408F34102CF4E088104F94E</string>
+				<string>067AB92AB71ADE18420675D2EA795403</string>
+				<string>2FE2B76F2DE904A731BD9FECC50C6DEB</string>
+				<string>479F4F3DD88028FE678D662CB934BCF2</string>
+				<string>D12062F2C330CA1988C514D6F0B1F47C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>04D9243D3408F34102CF4E088104F94E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D174840A15355321F765B896A5CF2A01</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>067AB92AB71ADE18420675D2EA795403</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D42C8889FEE39D4C6689484DA43A4FC8</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>077AD8C3C0DF4B3EABCA71FAB3278AF0</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -32,24 +74,51 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>FIRInstanceID.h</string>
+			<string>PBJVideoPlayer.h</string>
 			<key>path</key>
-			<string>Headers/Public/FIRInstanceID.h</string>
+			<string>Source/PBJVideoPlayer.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>08FC176104FF2D0BEE72D9CE995CADB0</key>
+		<key>0AEEAB9F6CBF65C75379C5F8B9007FBC</key>
 		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
+			<key>fileRef</key>
+			<string>DF303CF0CD571B2A02BA30EC71BBDA7F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>0B831B96642881C0D357AD84ED53D194</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>FirebaseInstanceID.framework</string>
+			<key>path</key>
+			<string>Frameworks/FirebaseInstanceID.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0B9E401C7890E21842079CFF49580047</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C6E7C79B313EB93BC5FDDDACA5EFF102</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>0FDD6B377DF6BC49CDE5140A76B1C780</key>
+		<dict>
+			<key>children</key>
 			<array>
-				<string>7AA7ADF2FBDDC25E2CC25A7E675C8AA7</string>
+				<string>0B831B96642881C0D357AD84ED53D194</string>
 			</array>
 			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>142E9E227B3474F493B1E91D1B0F580E</key>
 		<dict>
@@ -75,12 +144,67 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>1AE10722CEDDBC8C2CF7F5D767804DB8</key>
+		<key>148B105C8C00E6CF1AC30101529D351B</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>CameraManager</string>
+			<key>target</key>
+			<string>4FEFFF8BCFFF25082AF4A867552C5F52</string>
+			<key>targetProxy</key>
+			<string>BCE3CEDF2524020C3E12205DFD38D0B0</string>
+		</dict>
+		<key>1874451AE5FE67C654B4FEFC537DFD51</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>49472CF07428585B3D2F94240EC534F7</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>18DBCA67D0A3887EA2276817896EAD4D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>987A0145116AB60ADA3B85EDD3A64E63</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Firebase</string>
+			<key>path</key>
+			<string>Firebase</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1BEAF44EF0BB6DBADE76E4CAD36C68D0</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>B1FCC22A6A570C53E921778AD538D33D</string>
+				<string>51AAB4AF46B34F6B9477FED1866529D9</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>CameraManager</string>
+			<key>path</key>
+			<string>CameraManager</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1D1BB24ED565D3D534DF58FC1A2217BC</key>
 		<dict>
 			<key>buildConfigurations</key>
 			<array>
-				<string>BABD4B52AD9E4D0ADBBE9FFC85DED7A8</string>
-				<string>279C2DCFDFE4165A57ECF4A765768D71</string>
+				<string>F00D73D30D745B95545DEC415AD70ED1</string>
+				<string>FCC7722C5CD71AB7361CD98362DE413B</string>
 			</array>
 			<key>defaultConfigurationIsVisible</key>
 			<string>0</string>
@@ -88,6 +212,46 @@
 			<string>Release</string>
 			<key>isa</key>
 			<string>XCConfigurationList</string>
+		</dict>
+		<key>1D6898DAE78285E70B94B75F1EBDA2FD</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>UIKit.framework</string>
+			<key>path</key>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>1E80DE0ED5FE0E30C05E66286E2B8896</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>PBJVideoPlayer.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1F48D64E0C5106DF6A19FC73C8CE7207</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D4C2A207B3FA63A3705F30448E4519CD</string>
+				<string>8E2DE4B877F5782F614F94E51F00BF73</string>
+				<string>71EB9033946BCBF6C7B5A3ECD84E9C6A</string>
+				<string>974E69134FBA2EACC59DE6E6BBFF0E1C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
 		</dict>
 		<key>1FC6DC0CFB9D7969152D39EAB2922476</key>
 		<dict>
@@ -100,17 +264,36 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>253E404F6C67CB030B3E852CE00E1278</key>
+		<key>204B0826E30E15626D2AAB1307DC24EB</key>
 		<dict>
-			<key>fileRef</key>
-			<string>DF303CF0CD571B2A02BA30EC71BBDA7F</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>GoogleInterchangeUtilities.framework</string>
+			<key>path</key>
+			<string>Frameworks/GoogleInterchangeUtilities.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
-		<key>279C2DCFDFE4165A57ECF4A765768D71</key>
+		<key>20B56609144CE204DFA8221F742B2D76</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>56DE5FB77DE3B2298E740E3A8837DA35</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2311CCA67592E3DE256B32338CFE7832</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>9F45B28E00C76045961C16A8A2A51952</string>
+			<string>A2700BE07D2C1C7B1DA8943C89235E47</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -127,8 +310,10 @@
 				<string>@rpath</string>
 				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
 				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/PBJVideoPlayer/PBJVideoPlayer-prefix.pch</string>
 				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/Pods-Floatinc/Info.plist</string>
+				<string>Target Support Files/PBJVideoPlayer/Info.plist</string>
 				<key>INSTALL_PATH</key>
 				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
 				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
@@ -139,20 +324,12 @@
 					<string>@executable_path/Frameworks</string>
 					<string>@loader_path/Frameworks</string>
 				</array>
-				<key>MACH_O_TYPE</key>
-				<string>staticlib</string>
 				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/Pods-Floatinc/Pods-Floatinc.modulemap</string>
+				<string>Target Support Files/PBJVideoPlayer/PBJVideoPlayer.modulemap</string>
 				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>OTHER_LIBTOOLFLAGS</key>
-				<string></string>
-				<key>PODS_ROOT</key>
-				<string>$(SRCROOT)</string>
+				<string>YES</string>
 				<key>PRODUCT_NAME</key>
-				<string>Pods_Floatinc</string>
+				<string>PBJVideoPlayer</string>
 				<key>SDKROOT</key>
 				<string>iphoneos</string>
 				<key>SKIP_INSTALL</key>
@@ -167,45 +344,63 @@
 			<key>isa</key>
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
-			<string>Release</string>
+			<string>Debug</string>
 		</dict>
-		<key>282A28F690A68C379152D681077BD45C</key>
+		<key>23F193F841BF27AC52A363AACBF58347</key>
 		<dict>
-			<key>buildConfigurationList</key>
-			<string>1AE10722CEDDBC8C2CF7F5D767804DB8</string>
-			<key>buildPhases</key>
-			<array>
-				<string>62C95C1EABBDF16DA0118151A699F4B1</string>
-				<string>C55B5007FC987ACC979B1E485B9634A9</string>
-				<string>08FC176104FF2D0BEE72D9CE995CADB0</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
 			<key>isa</key>
-			<string>PBXNativeTarget</string>
+			<string>PBXFileReference</string>
 			<key>name</key>
-			<string>Pods-Floatinc</string>
-			<key>productName</key>
-			<string>Pods-Floatinc</string>
-			<key>productReference</key>
-			<string>69EAA9EFF3112320BC95B85CFC30C27F</string>
-			<key>productType</key>
-			<string>com.apple.product-type.framework</string>
+			<string>CameraManager.framework</string>
+			<key>path</key>
+			<string>CameraManager.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>2C31E0233017FB1BFBCB33F7354A2D22</key>
+		<key>266D7081A7B2FE964E4F2C758E20B249</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>PBJVideoPlayerController.m</string>
+			<key>path</key>
+			<string>Source/PBJVideoPlayerController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>272E46B507EAF9FB5BF69E18CDFED5BE</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>D281E91283F793E8CA75412349F48963</string>
+				<string>80CC70A739E9C22A721359CD3573586C</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>GoogleUtilities</string>
+			<string>FirebaseAnalytics</string>
 			<key>path</key>
-			<string>GoogleUtilities</string>
+			<string>FirebaseAnalytics</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2A16665F676886F57127468DD221D75D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>PBJVideoPlayer-prefix.pch</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -223,11 +418,38 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>3CD7E1E23ECF34FDF931C0381F479D8C</key>
+		<key>2FE2B76F2DE904A731BD9FECC50C6DEB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C6E7C79B313EB93BC5FDDDACA5EFF102</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3314A602B4A4E903C102E6F165C092F7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>266D7081A7B2FE964E4F2C758E20B249</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>37F374888932815B5FCCD8B3B11AD5E3</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>46A8763392E22D8E8B274B0E2D7D1550</string>
+				<string>4DEB8222F0AFED35EAE3FD83F98C68E9</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3BBEDDE6F83B85470F9725CD2634E241</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>37F374888932815B5FCCD8B3B11AD5E3</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -238,18 +460,76 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>3E4E89230EF59BC255123B67864ACF77</key>
+		<key>3CEBC05E06E70A2887A30E199B9E433F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>41AB302FEC578F7910B0E1B816240890</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3CFB5294849B0A444EC9AEDC3BCF5E73</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>CEBBE4719771F05CCC3BE14E8D0C2D51</string>
+				<string>3314A602B4A4E903C102E6F165C092F7</string>
+				<string>7301FBA16C1543A6548BEE611DF95CE5</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>3DF9A862D2F51621B43AACF08A7E1F09</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>C62CB29D7DC7A03AA73BF9BB17387014</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>GoogleNetworkingUtilities</string>
+			<key>path</key>
+			<string>GoogleNetworkingUtilities</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3F4519BC9C4EFEF1422153079D67D6B1</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6000430415594B35589924637D164064</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>GoogleInterchangeUtilities</string>
+			<key>path</key>
+			<string>GoogleInterchangeUtilities</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>41AB302FEC578F7910B0E1B816240890</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>wrapper.framework</string>
 			<key>name</key>
-			<string>Foundation.framework</string>
+			<string>FirebaseDatabase.framework</string>
 			<key>path</key>
-			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework</string>
+			<string>Frameworks/FirebaseDatabase.framework</string>
 			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>4421E38B79A1F725768635BC24FE6468</key>
 		<dict>
@@ -264,46 +544,14 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>452405C82F8A0076FA037F9AC0719782</key>
+		<key>479F4F3DD88028FE678D662CB934BCF2</key>
 		<dict>
+			<key>fileRef</key>
+			<string>C3484B66C7F42695E5C7D336E95C11E6</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>FirebaseInstanceID.framework</string>
-			<key>path</key>
-			<string>Frameworks/FirebaseInstanceID.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
 		</dict>
-		<key>46A8763392E22D8E8B274B0E2D7D1550</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>4761F87CFBF739E2A4D75031E7F2BDB7</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4761F87CFBF739E2A4D75031E7F2BDB7</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>GoogleSymbolUtilities.framework</string>
-			<key>path</key>
-			<string>Frameworks/GoogleSymbolUtilities.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>488DE80D15C6E1716EB07B210B2CA8A6</key>
+		<key>49472CF07428585B3D2F94240EC534F7</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
@@ -316,100 +564,168 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>55D3EB9CC2466094DD973029676A2472</key>
+		<key>4ABAE32DFF4CDD38A9CA8C4A759CC775</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F2DA1E6A5BF3DFC597BB88F49168572F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>GoogleUtilities</string>
+			<key>path</key>
+			<string>GoogleUtilities</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4DEB8222F0AFED35EAE3FD83F98C68E9</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>wrapper.framework</string>
 			<key>name</key>
-			<string>GoogleNetworkingUtilities.framework</string>
+			<string>GoogleSymbolUtilities.framework</string>
 			<key>path</key>
-			<string>Frameworks/GoogleNetworkingUtilities.framework</string>
+			<string>Frameworks/GoogleSymbolUtilities.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>5C70F7225A55D654CC45856840D1C7EA</key>
+		<key>4FEFFF8BCFFF25082AF4A867552C5F52</key>
 		<dict>
-			<key>children</key>
+			<key>buildConfigurationList</key>
+			<string>9642486B80581C5D8B6F6D16911D852B</string>
+			<key>buildPhases</key>
 			<array>
-				<string>CF52A66801ACB66144CBA1E6EBEE70D9</string>
+				<string>BFFD3F6B1F5C779FB91D0262D6F1E06A</string>
+				<string>F8BC9BCCCE3FE129CF8EAEB5DDC54E49</string>
+				<string>C65E4D2098B0E49A1B4ACF531F5D22A2</string>
 			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
 			<key>isa</key>
-			<string>PBXGroup</string>
+			<string>PBXNativeTarget</string>
 			<key>name</key>
-			<string>Firebase</string>
-			<key>path</key>
-			<string>Firebase</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>CameraManager</string>
+			<key>productName</key>
+			<string>CameraManager</string>
+			<key>productReference</key>
+			<string>23F193F841BF27AC52A363AACBF58347</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
 		</dict>
-		<key>62C95C1EABBDF16DA0118151A699F4B1</key>
+		<key>50AEB06B14D7953B378AB40FFF95E0E5</key>
 		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>253E404F6C67CB030B3E852CE00E1278</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>67BAE9A776C3F88B932EF65D29360537</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>FirebaseDatabase.framework</string>
-			<key>path</key>
-			<string>Frameworks/FirebaseDatabase.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>6926ECF7C779A470DCBC96D030CC6A83</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>B003E44AF39A073FF0DCBF62A6DB2BF0</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>FirebaseAnalytics</string>
-			<key>path</key>
-			<string>FirebaseAnalytics</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>69EAA9EFF3112320BC95B85CFC30C27F</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
 			<key>includeInIndex</key>
-			<string>0</string>
+			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>Pods_Floatinc.framework</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
 			<key>path</key>
-			<string>Pods_Floatinc.framework</string>
+			<string>CameraManager.xcconfig</string>
 			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
+			<string>&lt;group&gt;</string>
 		</dict>
-		<key>6A7093A972E338FDCB1503327A5A108F</key>
+		<key>51AAB4AF46B34F6B9477FED1866529D9</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>67BAE9A776C3F88B932EF65D29360537</string>
+				<string>ED8D273C9473DD461EE8DF9C1E0D4DC8</string>
+				<string>50AEB06B14D7953B378AB40FFF95E0E5</string>
+				<string>FEDA090B4AB89712AB8E005EE8CC2DD0</string>
+				<string>A29B34A49EAC3420B8D3BF00781630FA</string>
+				<string>BE7D8D6B095F29E97BCF8C75EF4E129F</string>
+				<string>82E64074DBDECD7A24F735F9DB9306C4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/CameraManager</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>540DAD508FD66A37E6EE033DE074ACA7</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>2311CCA67592E3DE256B32338CFE7832</string>
+				<string>794F364E8266D4A47709254C90B7C636</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>5697EAF95E1633C030C5FB643C72147B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C6E7C79B313EB93BC5FDDDACA5EFF102</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>56DE5FB77DE3B2298E740E3A8837DA35</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D174840A15355321F765B896A5CF2A01</string>
+				<string>D42C8889FEE39D4C6689484DA43A4FC8</string>
+				<string>C6E7C79B313EB93BC5FDDDACA5EFF102</string>
+				<string>C3484B66C7F42695E5C7D336E95C11E6</string>
+				<string>1D6898DAE78285E70B94B75F1EBDA2FD</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>iOS</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5FFC6BE2681DF2BCC2D185D5F4725366</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>PBJVideoPlayerController.h</string>
+			<key>path</key>
+			<string>Source/PBJVideoPlayerController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6000430415594B35589924637D164064</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>204B0826E30E15626D2AAB1307DC24EB</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
 			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>640B08125233807D5DC5AD067565FD3D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>FirebaseAnalytics.framework</string>
+			<key>path</key>
+			<string>Frameworks/FirebaseAnalytics.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -426,88 +742,10 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>6DDD0181EC31EBBDC09435AF0A624F8D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>03E0106265A217ACC218EA2235104FBF</string>
-				<string>7928D8E4AF7DDB04EA7796A15D1A1F95</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>FirebaseInstanceID</string>
-			<key>path</key>
-			<string>FirebaseInstanceID</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>6E9F397AE79C26FBE9C8767EB7C6BF89</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5C70F7225A55D654CC45856840D1C7EA</string>
-				<string>6926ECF7C779A470DCBC96D030CC6A83</string>
-				<string>B975A4AA5B5C2F4A8E3D75B69E5E97DB</string>
-				<string>72FF4AA34B51053F6345C9700A854DCB</string>
-				<string>6DDD0181EC31EBBDC09435AF0A624F8D</string>
-				<string>DBFFACE7C9ED8EC5C7CC42F190190BC4</string>
-				<string>A14C6E4BB4CB955E28A2A2AA42AF62F7</string>
-				<string>3CD7E1E23ECF34FDF931C0381F479D8C</string>
-				<string>2C31E0233017FB1BFBCB33F7354A2D22</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>72FF4AA34B51053F6345C9700A854DCB</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>6A7093A972E338FDCB1503327A5A108F</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>FirebaseDatabase</string>
-			<key>path</key>
-			<string>FirebaseDatabase</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>789CC823EA9D4F0478B6B312D7874F20</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>FirebaseAnalytics.framework</string>
-			<key>path</key>
-			<string>Frameworks/FirebaseAnalytics.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>7928D8E4AF7DDB04EA7796A15D1A1F95</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>452405C82F8A0076FA037F9AC0719782</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>7AA7ADF2FBDDC25E2CC25A7E675C8AA7</key>
+		<key>71EB9033946BCBF6C7B5A3ECD84E9C6A</key>
 		<dict>
 			<key>fileRef</key>
-			<string>A453AFDA853085C6B195538A687A59FB</string>
+			<string>5FFC6BE2681DF2BCC2D185D5F4725366</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -518,20 +756,275 @@
 				</array>
 			</dict>
 		</dict>
+		<key>7301FBA16C1543A6548BEE611DF95CE5</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8DA783A94891356468D441BEB54B58E2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>74BDE5EB0BB3CFCB6EE2405B094E42F1</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>540DAD508FD66A37E6EE033DE074ACA7</string>
+			<key>buildPhases</key>
+			<array>
+				<string>3CFB5294849B0A444EC9AEDC3BCF5E73</string>
+				<string>047B3D1D898A577E8B89576370BBCFE6</string>
+				<string>1F48D64E0C5106DF6A19FC73C8CE7207</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>PBJVideoPlayer</string>
+			<key>productName</key>
+			<string>PBJVideoPlayer</string>
+			<key>productReference</key>
+			<string>BB76EA0515F50EBBB09F5612F2C61ADC</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
+		</dict>
+		<key>7505CFF1330607FF52BC0F44A0D6AD87</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>GoogleNetworkingUtilities.framework</string>
+			<key>path</key>
+			<string>Frameworks/GoogleNetworkingUtilities.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>794F364E8266D4A47709254C90B7C636</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>A2700BE07D2C1C7B1DA8943C89235E47</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/PBJVideoPlayer/PBJVideoPlayer-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/PBJVideoPlayer/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/PBJVideoPlayer/PBJVideoPlayer.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>PRODUCT_NAME</key>
+				<string>PBJVideoPlayer</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
 		<key>7DB346D0F39D3F0E887471402A8071AB</key>
 		<dict>
 			<key>children</key>
 			<array>
 				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
-				<string>BC3CA7F9E30CC8F7E2DD044DD34432FC</string>
-				<string>6E9F397AE79C26FBE9C8767EB7C6BF89</string>
-				<string>B30574D811F51C09ACE54ED2D5FB3CDA</string>
+				<string>20B56609144CE204DFA8221F742B2D76</string>
+				<string>8406C9DEB9F652E31544C4C84853D01C</string>
+				<string>8C4BB8C554907A0D507DD812723B976B</string>
 				<string>8FF8C68EA2122ED99B27CEE7FF172CF0</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>80CC70A739E9C22A721359CD3573586C</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>640B08125233807D5DC5AD067565FD3D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>81C122F08981C38E15206AFE7CDBEE5F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A50A335FC5BE3DDEB48797F056597C72</string>
+				<string>1E80DE0ED5FE0E30C05E66286E2B8896</string>
+				<string>A2700BE07D2C1C7B1DA8943C89235E47</string>
+				<string>B8C555A4AD690A740EEA936D70068A2B</string>
+				<string>2A16665F676886F57127468DD221D75D</string>
+				<string>97FF558169AC6DB33788E13BB9049952</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/PBJVideoPlayer</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>82E64074DBDECD7A24F735F9DB9306C4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8406C9DEB9F652E31544C4C84853D01C</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>1BEAF44EF0BB6DBADE76E4CAD36C68D0</string>
+				<string>18DBCA67D0A3887EA2276817896EAD4D</string>
+				<string>272E46B507EAF9FB5BF69E18CDFED5BE</string>
+				<string>AF2D56F3C82640AC6EF16F3C2EE7A25A</string>
+				<string>DC83416FBDFDB67D3A16E3E2DE920FAC</string>
+				<string>F08353BFAF0674023AA78AFEDD5F055E</string>
+				<string>3F4519BC9C4EFEF1422153079D67D6B1</string>
+				<string>3DF9A862D2F51621B43AACF08A7E1F09</string>
+				<string>3BBEDDE6F83B85470F9725CD2634E241</string>
+				<string>4ABAE32DFF4CDD38A9CA8C4A759CC775</string>
+				<string>EEBB74851287B77C44256BAFCF91ED68</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>84FCC63E8D63EF2D58189F9D4F7E0DA6</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>74BDE5EB0BB3CFCB6EE2405B094E42F1</string>
+			<key>remoteInfo</key>
+			<string>PBJVideoPlayer</string>
+		</dict>
+		<key>85DCB87B4BF5BB31769FB3D7A10E1B3A</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Pods_Floatinc.framework</string>
+			<key>path</key>
+			<string>Pods_Floatinc.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>8C4BB8C554907A0D507DD812723B976B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>23F193F841BF27AC52A363AACBF58347</string>
+				<string>BB76EA0515F50EBBB09F5612F2C61ADC</string>
+				<string>85DCB87B4BF5BB31769FB3D7A10E1B3A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8DA783A94891356468D441BEB54B58E2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>PBJVideoView.m</string>
+			<key>path</key>
+			<string>Source/PBJVideoView.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8E2DE4B877F5782F614F94E51F00BF73</key>
+		<dict>
+			<key>fileRef</key>
+			<string>077AD8C3C0DF4B3EABCA71FAB3278AF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>8E458E4733FB88CC8E6742A98A0CF0AF</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>0AEEAB9F6CBF65C75379C5F8B9007FBC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
 		</dict>
 		<key>8FF8C68EA2122ED99B27CEE7FF172CF0</key>
 		<dict>
@@ -543,6 +1036,73 @@
 			<string>PBXGroup</string>
 			<key>name</key>
 			<string>Targets Support Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>917102782F14BE2DE8273708601D5AA2</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>GoogleUtilities.framework</string>
+			<key>path</key>
+			<string>Frameworks/GoogleUtilities.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9642486B80581C5D8B6F6D16911D852B</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>DE6AA7AA30ECA841C462BD486022C743</string>
+				<string>F5F8F4B3CA4351AD3E001A927DE19815</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>974E69134FBA2EACC59DE6E6BBFF0E1C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2AC3F47817C759D7943A8401B6AC0A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>97FF558169AC6DB33788E13BB9049952</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>PBJVideoPlayer-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>987A0145116AB60ADA3B85EDD3A64E63</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F900C8F80C9FF8152B274D772FD6CFAB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Analytics</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -559,18 +1119,29 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A14C6E4BB4CB955E28A2A2AA42AF62F7</key>
+		<key>A2700BE07D2C1C7B1DA8943C89235E47</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>A81D21B5302AB8375EEFBF24421919DF</string>
-			</array>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>GoogleNetworkingUtilities</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
 			<key>path</key>
-			<string>GoogleNetworkingUtilities</string>
+			<string>PBJVideoPlayer.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A29B34A49EAC3420B8D3BF00781630FA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>CameraManager-prefix.pch</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -587,16 +1158,16 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A6E49B499546589686E163EECC8085DF</key>
+		<key>A50A335FC5BE3DDEB48797F056597C72</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>EB7A564D36A7D9E62CD7CDA67B579F51</string>
-			</array>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -686,19 +1257,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A81D21B5302AB8375EEFBF24421919DF</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>55D3EB9CC2466094DD973029676A2472</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>AC8895D4AF9EEA5C7AD7692E3DD1DB93</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -712,50 +1270,11 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>B003E44AF39A073FF0DCBF62A6DB2BF0</key>
+		<key>AF2D56F3C82640AC6EF16F3C2EE7A25A</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>789CC823EA9D4F0478B6B312D7874F20</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B30574D811F51C09ACE54ED2D5FB3CDA</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>69EAA9EFF3112320BC95B85CFC30C27F</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B54925C679C8221ED7BC98F242741EE4</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>488DE80D15C6E1716EB07B210B2CA8A6</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B975A4AA5B5C2F4A8E3D75B69E5E97DB</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>B54925C679C8221ED7BC98F242741EE4</string>
+				<string>1874451AE5FE67C654B4FEFC537DFD51</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -763,6 +1282,49 @@
 			<string>FirebaseAuth</string>
 			<key>path</key>
 			<string>FirebaseAuth</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B1FCC22A6A570C53E921778AD538D33D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>CameraManager.swift</string>
+			<key>path</key>
+			<string>camera/CameraManager.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B8C555A4AD690A740EEA936D70068A2B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>PBJVideoPlayer-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2AC3F47817C759D7943A8401B6AC0A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>PBJVideoView.h</string>
+			<key>path</key>
+			<string>Source/PBJVideoView.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -783,7 +1345,449 @@
 			<key>xcLanguageSpecificationIdentifier</key>
 			<string>xcode.lang.ruby</string>
 		</dict>
-		<key>BABD4B52AD9E4D0ADBBE9FFC85DED7A8</key>
+		<key>BB76EA0515F50EBBB09F5612F2C61ADC</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>PBJVideoPlayer.framework</string>
+			<key>path</key>
+			<string>PBJVideoPlayer.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>BC0CED0B13644E368B0256C5F075CC57</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Pods-Floatinc-acknowledgements.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BCE3CEDF2524020C3E12205DFD38D0B0</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>4FEFFF8BCFFF25082AF4A867552C5F52</string>
+			<key>remoteInfo</key>
+			<string>CameraManager</string>
+		</dict>
+		<key>BE7D8D6B095F29E97BCF8C75EF4E129F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>CameraManager-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BFFD3F6B1F5C779FB91D0262D6F1E06A</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>EDC504771867DAEBD8D80AD3EA2E6BFC</string>
+				<string>DE931211EF2B4A50DC6AF38F6D27E1EA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>C213B68DB8090C7D783F3F7FA95F6615</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>FIRInstanceID.h</string>
+			<key>path</key>
+			<string>Headers/Public/FIRInstanceID.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C3484B66C7F42695E5C7D336E95C11E6</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>QuartzCore.framework</string>
+			<key>path</key>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/QuartzCore.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>C4690B334EFE8E4B63A04E7EE09711DF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A453AFDA853085C6B195538A687A59FB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>C62CB29D7DC7A03AA73BF9BB17387014</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>7505CFF1330607FF52BC0F44A0D6AD87</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C65E4D2098B0E49A1B4ACF531F5D22A2</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>DD42352B5C03C87D2AF000F5FC8B36ED</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>C6E7C79B313EB93BC5FDDDACA5EFF102</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>CEBBE4719771F05CCC3BE14E8D0C2D51</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B8C555A4AD690A740EEA936D70068A2B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D12062F2C330CA1988C514D6F0B1F47C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1D6898DAE78285E70B94B75F1EBDA2FD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D174840A15355321F765B896A5CF2A01</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>AVFoundation.framework</string>
+			<key>path</key>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/AVFoundation.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>D41D8CD98F00B204E9800998ECF8427E</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastSwiftUpdateCheck</key>
+				<string>0700</string>
+				<key>LastUpgradeCheck</key>
+				<string>0700</string>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>2D8E8EC45A3A1A1D94AE762CB5028504</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+			</array>
+			<key>mainGroup</key>
+			<string>7DB346D0F39D3F0E887471402A8071AB</string>
+			<key>productRefGroup</key>
+			<string>8C4BB8C554907A0D507DD812723B976B</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>4FEFFF8BCFFF25082AF4A867552C5F52</string>
+				<string>74BDE5EB0BB3CFCB6EE2405B094E42F1</string>
+				<string>D7899AEB8B99F6C3234A9D43322B04D6</string>
+			</array>
+		</dict>
+		<key>D42C8889FEE39D4C6689484DA43A4FC8</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>CoreGraphics.framework</string>
+			<key>path</key>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/CoreGraphics.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>D4C2A207B3FA63A3705F30448E4519CD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>97FF558169AC6DB33788E13BB9049952</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>D7899AEB8B99F6C3234A9D43322B04D6</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>1D1BB24ED565D3D534DF58FC1A2217BC</string>
+			<key>buildPhases</key>
+			<array>
+				<string>8E458E4733FB88CC8E6742A98A0CF0AF</string>
+				<string>E102E289F678A009AAF449DE8838AD84</string>
+				<string>E0FD0F30B2F5F91B9930F627B20AA2FD</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>148B105C8C00E6CF1AC30101529D351B</string>
+				<string>00F53BEBF80AA6AAA197956A7F10EC73</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Pods-Floatinc</string>
+			<key>productName</key>
+			<string>Pods-Floatinc</string>
+			<key>productReference</key>
+			<string>85DCB87B4BF5BB31769FB3D7A10E1B3A</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
+		</dict>
+		<key>DC83416FBDFDB67D3A16E3E2DE920FAC</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>3CEBC05E06E70A2887A30E199B9E433F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>FirebaseDatabase</string>
+			<key>path</key>
+			<string>FirebaseDatabase</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>DD42352B5C03C87D2AF000F5FC8B36ED</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BE7D8D6B095F29E97BCF8C75EF4E129F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>DE6AA7AA30ECA841C462BD486022C743</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>50AEB06B14D7953B378AB40FFF95E0E5</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/CameraManager/CameraManager-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/CameraManager/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/CameraManager/CameraManager.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>PRODUCT_NAME</key>
+				<string>CameraManager</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>DE931211EF2B4A50DC6AF38F6D27E1EA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B1FCC22A6A570C53E921778AD538D33D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>DF303CF0CD571B2A02BA30EC71BBDA7F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Pods-Floatinc-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E0FD0F30B2F5F91B9930F627B20AA2FD</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>C4690B334EFE8E4B63A04E7EE09711DF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E102E289F678A009AAF449DE8838AD84</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>0B9E401C7890E21842079CFF49580047</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>ED8D273C9473DD461EE8DF9C1E0D4DC8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>CameraManager.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>EDC504771867DAEBD8D80AD3EA2E6BFC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FEDA090B4AB89712AB8E005EE8CC2DD0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>EEBB74851287B77C44256BAFCF91ED68</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>077AD8C3C0DF4B3EABCA71FAB3278AF0</string>
+				<string>5FFC6BE2681DF2BCC2D185D5F4725366</string>
+				<string>266D7081A7B2FE964E4F2C758E20B249</string>
+				<string>BA2AC3F47817C759D7943A8401B6AC0A</string>
+				<string>8DA783A94891356468D441BEB54B58E2</string>
+				<string>81C122F08981C38E15206AFE7CDBEE5F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>PBJVideoPlayer</string>
+			<key>path</key>
+			<string>PBJVideoPlayer</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F00D73D30D745B95545DEC415AD70ED1</key>
 		<dict>
 			<key>baseConfigurationReference</key>
 			<string>014671A220C32B8F068806BBBB8E0BBF</string>
@@ -833,6 +1837,8 @@
 				<string>iphoneos</string>
 				<key>SKIP_INSTALL</key>
 				<string>YES</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
 				<key>TARGETED_DEVICE_FAMILY</key>
 				<string>1,2</string>
 				<key>VERSIONING_SYSTEM</key>
@@ -845,24 +1851,27 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>BC0CED0B13644E368B0256C5F075CC57</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Pods-Floatinc-acknowledgements.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BC3CA7F9E30CC8F7E2DD044DD34432FC</key>
+		<key>F08353BFAF0674023AA78AFEDD5F055E</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>BF6342C8B29F4CEEA088EFF7AB4DE362</string>
+				<string>C213B68DB8090C7D783F3F7FA95F6615</string>
+				<string>0FDD6B377DF6BC49CDE5140A76B1C780</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>FirebaseInstanceID</string>
+			<key>path</key>
+			<string>FirebaseInstanceID</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F2DA1E6A5BF3DFC597BB88F49168572F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>917102782F14BE2DE8273708601D5AA2</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -871,132 +1880,76 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>BF6342C8B29F4CEEA088EFF7AB4DE362</key>
+		<key>F5F8F4B3CA4351AD3E001A927DE19815</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>3E4E89230EF59BC255123B67864ACF77</string>
-			</array>
+			<key>baseConfigurationReference</key>
+			<string>50AEB06B14D7953B378AB40FFF95E0E5</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/CameraManager/CameraManager-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/CameraManager/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/CameraManager/CameraManager.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>PRODUCT_NAME</key>
+				<string>CameraManager</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
 			<key>isa</key>
-			<string>PBXGroup</string>
+			<string>XCBuildConfiguration</string>
 			<key>name</key>
-			<string>iOS</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>Release</string>
 		</dict>
-		<key>C55B5007FC987ACC979B1E485B9634A9</key>
+		<key>F8BC9BCCCE3FE129CF8EAEB5DDC54E49</key>
 		<dict>
 			<key>buildActionMask</key>
 			<string>2147483647</string>
 			<key>files</key>
 			<array>
-				<string>C9BFCDD6CCA227C7CD83A18AC798D97C</string>
+				<string>5697EAF95E1633C030C5FB643C72147B</string>
 			</array>
 			<key>isa</key>
 			<string>PBXFrameworksBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>C9BFCDD6CCA227C7CD83A18AC798D97C</key>
-		<dict>
-			<key>fileRef</key>
-			<string>3E4E89230EF59BC255123B67864ACF77</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>CF52A66801ACB66144CBA1E6EBEE70D9</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>E3E116E374CFF4017AEEFE6E8EBC3026</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Analytics</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D281E91283F793E8CA75412349F48963</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>F847ABE6512B2018E8ED69364605DE26</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D41D8CD98F00B204E9800998ECF8427E</key>
-		<dict>
-			<key>attributes</key>
-			<dict>
-				<key>LastSwiftUpdateCheck</key>
-				<string>0700</string>
-				<key>LastUpgradeCheck</key>
-				<string>0700</string>
-			</dict>
-			<key>buildConfigurationList</key>
-			<string>2D8E8EC45A3A1A1D94AE762CB5028504</string>
-			<key>compatibilityVersion</key>
-			<string>Xcode 3.2</string>
-			<key>developmentRegion</key>
-			<string>English</string>
-			<key>hasScannedForEncodings</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXProject</string>
-			<key>knownRegions</key>
-			<array>
-				<string>en</string>
-			</array>
-			<key>mainGroup</key>
-			<string>7DB346D0F39D3F0E887471402A8071AB</string>
-			<key>productRefGroup</key>
-			<string>B30574D811F51C09ACE54ED2D5FB3CDA</string>
-			<key>projectDirPath</key>
-			<string></string>
-			<key>projectReferences</key>
-			<array/>
-			<key>projectRoot</key>
-			<string></string>
-			<key>targets</key>
-			<array>
-				<string>282A28F690A68C379152D681077BD45C</string>
-			</array>
-		</dict>
-		<key>DBFFACE7C9ED8EC5C7CC42F190190BC4</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>A6E49B499546589686E163EECC8085DF</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>GoogleInterchangeUtilities</string>
-			<key>path</key>
-			<string>GoogleInterchangeUtilities</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>DF303CF0CD571B2A02BA30EC71BBDA7F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>Pods-Floatinc-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>E3E116E374CFF4017AEEFE6E8EBC3026</key>
+		<key>F900C8F80C9FF8152B274D772FD6CFAB</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1008,32 +1961,6 @@
 			<string>Firebase.h</string>
 			<key>path</key>
 			<string>Headers/Firebase.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>EB7A564D36A7D9E62CD7CDA67B579F51</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>GoogleInterchangeUtilities.framework</string>
-			<key>path</key>
-			<string>Frameworks/GoogleInterchangeUtilities.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>F847ABE6512B2018E8ED69364605DE26</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>GoogleUtilities.framework</string>
-			<key>path</key>
-			<string>Frameworks/GoogleUtilities.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1104,6 +2031,81 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Release</string>
+		</dict>
+		<key>FCC7722C5CD71AB7361CD98362DE413B</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>9F45B28E00C76045961C16A8A2A51952</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/Pods-Floatinc/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MACH_O_TYPE</key>
+				<string>staticlib</string>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/Pods-Floatinc/Pods-Floatinc.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PODS_ROOT</key>
+				<string>$(SRCROOT)</string>
+				<key>PRODUCT_NAME</key>
+				<string>Pods_Floatinc</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>FEDA090B4AB89712AB8E005EE8CC2DD0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>CameraManager-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 	</dict>
 	<key>rootObject</key>
