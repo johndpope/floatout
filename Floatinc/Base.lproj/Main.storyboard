@@ -239,7 +239,7 @@
                                 <state key="normal" backgroundImage="camera"/>
                                 <connections>
                                     <action selector="recordStory:" destination="oe1-Yt-oKk" eventType="touchUpInside" id="pFk-U0-SV6"/>
-                                    <segue destination="WLN-AP-MOc" kind="show" id="fG4-lA-Bce"/>
+                                    <segue destination="WLN-AP-MOc" kind="show" identifier="cameraSegue" id="fG4-lA-Bce"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -299,7 +299,7 @@
                                 </constraints>
                                 <state key="normal" title="click" image="imageClick"/>
                                 <connections>
-                                    <action selector="mediaCaptureButtonTapped:" destination="WLN-AP-MOc" eventType="touchUpInside" id="d6M-AV-H8r"/>
+                                    <action selector="mediaCaptureButtonTapped:" destination="WLN-AP-MOc" eventType="touchUpInside" id="ZJZ-1J-0Qu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pB-i1-Agm">

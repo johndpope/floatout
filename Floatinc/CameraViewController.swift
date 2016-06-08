@@ -11,6 +11,8 @@ import CameraManager
 
 
 class CameraViewController: UIViewController {
+    //Segue
+    var storyFeedStore : StoryFeedStore!
     
     //MARK: Constants
     let cameraManager = CameraManager()
@@ -23,6 +25,35 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var flashModeButton: UIButton!
     @IBOutlet weak var selfieToggleButton: UIButton!
     @IBOutlet weak var mediaCaptureButton: UIButton!
+    
+    // MARK: UIViewController
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //Create a storage reference from our storage service
+
+        let currentCameraState = cameraManager.currentCameraStatus()
+        print(currentCameraState)
+        
+        if currentCameraState == .NotDetermined {
+            askForCameraPermissions()
+        }
+        else if currentCameraState == .Ready {
+            addCameraToView()
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        cameraManager.resumeCaptureSession()
+    }
+    
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        cameraManager.stopCaptureSession()
+    }
     
     //MARK: @IBActions
     
@@ -49,11 +80,22 @@ class CameraViewController: UIViewController {
                 if let errorOccurred = error {
                     self.cameraManager.showErrorBlock(erTitle: "Error occured", erMessage: errorOccurred.localizedDescription)
                 }
-                else{
+                    
+                else {
                     if let capturedImageTaken = capturedImage {
                         let previewViewController = PreviewViewController(nibName: "PreviewViewController", bundle: nil)
                         previewViewController.media = Media.Photo(image: capturedImageTaken)
                         self.presentViewController(previewViewController, animated: true, completion: nil)
+                        
+                        if  let imageData = UIImageJPEGRepresentation(capturedImageTaken, 1.0){
+                            let store: StoreImage = StoreImage()
+                            //Getting the number of pictures in the users local store
+                            var mediaCount = self.storyFeedStore.storyFeedItemForId("1")?.mediaList.count
+                            if mediaCount == nil {
+                                mediaCount = 0
+                            }
+                            store.saveImage(imageData, mediaType: "image", storyTag: "1", count: mediaCount!)
+                        }
                     }
                 }
                 
@@ -81,34 +123,7 @@ class CameraViewController: UIViewController {
         }
     }
     
-    // MARK: UIViewController
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let currentCameraState = cameraManager.currentCameraStatus()
-        print(currentCameraState)
-        
-        if currentCameraState == .NotDetermined {
-            askForCameraPermissions()
-        }
-        else if currentCameraState == .Ready {
-            addCameraToView()
-        }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    
-        cameraManager.resumeCaptureSession()
-    }
-    
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        cameraManager.stopCaptureSession()
-    }
-    
-    
+
     //MARK: ViewController
     
     func askForCameraPermissions() {

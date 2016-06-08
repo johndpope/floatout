@@ -18,6 +18,7 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     let rootRef = FIRDatabase.database().reference()
     var storyTagsRef : FIRDatabaseReference!
     var storyTagStatsRef: FIRDatabaseReference!
+    var storyFeedRef: FIRDatabaseReference?
     var handle = UInt?()
     
     //Data stores
@@ -25,12 +26,15 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     let storyTagStore: StoryTagStore = StoryTagStore()
     //StoryStatsStore
     let storyTagStatsStore: StoryTagStatsStore = StoryTagStatsStore()
+    //StoryFeedStore
+    let storyFeedStore: StoryFeedStore = StoryFeedStore()
     
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        storyTagsRef = self.rootRef.child("storyTags")
-        storyTagStatsRef = self.rootRef.child("storyTagStats")
+        storyTagsRef = rootRef.child("storyTags")
+        storyTagStatsRef = rootRef.child("storyTagStats")
+        storyFeedRef = rootRef.child("storyFeed")
         
         //StoryTagStats Observers/////////////////////////////////////////////////////////////////////
         
@@ -84,6 +88,30 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
         })
+        
+        //StoryFeed Observers/////////////////////////////////////////////////////////////////////////////////////
+        
+        //Adding and setting up initially
+        storyFeedRef!.observeEventType(.ChildAdded, withBlock: { (snapshot) in
+            let storyFeed = StoryFeed(snapshot:snapshot)
+            self.storyFeedStore.add(storyFeed)
+        })
+        
+//        //Should delete the refs whenever they are deleted
+//        storyFeedRef!.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
+//            let storyTagStats = StoryTagStats(snapshot:snapshot)
+//            self.storyTagStatsStore.remove(storyTagStats)
+//            
+//        })
+//        
+//        //childChanged should update the stale refs
+//        storyFeedRef!.observeEventType(.ChildChanged, withBlock: { (snapshot) in
+//            let storyTagStats = StoryTagStats(snapshot:snapshot)
+//            self.storyTagStatsStore.update(storyTagStats)
+//        })
+    
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         //These two lines are mandatory for making the rows dynamic in height,
         //atleast the first one. Second is for performance.
@@ -175,6 +203,12 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "cameraSegue" {
+            let cameraViewController = segue.destinationViewController as! CameraViewController
+            cameraViewController.storyFeedStore = self.storyFeedStore
+        }
+    }
     
     @IBAction func recordStory(sender: UIButton) {
         print("recording is being pressed baby")
