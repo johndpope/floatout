@@ -97,18 +97,18 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
             self.storyFeedStore.add(storyFeed)
         })
         
-//        //Should delete the refs whenever they are deleted
-//        storyFeedRef!.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
-//            let storyTagStats = StoryTagStats(snapshot:snapshot)
-//            self.storyTagStatsStore.remove(storyTagStats)
-//            
-//        })
-//        
-//        //childChanged should update the stale refs
-//        storyFeedRef!.observeEventType(.ChildChanged, withBlock: { (snapshot) in
-//            let storyTagStats = StoryTagStats(snapshot:snapshot)
-//            self.storyTagStatsStore.update(storyTagStats)
-//        })
+        //Should delete the refs whenever they are deleted
+        storyFeedRef!.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
+            let storyFeed = StoryFeed(snapshot:snapshot)
+            self.storyFeedStore.remove(storyFeed)
+            
+        })
+
+        //childChanged should update the stale refs
+        storyFeedRef!.observeEventType(.ChildChanged, withBlock: { (snapshot) in
+            let storyFeed = StoryFeed(snapshot:snapshot)
+            self.storyFeedStore.updateStoryFeed(storyFeed)
+        })
     
         
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////

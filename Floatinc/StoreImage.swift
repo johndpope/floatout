@@ -50,7 +50,7 @@ class StoreImage {
 //                var obj = [newCount: nameUrl!]
 //                self.storyFeedRef!.child(storyTag).setValue(obj)
                 
-                
+                self.storyFeedRef!.child("\(storyTag)/\(newCount)").setValue(nameUrl!)
                 
             }
         }
