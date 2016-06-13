@@ -90,11 +90,11 @@ class CameraViewController: UIViewController {
                         if  let imageData = UIImageJPEGRepresentation(capturedImageTaken, 1.0){
                             let store: StoreImage = StoreImage()
                             //Getting the number of pictures in the users local store
-                            var mediaCount = self.storyFeedStore.storyFeedItemForId("1")?.mediaList.count
-                            if mediaCount == nil {
-                                mediaCount = 0
-                            }
-                            store.saveImage(imageData, mediaType: "image", storyTag: "1", count: mediaCount!)
+//                            var mediaCount = self.storyFeedStore.storyFeedItemForId("1")?.mediaList.count
+//                            if mediaCount == nil {
+//                                mediaCount = 0
+//                            }
+                            store.saveImage(imageData, mediaType: "image", storyTag: "1")
                         }
                     }
                 }

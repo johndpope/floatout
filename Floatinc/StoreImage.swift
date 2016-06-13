@@ -12,49 +12,53 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class StoreImage {
-    var gstorageRef : FIRStorageReference?
-    var gstoryFeedRef : FIRStorageReference?
-    var gstoryFeedStore: StoryFeedStore!
+    
+    //google storage refs
+    var gStorageRef : FIRStorageReference?
+    var gStoryFeedRef : FIRStorageReference?
+    var gStoryFeedStore: StoryFeedStore!
+    let gStorage  = FIRStorage.storage()
+    
+    //firebase refs
     let rootRef = FIRDatabase.database().reference()
     let storyFeedRef : FIRDatabaseReference?
+    let storyTagStatsRef: FIRDatabaseReference?
     
     init() {
-        let gstorage  = FIRStorage.storage()
-        self.gstorageRef = gstorage.referenceForURL("gs://floatout-2417e.appspot.com")
-        self.gstoryFeedRef = gstorageRef!.child("storyFeed")
-        
+        self.gStorageRef = gStorage.referenceForURL("gs://floatout-2417e.appspot.com")
+        self.gStoryFeedRef = gStorageRef!.child("storyFeed")
         self.storyFeedRef = rootRef.child("storyFeed")
-        
+        self.storyTagStatsRef = rootRef.child("storyTagStats")
     }
     
- 
-    func saveImage(data: NSData, mediaType: String, storyTag: String, count: Int) {
-        let nameFirstPart = FIRAuth.auth()?.currentUser?.email
-        let newCount = count+1
-        let fullName = "\(nameFirstPart)\(newCount)"
-        //So can find the count of storyFeedMedia count
-        let url = "\(storyTag)/\(fullName)"
-        let saveRef = gstoryFeedRef!.child(url)
-
+    func saveImage(data: NSData, mediaType: String, storyTag: String) {
         
-        //upload the file
+        let nameFirstPart = FIRAuth.auth()?.currentUser?.email
+        let storyMedia = self.storyFeedRef!.child("\(storyTag)")
+        let storyMediaKey = storyMedia.childByAutoId().key
+        let fullName = "\(nameFirstPart!)\(storyMediaKey)"
+
+        let gUrlName = "\(storyTag)/\(fullName).jpg"
+        let saveRef = gStoryFeedRef!.child(gUrlName)
+        
+        //upload the file to gstore
         _ = saveRef.putData(data, metadata: nil){ metadata, error in
             if (error != nil) {
                 print("error")
             }
             else {
                 print("PhotoHasBeenUploaded. Done")
-                let nameUrl = metadata?.name
-                //save to Firebase
-                //Getting localCount:
-//                var obj = [newCount: nameUrl!]
-//                self.storyFeedRef!.child(storyTag).setValue(obj)
+                //save to Firebase storyFeed
+                let gStorageUrl = metadata?.name
+                storyMedia.child(storyMediaKey).setValue(gStorageUrl)
                 
-                self.storyFeedRef!.child("\(storyTag)/\(newCount)").setValue(nameUrl!)
+                //save to Firebase storyTagStats contribution:
+                let uid = FIRAuth.auth()?.currentUser?.uid
+                let userFeed = self.storyTagStatsRef!.child("\(storyTag)/users/\(uid!)/contribution")
+                userFeed.child(storyMediaKey).setValue(gStorageUrl)
+                
                 
             }
         }
     }
-    
-    
 }

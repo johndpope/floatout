@@ -110,7 +110,6 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
             self.storyFeedStore.updateStoryFeed(storyFeed)
         })
     
-        
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         //These two lines are mandatory for making the rows dynamic in height,
@@ -181,20 +180,27 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
             //Tracking number of views by an user
             userStatsRef?.runTransactionBlock({ (currentData) -> FIRTransactionResult in
                 if currentData.value != nil {
-                    var userViewsObject = currentData.value as? [String:Int]
                     
-                    //if the user Object does not exist, i.e the user has never 
-                    //seen the story before and clicked for the first time.
-                    if userViewsObject == nil {
-                        let userViewsObject = ["views":1]
-                        currentData.value = userViewsObject
-                    }
+                    var userStatsObject = currentData.value as? [String: AnyObject]
+                   
+                    //This checks if the users/uid object exists
+                    if userStatsObject != nil {
+                        let viewCount = userStatsObject!["views"] as? Int ?? 0
+                        let newCount = viewCount + 1
                         
+                        //This check if users/uid/views exists
+                        if userStatsObject == nil {
+                            let userViewsObject = ["views":newCount]
+                            currentData.value = userViewsObject
+                        }
+                        else {
+                            userStatsObject!["views"] = newCount
+                            currentData.value = userStatsObject
+                        }
+                    }
+                    //User has not opened a story or contributed to one.
                     else {
-                        var userViews = userViewsObject!["views"]!
-                        userViews += 1
-                        userViewsObject!["views"] = userViews
-                        currentData.value = userViewsObject
+                        currentData.value = ["views": 1]
                     }
                     return FIRTransactionResult.successWithValue(currentData)
                 }
