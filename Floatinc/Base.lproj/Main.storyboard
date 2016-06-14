@@ -303,7 +303,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pB-i1-Agm">
-                                <rect key="frame" x="537" y="20" width="43" height="46"/>
+                                <rect key="frame" x="537" y="25" width="43" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="V1f-VP-dwG"/>
                                     <constraint firstAttribute="width" constant="43" id="zUp-mH-1uW"/>
@@ -321,7 +321,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ikl-Nt-eeh">
-                                <rect key="frame" x="20" y="20" width="50" height="46"/>
+                                <rect key="frame" x="20" y="25" width="50" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="DxD-pD-s9f"/>
                                     <constraint firstAttribute="width" constant="50" id="zct-Mh-gZf"/>
@@ -334,14 +334,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7pB-i1-Agm" firstAttribute="top" secondItem="ARX-Fp-mdN" secondAttribute="bottom" id="06O-ym-Z34"/>
                             <constraint firstItem="Bdy-GH-bbP" firstAttribute="centerX" secondItem="6Tv-Bd-03v" secondAttribute="centerX" id="5na-wR-LVY"/>
                             <constraint firstItem="AqB-lW-SsS" firstAttribute="centerY" secondItem="6Tv-Bd-03v" secondAttribute="centerY" id="Hfm-RL-oH8"/>
                             <constraint firstItem="7pB-i1-Agm" firstAttribute="trailing" secondItem="6Tv-Bd-03v" secondAttribute="trailingMargin" id="JvI-EZ-4Uk"/>
                             <constraint firstItem="ikl-Nt-eeh" firstAttribute="leading" secondItem="gLO-4V-CHT" secondAttribute="leading" id="KIy-R6-Lj2"/>
-                            <constraint firstItem="ikl-Nt-eeh" firstAttribute="top" secondItem="ARX-Fp-mdN" secondAttribute="bottom" id="KXs-zU-h5g"/>
+                            <constraint firstItem="ikl-Nt-eeh" firstAttribute="top" secondItem="ARX-Fp-mdN" secondAttribute="bottom" constant="5" id="KXs-zU-h5g"/>
                             <constraint firstItem="gLO-4V-CHT" firstAttribute="centerY" secondItem="Bdy-GH-bbP" secondAttribute="centerY" id="XDx-g5-BMS"/>
-                            <constraint firstItem="7pB-i1-Agm" firstAttribute="top" secondItem="ARX-Fp-mdN" secondAttribute="bottom" id="hCk-6x-7o7"/>
+                            <constraint firstItem="7pB-i1-Agm" firstAttribute="top" secondItem="ARX-Fp-mdN" secondAttribute="bottom" constant="5" id="hCk-6x-7o7"/>
                             <constraint firstItem="AqB-lW-SsS" firstAttribute="centerX" secondItem="6Tv-Bd-03v" secondAttribute="centerX" id="hUs-8O-3XF"/>
                             <constraint firstItem="AqB-lW-SsS" firstAttribute="width" secondItem="6Tv-Bd-03v" secondAttribute="width" id="lNk-un-bvL"/>
                             <constraint firstItem="ikl-Nt-eeh" firstAttribute="leading" secondItem="6Tv-Bd-03v" secondAttribute="leadingMargin" id="lYk-j1-jqf"/>

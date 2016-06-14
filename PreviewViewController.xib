@@ -9,6 +9,8 @@
             <connections>
                 <outlet property="buttonClose" destination="qqX-cI-QIE" id="3vS-Ta-T1h"/>
                 <outlet property="imageView" destination="RWZ-Kf-9CI" id="JXI-v4-JpF"/>
+                <outlet property="picker" destination="IO5-Zi-c0N" id="YhU-P9-Fe4"/>
+                <outlet property="pickerView" destination="JfG-xC-tWu" id="7Hz-DG-SWl"/>
                 <outlet property="view" destination="3wc-PH-Tvx" id="LLW-Qz-Ac1"/>
             </connections>
         </placeholder>
@@ -17,30 +19,62 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RWZ-Kf-9CI">
-                    <rect key="frame" x="-20" y="0.0" width="640" height="600"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RWZ-Kf-9CI">
+                    <rect key="frame" x="-20" y="0.0" width="640" height="515"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqX-cI-QIE">
-                    <rect key="frame" x="20" y="20" width="59" height="40"/>
-                    <color key="backgroundColor" red="0.98774038460000002" green="0.77155376769999995" blue="0.7048836221" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                    <state key="normal" title="Close">
+                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqX-cI-QIE">
+                    <rect key="frame" x="10" y="12" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="AmW-KZ-bM2"/>
+                        <constraint firstAttribute="width" constant="25" id="os1-0c-Qyu"/>
+                    </constraints>
+                    <state key="normal" image="close">
                         <color key="titleColor" red="0.0084704277085331549" green="0.0097155449025640994" blue="0.0094120285754593289" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="closePreview:" destination="-1" eventType="touchUpInside" id="Yk2-wA-014"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JfG-xC-tWu" customClass="AKPickerView" customModule="AKPickerView_Swift">
+                    <rect key="frame" x="2" y="515" width="528" height="85"/>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="piL-Dd-Ayk">
+                    <rect key="frame" x="538" y="530" width="60" height="48"/>
+                    <state key="normal" image="postBlack">
+                        <color key="titleColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="sendMedia:" destination="-1" eventType="touchUpInside" id="ToP-2Y-RFK"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="leading" secondItem="3wc-PH-Tvx" secondAttribute="leading" constant="-20" id="9DY-lx-EDa"/>
-                <constraint firstItem="qqX-cI-QIE" firstAttribute="leading" secondItem="3wc-PH-Tvx" secondAttribute="leading" constant="20" id="NLw-Bq-e3B"/>
-                <constraint firstAttribute="trailing" secondItem="RWZ-Kf-9CI" secondAttribute="trailing" constant="-20" id="NNA-Ed-8eK"/>
-                <constraint firstItem="qqX-cI-QIE" firstAttribute="top" secondItem="3wc-PH-Tvx" secondAttribute="top" constant="20" id="gF6-E1-Rl7"/>
-                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="top" secondItem="3wc-PH-Tvx" secondAttribute="top" id="n1O-L9-riH"/>
-                <constraint firstAttribute="bottom" secondItem="RWZ-Kf-9CI" secondAttribute="bottom" id="xJp-KY-05r"/>
+                <constraint firstItem="JfG-xC-tWu" firstAttribute="leading" secondItem="3wc-PH-Tvx" secondAttribute="leading" constant="2" id="3pb-3k-0gd"/>
+                <constraint firstAttribute="trailing" secondItem="JfG-xC-tWu" secondAttribute="trailing" constant="70" id="9DY-SL-sjj"/>
+                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="leading" secondItem="3wc-PH-Tvx" secondAttribute="leading" constant="-20" id="Guo-28-ZeP"/>
+                <constraint firstAttribute="bottom" secondItem="RWZ-Kf-9CI" secondAttribute="bottom" constant="85" id="IYH-wl-P4f"/>
+                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="top" secondItem="qqX-cI-QIE" secondAttribute="bottom" constant="-37" id="Iqn-oc-kXY"/>
+                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="centerX" secondItem="3wc-PH-Tvx" secondAttribute="centerX" id="Iuj-ht-2kQ"/>
+                <constraint firstAttribute="bottom" secondItem="piL-Dd-Ayk" secondAttribute="bottom" constant="22" id="Soj-zA-K0A"/>
+                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="top" secondItem="3wc-PH-Tvx" secondAttribute="top" id="XgU-RE-299"/>
+                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="leading" secondItem="qqX-cI-QIE" secondAttribute="trailing" constant="-55" id="YbB-Ta-eFl"/>
+                <constraint firstItem="piL-Dd-Ayk" firstAttribute="leading" secondItem="JfG-xC-tWu" secondAttribute="trailing" constant="8" id="f4K-Jb-seX"/>
+                <constraint firstAttribute="trailing" secondItem="piL-Dd-Ayk" secondAttribute="trailing" constant="2" id="gd1-Pk-AK3"/>
+                <constraint firstAttribute="bottom" secondItem="JfG-xC-tWu" secondAttribute="bottom" id="hKh-aA-6O7"/>
+                <constraint firstItem="JfG-xC-tWu" firstAttribute="top" secondItem="RWZ-Kf-9CI" secondAttribute="bottom" id="jMj-rj-8pe"/>
+                <constraint firstItem="piL-Dd-Ayk" firstAttribute="top" secondItem="RWZ-Kf-9CI" secondAttribute="bottom" constant="15" id="rSc-yT-LQj"/>
             </constraints>
+            <point key="canvasLocation" x="758" y="375"/>
         </view>
+        <pickerView contentMode="scaleToFill" semanticContentAttribute="spatial" id="IO5-Zi-c0N">
+            <rect key="frame" x="0.0" y="0.0" width="79" height="112"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+        </pickerView>
     </objects>
+    <resources>
+        <image name="close" width="128" height="128"/>
+        <image name="postBlack" width="270" height="145"/>
+    </resources>
 </document>

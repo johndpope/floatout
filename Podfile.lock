@@ -1,4 +1,5 @@
 PODS:
+  - AKPickerView-Swift (1.0.1)
   - CameraManager (2.2.3)
   - Firebase (3.2.1):
     - Firebase/Core (= 3.2.1)
@@ -40,6 +41,7 @@ PODS:
   - PBJVideoPlayer (0.3.1)
 
 DEPENDENCIES:
+  - AKPickerView-Swift
   - CameraManager (~> 2.2)
   - Firebase
   - Firebase/Auth
@@ -48,6 +50,7 @@ DEPENDENCIES:
   - PBJVideoPlayer
 
 SPEC CHECKSUMS:
+  AKPickerView-Swift: 8509d472bb257649383c276506334a7373d3cb33
   CameraManager: aca6ae93237ca5f10d0f234d4cadda28caee22ca
   Firebase: 6c80ac28d59d06bfd9152a7b6ea17625ca93183d
   FirebaseAnalytics: 6f75b04e6bfb8e0b6e9ef298e04c24eea3b13863
@@ -61,6 +64,4 @@ SPEC CHECKSUMS:
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   PBJVideoPlayer: b1dfee170c1fd6b0a434c1f1c1583dcd1d836d9f
 
-PODFILE CHECKSUM: 296e10ea0593a11b0ccbd6d51a3d1bdf8353f96d
-
-COCOAPODS: 1.0.1
+COCOAPODS: 0.39.0

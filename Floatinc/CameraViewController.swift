@@ -43,6 +43,10 @@ class CameraViewController: UIViewController {
         }
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -86,15 +90,16 @@ class CameraViewController: UIViewController {
                         let previewViewController = PreviewViewController(nibName: "PreviewViewController", bundle: nil)
                         previewViewController.media = Media.Photo(image: capturedImageTaken)
                         self.presentViewController(previewViewController, animated: true, completion: nil)
-                        
+                      
                         if  let imageData = UIImageJPEGRepresentation(capturedImageTaken, 1.0){
-                            let store: StoreImage = StoreImage()
+//                            let store: StoreImage = StoreImage()
                             //Getting the number of pictures in the users local store
 //                            var mediaCount = self.storyFeedStore.storyFeedItemForId("1")?.mediaList.count
 //                            if mediaCount == nil {
 //                                mediaCount = 0
 //                            }
-                            store.saveImage(imageData, mediaType: "image", storyTag: "1")
+                              previewViewController.image = imageData
+//                            store.saveImage(imageData, mediaType: "image", storyTag: "1")
                         }
                     }
                 }

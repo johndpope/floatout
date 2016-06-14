@@ -8,5 +8,6 @@ target 'Floatinc' do
   pod 'Firebase/Storage'
   pod 'CameraManager', '~> 2.2'
   pod 'PBJVideoPlayer'
+  pod 'AKPickerView-Swift'
 end
 
