@@ -13,12 +13,12 @@ import Firebase
 class StoryTagStats : NSObject {
     
     var id: String
-    var totalViews: Int
+    var totalViews: Int?
     var ref: FIRDatabaseReference?
     
     init(snapshot: FIRDataSnapshot){
         self.id = snapshot.key
-        self.totalViews = snapshot.childSnapshotForPath("totalViews").value as! Int
+        self.totalViews = snapshot.childSnapshotForPath("totalViews").value as? Int
         self.ref = snapshot.ref
     }
 }

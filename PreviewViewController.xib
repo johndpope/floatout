@@ -9,7 +9,6 @@
             <connections>
                 <outlet property="buttonClose" destination="qqX-cI-QIE" id="3vS-Ta-T1h"/>
                 <outlet property="imageView" destination="RWZ-Kf-9CI" id="JXI-v4-JpF"/>
-                <outlet property="picker" destination="IO5-Zi-c0N" id="YhU-P9-Fe4"/>
                 <outlet property="pickerView" destination="JfG-xC-tWu" id="7Hz-DG-SWl"/>
                 <outlet property="view" destination="3wc-PH-Tvx" id="LLW-Qz-Ac1"/>
             </connections>
@@ -68,10 +67,6 @@
             </constraints>
             <point key="canvasLocation" x="758" y="375"/>
         </view>
-        <pickerView contentMode="scaleToFill" semanticContentAttribute="spatial" id="IO5-Zi-c0N">
-            <rect key="frame" x="0.0" y="0.0" width="79" height="112"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-        </pickerView>
     </objects>
     <resources>
         <image name="close" width="128" height="128"/>

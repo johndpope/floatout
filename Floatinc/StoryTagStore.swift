@@ -57,5 +57,6 @@ class StoryTagStore {
         }
         return -1
     }
+
     
 }

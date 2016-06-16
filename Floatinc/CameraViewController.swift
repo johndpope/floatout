@@ -9,10 +9,12 @@
 import UIKit
 import CameraManager
 
-
 class CameraViewController: UIViewController {
+    
     //Segue
     var storyFeedStore : StoryFeedStore!
+    var storyTagNames : [String]!
+    var storyTagStore : StoryTagStore!
     
     //MARK: Constants
     let cameraManager = CameraManager()
@@ -33,6 +35,7 @@ class CameraViewController: UIViewController {
         //Create a storage reference from our storage service
 
         let currentCameraState = cameraManager.currentCameraStatus()
+        cameraManager.cameraOutputQuality = .Medium
         print(currentCameraState)
         
         if currentCameraState == .NotDetermined {
@@ -52,7 +55,6 @@ class CameraViewController: UIViewController {
         
         cameraManager.resumeCaptureSession()
     }
-    
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -88,22 +90,15 @@ class CameraViewController: UIViewController {
                 else {
                     if let capturedImageTaken = capturedImage {
                         let previewViewController = PreviewViewController(nibName: "PreviewViewController", bundle: nil)
+                        previewViewController.storyTagStore = self.storyTagStore
                         previewViewController.media = Media.Photo(image: capturedImageTaken)
-                        self.presentViewController(previewViewController, animated: true, completion: nil)
-                      
                         if  let imageData = UIImageJPEGRepresentation(capturedImageTaken, 1.0){
-//                            let store: StoreImage = StoreImage()
-                            //Getting the number of pictures in the users local store
-//                            var mediaCount = self.storyFeedStore.storyFeedItemForId("1")?.mediaList.count
-//                            if mediaCount == nil {
-//                                mediaCount = 0
-//                            }
                               previewViewController.image = imageData
-//                            store.saveImage(imageData, mediaType: "image", storyTag: "1")
                         }
+                        
+                        self.presentViewController(previewViewController, animated: true, completion: nil)
                     }
                 }
-                
             })
             
         case .VideoOnly, .VideoWithMic:
@@ -161,3 +156,10 @@ class CameraViewController: UIViewController {
     
     
 }
+
+//                            let store: StoreImage = StoreImage()
+//Getting the number of pictures in the users local store
+//                            var mediaCount = self.storyFeedStore.storyFeedItemForId("1")?.mediaList.count
+//                            if mediaCount == nil {
+//                                mediaCount = 0
+//                            }

@@ -213,6 +213,11 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         if segue.identifier == "cameraSegue" {
             let cameraViewController = segue.destinationViewController as! CameraViewController
             cameraViewController.storyFeedStore = self.storyFeedStore
+            
+            
+       
+            
+            cameraViewController.storyTagStore = self.storyTagStore
         }
     }
     

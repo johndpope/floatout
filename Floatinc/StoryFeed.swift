@@ -20,7 +20,6 @@ class StoryFeed :NSObject {
         self.ref = snapshot.ref
     
         let enumerator = snapshot.children
-        var listURL = [String:String]()
         while let mediaRef = enumerator.nextObject() as? FIRDataSnapshot {
             let key = mediaRef.key
             let url = mediaRef.value as! String

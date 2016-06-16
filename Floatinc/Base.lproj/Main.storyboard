@@ -118,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5BI-YK-0a2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-78" y="-806"/>
+            <point key="canvasLocation" x="-816" y="-1476"/>
         </scene>
         <!--Scroll View Controller-->
         <scene sceneID="bhC-ls-9m1">
@@ -222,6 +222,7 @@
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.46999999999999997" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="label" destination="lny-TT-wtR" id="1ks-B7-5AR"/>
+                                            <segue destination="d9S-0G-TRl" kind="show" id="ul0-Tc-tpQ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -273,7 +274,45 @@
                     <nil key="highlightedColor"/>
                 </label>
             </objects>
-            <point key="canvasLocation" x="-816" y="-806"/>
+            <point key="canvasLocation" x="-946" y="-710"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="q2g-yP-J7z">
+            <objects>
+                <viewController id="d9S-0G-TRl" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BA7-qU-k1H"/>
+                        <viewControllerLayoutGuide type="bottom" id="pqc-9n-oRR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nYN-f0-JYb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XUo-vT-bT2">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="BIS-jk-dKf" appends="YES" id="p1p-hC-I9b"/>
+                                </connections>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XUo-vT-bT2" firstAttribute="centerY" secondItem="nYN-f0-JYb" secondAttribute="centerY" id="BZw-Ra-QXY"/>
+                            <constraint firstItem="XUo-vT-bT2" firstAttribute="centerX" secondItem="nYN-f0-JYb" secondAttribute="centerX" id="fDu-qr-RoB"/>
+                            <constraint firstItem="XUo-vT-bT2" firstAttribute="height" secondItem="nYN-f0-JYb" secondAttribute="height" id="mfK-Kg-cxe"/>
+                            <constraint firstItem="XUo-vT-bT2" firstAttribute="width" secondItem="nYN-f0-JYb" secondAttribute="width" id="shF-Jt-8ZJ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bgi-vE-NP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="BIS-jk-dKf">
+                    <connections>
+                        <segue destination="oe1-Yt-oKk" kind="custom" identifier="left" customClass="SegueFromLeft" customModule="Floatinc" customModuleProvider="target" id="Svx-e8-IXS"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-106" y="-806"/>
         </scene>
         <!--Camera-->
         <scene sceneID="haY-DP-HKl">

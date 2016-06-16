@@ -56,7 +56,7 @@ public class CameraManager: NSObject, AVCaptureFileOutputRecordingDelegate, UIGe
     }
 
     /// Property to determine if manager should write the resources to the phone library. Default value is true.
-    public var writeFilesToPhoneLibrary = true
+    public var writeFilesToPhoneLibrary = false
     
     /// Property to determine if manager should follow device orientation. Default value is true.
     public var shouldRespondToOrientationChanges = true {
