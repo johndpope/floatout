@@ -60,7 +60,7 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         //Bounds
         //Get the count of the mediaList
         let feed = fetchMedia?.storyFeedStore.storyFeedItemForId(self.storyFeedId!)
-        let mediaListCount = feed?.sizeMediaList()
+        let mediaListCount = (feed?.sizeMediaList())! - 1
         if  self.currentImage < mediaListCount  {
             self.currentImage += 1
             SetImageView(self.currentImage)

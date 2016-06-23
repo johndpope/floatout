@@ -251,7 +251,7 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         if segue.identifier == "storyFeedSegue" {
-            print("HELLO STORYfEED one step closer")
+            print("Segue to storyFeed, welcome to the world of pictures from your neighbourhood, spiderman time")
             let cell = sender as? UITableViewCell
             let rowIndex = self.tableView.indexPathForCell(cell!)?.row
             //need to know which storyfeed number was being clicked
@@ -265,27 +265,6 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
             feedController!.fetchMedia = self.fetchMedia
             feedController!.storyFeedArrayIndex = storyFeedArrayIndex
             feedController!.storyFeedId = storyFeed.id
-            
-            let googleImageUrl = self.fetchMedia?.storyTagUrlList[storyFeed.id]?.first
-            //Means the url is not available as download underProgress
-            if googleImageUrl != nil {
-                print("trying to set it from the storyFeedViewController itself")
-//                let manager : SDWebImageManager = SDWebImageManager()
-//                manager.downloadImageWithURL(googleImageUrl, options: SDWebImageOptions.HighPriority, progress: { (receivedSize, expectedSize) -> Void in
-//                    print("downloadASAP")
-//                    }, completed: { (image: UIImage!, error: NSError!, SDImageCacheType: SDImageCacheType!, finished: Bool, imageUrl: NSURL!) -> Void in
-//                        if image != nil && finished == true {
-//                            print("setting in the feed")
-//                            feedController!.media = Media.Photo(image: image)
-//                            if  let imageData = UIImageJPEGRepresentation(image, 1.0){
-//                                feedController!.image = imageData
-//                            }
-//                        }
-//                })
-            }
-            else {
-                print ("Image is not available will need to get it")
-            }
         }
     }
     
