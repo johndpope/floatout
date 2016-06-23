@@ -111,7 +111,7 @@ class FetchMedia {
                         if image != nil && finished == true {
                             print("oh yeah baby I have an image with url: \(imageUrl)")
                             if (callback != nil) {
-                                print("INSIDE THE CALLback wooooooooooooooooooh")
+                                print("calling the callback to set the image")
                                 callback!()
                             }
                             

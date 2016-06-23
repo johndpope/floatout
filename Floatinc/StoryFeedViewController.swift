@@ -20,7 +20,11 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     //will get this from storyTagListVC
     var fetchMedia : FetchMedia?
     var storyFeedArrayIndex: Int?
-    var chutiya = 0
+    
+    //viewWillAppear will set these variables
+    var feed: StoryFeed?
+    var totalMediaListCount: Int?
+    var cachedMediaFeedList: [NSURL]?
     
     @IBOutlet weak var imageView: UIImageView!
     
@@ -59,9 +63,7 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     @IBAction func nextImage(sender: UISwipeGestureRecognizer) {
         //Bounds
         //Get the count of the mediaList
-        let feed = fetchMedia?.storyFeedStore.storyFeedItemForId(self.storyFeedId!)
-        let mediaListCount = (feed?.sizeMediaList())! - 1
-        if  self.currentImage < mediaListCount  {
+        if  self.currentImage < self.totalMediaListCount!-1 {
             self.currentImage += 1
             SetImageView(self.currentImage)
         } else {
@@ -71,9 +73,27 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     }
     
     func SetImageView(index: Int){
-        let fetchMediaFeedList = fetchMedia?.storyTagUrlList[self.storyFeedId!]
-        if self.currentImage < fetchMediaFeedList?.count {
-            let gStorageUrl = fetchMediaFeedList?[self.currentImage]
+      
+        
+        //CACHING ALGORITHM!
+        //** 1 ** Total Images Taken ->
+        //** 2 ** Current Image
+        //** 3 ** Total Cached: 
+        
+        /*
+         default var toBeCached = 3
+         Need to calculate toBeCached: 
+         if currentImage + 3 > totalMediaListCount {
+            toBeCached = totalImagesTaken - currentImage
+         }
+         if toBeCached + TotalCached > totalMediaListCount {
+            toBeCached = totalMediaListCount-totalCached
+         }
+        
+        */
+        
+        if self.currentImage < cachedMediaFeedList?.count {
+            let gStorageUrl = cachedMediaFeedList?[self.currentImage]
             
             if gStorageUrl != nil {
                 let manager : SDWebImageManager = SDWebImageManager()
@@ -89,6 +109,7 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
                             }
                         }
                 })
+                //Very important to return from here
                 return
             }
         }
@@ -110,7 +131,13 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
             }
         } else {
             print("no media present will need to set it up")
+            //Setting up some variables
+            self.feed = fetchMedia?.storyFeedStore.storyFeedItemForId(self.storyFeedId!)
+            self.totalMediaListCount = (feed?.sizeMediaList())!
+            self.cachedMediaFeedList = fetchMedia?.storyTagUrlList[self.storyFeedId!]
+            
             SetImageView(currentImage)
+            
         }
     }
     
