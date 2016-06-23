@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import Firebase
+import FirebaseDatabase
+import FirebaseAnalytics
 
 class StoryTag : NSObject {
     

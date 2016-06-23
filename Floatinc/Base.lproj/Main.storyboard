@@ -222,7 +222,7 @@
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.46999999999999997" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="label" destination="lny-TT-wtR" id="1ks-B7-5AR"/>
-                                            <segue destination="d9S-0G-TRl" kind="show" id="ul0-Tc-tpQ"/>
+                                            <segue destination="d9S-0G-TRl" kind="show" identifier="storyFeedSegue" id="ul0-Tc-tpQ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -276,10 +276,10 @@
             </objects>
             <point key="canvasLocation" x="-946" y="-710"/>
         </scene>
-        <!--View Controller-->
+        <!--Story Feed View Controller-->
         <scene sceneID="q2g-yP-J7z">
             <objects>
-                <viewController id="d9S-0G-TRl" sceneMemberID="viewController">
+                <viewController id="d9S-0G-TRl" customClass="StoryFeedViewController" customModule="Floatinc" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BA7-qU-k1H"/>
                         <viewControllerLayoutGuide type="bottom" id="pqc-9n-oRR"/>
@@ -288,27 +288,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XUo-vT-bT2">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XUo-vT-bT2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="BIS-jk-dKf" appends="YES" id="p1p-hC-I9b"/>
+                                    <outletCollection property="gestureRecognizers" destination="hoa-Ar-h9I" appends="YES" id="u20-4K-CXH"/>
                                 </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="centerY" secondItem="nYN-f0-JYb" secondAttribute="centerY" id="BZw-Ra-QXY"/>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="centerX" secondItem="nYN-f0-JYb" secondAttribute="centerX" id="fDu-qr-RoB"/>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="height" secondItem="nYN-f0-JYb" secondAttribute="height" id="mfK-Kg-cxe"/>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="width" secondItem="nYN-f0-JYb" secondAttribute="width" id="shF-Jt-8ZJ"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="5Pi-ar-cSz" appends="YES" id="7cN-Va-lqb"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="XUo-vT-bT2" id="UuH-g0-Q2A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bgi-vE-NP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="BIS-jk-dKf">
+                <swipeGestureRecognizer direction="right" id="hoa-Ar-h9I">
                     <connections>
-                        <segue destination="oe1-Yt-oKk" kind="custom" identifier="left" customClass="SegueFromLeft" customModule="Floatinc" customModuleProvider="target" id="Svx-e8-IXS"/>
+                        <action selector="swipeToMain:" destination="d9S-0G-TRl" id="555-gV-he2"/>
+                        <outlet property="delegate" destination="nYN-f0-JYb" id="xgc-0X-LFt"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="5Pi-ar-cSz">
+                    <connections>
+                        <action selector="nextImage:" destination="d9S-0G-TRl" id="DYj-Oi-KFB"/>
+                        <outlet property="delegate" destination="nYN-f0-JYb" id="wkR-WX-PTQ"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>

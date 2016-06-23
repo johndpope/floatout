@@ -16,12 +16,13 @@ class SegueFromLeft: UIStoryboardSegue {
         let dst: UIViewController = self.destinationViewController
         let transition: CATransition = CATransition()
         let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.duration = 1.0
+        transition.duration = 0.5
         transition.timingFunction = timeFunc
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromLeft
         src.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
-        src.navigationController!.pushViewController(dst, animated: false)
+//        src.navigationController!.pushViewController(dst, animated: false)
+//        src.navigationController!.dismissViewControllerAnimated(true, completion: nil)
     }
     
 }

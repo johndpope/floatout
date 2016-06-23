@@ -7,8 +7,11 @@
 //
 
 import UIKit
-import Firebase
 import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
+import SDWebImage
+
 
 class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDelegate {
    //Reference to the table view
@@ -20,6 +23,8 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     var storyTagStatsRef: FIRDatabaseReference!
     var storyFeedRef: FIRDatabaseReference?
     var handle = UInt?()
+    let gStorage  = FIRStorage.storage()
+    var fetchMedia: FetchMedia?
     
     //Data stores
     //StoryListStore: Contains the storyTags, its references
@@ -28,6 +33,14 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     let storyTagStatsStore: StoryTagStatsStore = StoryTagStatsStore()
     //StoryFeedStore
     let storyFeedStore: StoryFeedStore = StoryFeedStore()
+    
+    //trying
+    var tryImage : UIImage?
+    var tryUrl: NSURL?
+    private var fixed : Int?
+    
+    //Controller
+    var cameraViewController : CameraViewController?
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -95,6 +108,13 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         storyFeedRef!.observeEventType(.ChildAdded, withBlock: { (snapshot) in
             let storyFeed = StoryFeed(snapshot:snapshot)
             self.storyFeedStore.add(storyFeed)
+    
+            //Need to cache the images in the storyFeed, this needs to be done once you know that the feed exists:-
+            let endIndex = self.calculateEndIndex(storyFeed.mediaList.count)
+            let indexStoryFeed = self.storyFeedStore.storyFeedListCount()-1
+            self.fetchMedia?.fetchImagesForStoryTagIdWithIndex(indexStoryFeed, endIndex: endIndex)
+            
+            
         })
         
         //Should delete the refs whenever they are deleted
@@ -112,10 +132,23 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
         
+        self.fetchMedia = FetchMedia(storyFeedStore: self.storyFeedStore)
+        
+        
         //These two lines are mandatory for making the rows dynamic in height,
         //atleast the first one. Second is for performance.
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 180
+    }
+    
+    //number of images to be cached based on the size of the mediaList
+    func calculateEndIndex(count: Int) -> Int{
+        if(count>5){
+            return 5
+        }
+        else {
+            return count
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -210,14 +243,49 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
         if segue.identifier == "cameraSegue" {
-            let cameraViewController = segue.destinationViewController as! CameraViewController
-            cameraViewController.storyFeedStore = self.storyFeedStore
+            self.cameraViewController = segue.destinationViewController as? CameraViewController
+            self.cameraViewController!.storyFeedStore = self.storyFeedStore
+            self.cameraViewController!.storyTagStore = self.storyTagStore
+        }
+        
+        if segue.identifier == "storyFeedSegue" {
+            print("HELLO STORYfEED one step closer")
+            let cell = sender as? UITableViewCell
+            let rowIndex = self.tableView.indexPathForCell(cell!)?.row
+            //need to know which storyfeed number was being clicked
+            let storyTag = self.storyTagStore.storyTagList[rowIndex!]
             
+            let storyFeedArrayIndex = self.storyFeedStore.indexOfStoryFeedFromStoryTag(storyTag)
+            let storyFeed = self.storyFeedStore.storyFeedList[storyFeedArrayIndex]
             
-       
+            //Setting the feedController independent of having the imageUrl present
+            let feedController = segue.destinationViewController as? StoryFeedViewController
+            feedController!.fetchMedia = self.fetchMedia
+            feedController!.storyFeedArrayIndex = storyFeedArrayIndex
+            feedController!.storyFeedId = storyFeed.id
             
-            cameraViewController.storyTagStore = self.storyTagStore
+            let googleImageUrl = self.fetchMedia?.storyTagUrlList[storyFeed.id]?.first
+            //Means the url is not available as download underProgress
+            if googleImageUrl != nil {
+                print("trying to set it from the storyFeedViewController itself")
+//                let manager : SDWebImageManager = SDWebImageManager()
+//                manager.downloadImageWithURL(googleImageUrl, options: SDWebImageOptions.HighPriority, progress: { (receivedSize, expectedSize) -> Void in
+//                    print("downloadASAP")
+//                    }, completed: { (image: UIImage!, error: NSError!, SDImageCacheType: SDImageCacheType!, finished: Bool, imageUrl: NSURL!) -> Void in
+//                        if image != nil && finished == true {
+//                            print("setting in the feed")
+//                            feedController!.media = Media.Photo(image: image)
+//                            if  let imageData = UIImageJPEGRepresentation(image, 1.0){
+//                                feedController!.image = imageData
+//                            }
+//                        }
+//                })
+            }
+            else {
+                print ("Image is not available will need to get it")
+            }
         }
     }
     

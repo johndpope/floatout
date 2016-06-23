@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate{
 
     var window: UIWindow?
     private var tokenId: String?
@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
         // Override point for customization after application launch.
         let navController = self.window?.rootViewController as! UINavigationController
 
@@ -51,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.navToLogin(navController)
             }
        })
-      
+        
         return true
     }
     

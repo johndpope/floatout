@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 import FirebaseDatabase
 
 class StoryFeed :NSObject {
@@ -23,7 +24,6 @@ class StoryFeed :NSObject {
         while let mediaRef = enumerator.nextObject() as? FIRDataSnapshot {
             let key = mediaRef.key
             let url = mediaRef.value as! String
-
             self.mediaList[key] = url
         }
 

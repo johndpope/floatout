@@ -9,5 +9,6 @@ target 'Floatinc' do
   pod 'CameraManager', '~> 2.2'
   pod 'PBJVideoPlayer'
   pod 'AKPickerView-Swift'
+  pod 'SDWebImage', '~>3.8'
 end
 

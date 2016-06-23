@@ -58,6 +58,20 @@ class StoryFeedStore {
         return -1
     }
     
+    func indexOfStoryFeedFromStoryTag(storyTag: StoryTag) -> Int {
+        var index = 0
+        for storyFeedItem in self.storyFeedList {
+            if(storyTag.id == storyFeedItem.id){
+                print ("check this returning index of storyFeed")
+                return index
+            }
+            
+            index+=1
+        }
+        return -1
+    }
+    
+    
     func storyFeedItemForId(id: String) -> StoryFeed? {
         for storyFeedItem in self.storyFeedList {
             if(id == storyFeedItem.id) {

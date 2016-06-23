@@ -18,11 +18,9 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RWZ-Kf-9CI">
-                    <rect key="frame" x="-20" y="0.0" width="640" height="515"/>
-                </imageView>
                 <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqX-cI-QIE">
                     <rect key="frame" x="10" y="12" width="25" height="25"/>
+                    <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="AmW-KZ-bM2"/>
                         <constraint firstAttribute="width" constant="25" id="os1-0c-Qyu"/>
@@ -47,6 +45,9 @@
                         <action selector="sendMedia:" destination="-1" eventType="touchUpInside" id="ToP-2Y-RFK"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RWZ-Kf-9CI">
+                    <rect key="frame" x="-20" y="0.0" width="640" height="515"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>

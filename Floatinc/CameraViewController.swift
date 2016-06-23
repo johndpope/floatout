@@ -8,6 +8,7 @@
 
 import UIKit
 import CameraManager
+import SDWebImage
 
 class CameraViewController: UIViewController {
     
@@ -27,6 +28,10 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var flashModeButton: UIButton!
     @IBOutlet weak var selfieToggleButton: UIButton!
     @IBOutlet weak var mediaCaptureButton: UIButton!
+    
+    //trying
+    var tryImage : UIImage?
+    var tryUrl : NSURL?
     
     // MARK: UIViewController
     override func viewDidLoad() {
@@ -88,12 +93,31 @@ class CameraViewController: UIViewController {
                 }
                     
                 else {
+//                    
+//                    let manager : SDWebImageManager = SDWebImageManager()
+//                    print("checking if the manager changes things up\(manager.cachedImageExistsForURL(self.tryUrl!))")
+//                    manager.downloadImageWithURL(self.tryUrl, options: SDWebImageOptions.LowPriority, progress: { (hello: Int, check: Int) in
+//                        print("hello")
+//                        }, completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, finished: Bool!, URL: NSURL!) in
+//                            if let capturedImageTaken = image {
+//                                let previewViewController = PreviewViewController(nibName: "PreviewViewController", bundle: nil)
+//                                previewViewController.storyTagStore = self.storyTagStore
+//                                previewViewController.media = Media.Photo(image: capturedImageTaken)
+//                                if  let imageData = UIImageJPEGRepresentation(capturedImageTaken, 1.0){
+//                                    previewViewController.image = imageData
+//                                }
+//                                
+//                                
+//                                self.presentViewController(previewViewController, animated: true, completion: nil)
+//                            }
+                    //                    })
+                    
                     if let capturedImageTaken = capturedImage {
                         let previewViewController = PreviewViewController(nibName: "PreviewViewController", bundle: nil)
                         previewViewController.storyTagStore = self.storyTagStore
                         previewViewController.media = Media.Photo(image: capturedImageTaken)
                         if  let imageData = UIImageJPEGRepresentation(capturedImageTaken, 1.0){
-                              previewViewController.image = imageData
+                            previewViewController.image = imageData
                         }
                         
                         self.presentViewController(previewViewController, animated: true, completion: nil)
