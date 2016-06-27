@@ -361,7 +361,10 @@
                                     <constraint firstAttribute="height" constant="46" id="V1f-VP-dwG"/>
                                     <constraint firstAttribute="width" constant="43" id="zUp-mH-1uW"/>
                                 </constraints>
-                                <state key="normal" title="flash" image="flash"/>
+                                <state key="normal" title="flash" image="flashOff"/>
+                                <connections>
+                                    <action selector="flash:" destination="WLN-AP-MOc" eventType="touchUpInside" id="fQJ-mv-V3S"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLO-4V-CHT">
                                 <rect key="frame" x="20" y="493" width="40" height="40"/>
@@ -678,7 +681,7 @@
         <image name="back" width="40" height="40"/>
         <image name="boat" width="1097" height="780"/>
         <image name="camera" width="64" height="64"/>
-        <image name="flash" width="128" height="128"/>
+        <image name="flashOff" width="128" height="128"/>
         <image name="float" width="48" height="58"/>
         <image name="go" width="40" height="40"/>
         <image name="imageClick" width="256" height="256"/>

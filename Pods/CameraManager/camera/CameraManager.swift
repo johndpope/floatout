@@ -904,3 +904,64 @@ public class CameraManager: NSObject, AVCaptureFileOutputRecordingDelegate, UIGe
         _stopFollowingDeviceOrientation()
     }
 }
+
+//MARK: Extension Device
+
+public extension CameraManager {
+    
+    public func focus(atPoint: CGPoint) {
+        let captureDevice = AVCaptureDevice.devices().first as? AVCaptureDevice
+        if let currentDevice = captureDevice {
+            if currentDevice.isFocusModeSupported(AVCaptureFocusMode.AutoFocus) && currentDevice.focusPointOfInterestSupported {
+                let focusPoint = self.previewLayer!.captureDevicePointOfInterestForPoint(atPoint)
+                do {
+                    try currentDevice.lockForConfiguration()
+                    currentDevice.focusPointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
+                    currentDevice.focusMode = AVCaptureFocusMode.AutoFocus
+                    
+                    if currentDevice.isExposureModeSupported(AVCaptureExposureMode.AutoExpose) {
+                        currentDevice.exposureMode = AVCaptureExposureMode.AutoExpose
+                    }
+                    currentDevice.unlockForConfiguration()
+                }
+                catch {
+                    fatalError("[CameraEngine] error lock configuration device")
+                }
+            }
+        }
+    }
+    
+    
+//    public func focus(atPoint: CGPoint) {
+//        if let currentDevice = AVCaptureDevice.devices().first as? AVCaptureDevice {
+//            if currentDevice.isFocusModeSupported(AVCaptureFocusMode.AutoFocus) && currentDevice.focusPointOfInterestSupported {
+//                let focusPoint = self.previewLayer!.captureDevicePointOfInterestForPoint(atPoint)
+//                do {
+//                    try currentDevice.lockForConfiguration()
+//                    currentDevice.focusPointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
+//                    if currentDevice.focusMode == AVCaptureFocusMode.Locked {
+//                        currentDevice.focusMode = AVCaptureFocusMode.AutoFocus
+//                    } else {
+////                        currentDevice.focusMode = AVCaptureFocusMode.ContinuousAutoFocus
+//                        
+//                        currentDevice.focusMode = AVCaptureFocusMode.AutoFocus
+//                    }
+//                    
+//                    if currentDevice.isExposureModeSupported(AVCaptureExposureMode.AutoExpose) {
+//                        if currentDevice.exposureMode == AVCaptureExposureMode.Locked {
+//                            currentDevice.exposureMode = AVCaptureExposureMode.AutoExpose
+//                        } else {
+//                            currentDevice.exposureMode = AVCaptureExposureMode.ContinuousAutoExposure;
+//                        }
+//                    }
+//                    currentDevice.unlockForConfiguration()
+//                }
+//                catch {
+//                    fatalError("[CameraEngine] error lock configuration device")
+//                }
+//            }
+//        }
+//    }
+}
+
+

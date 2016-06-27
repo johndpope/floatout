@@ -271,4 +271,9 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func recordStory(sender: UIButton) {
         print("recording is being pressed baby")
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 }

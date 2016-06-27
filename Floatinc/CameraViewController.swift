@@ -93,25 +93,6 @@ class CameraViewController: UIViewController {
                 }
                     
                 else {
-//                    
-//                    let manager : SDWebImageManager = SDWebImageManager()
-//                    print("checking if the manager changes things up\(manager.cachedImageExistsForURL(self.tryUrl!))")
-//                    manager.downloadImageWithURL(self.tryUrl, options: SDWebImageOptions.LowPriority, progress: { (hello: Int, check: Int) in
-//                        print("hello")
-//                        }, completed: { (image: UIImage!, error: NSError!, cacheType: SDImageCacheType, finished: Bool!, URL: NSURL!) in
-//                            if let capturedImageTaken = image {
-//                                let previewViewController = PreviewViewController(nibName: "PreviewViewController", bundle: nil)
-//                                previewViewController.storyTagStore = self.storyTagStore
-//                                previewViewController.media = Media.Photo(image: capturedImageTaken)
-//                                if  let imageData = UIImageJPEGRepresentation(capturedImageTaken, 1.0){
-//                                    previewViewController.image = imageData
-//                                }
-//                                
-//                                
-//                                self.presentViewController(previewViewController, animated: true, completion: nil)
-//                            }
-                    //                    })
-                    
                     if let capturedImageTaken = capturedImage {
                         let previewViewController = PreviewViewController(nibName: "PreviewViewController", bundle: nil)
                         previewViewController.storyTagStore = self.storyTagStore
@@ -130,6 +111,24 @@ class CameraViewController: UIViewController {
         }
     }
     
+    @IBAction func flash(sender: UIButton) {
+        self.cameraManager.changeFlashMode()
+        print(self.cameraManager.flashMode)
+        switch(self.cameraManager.flashMode) {
+        case .On:
+            print("flashModeOn")
+            let flashOnImage = UIImage(named: "flashOn")
+            sender.setImage(flashOnImage, forState: .Normal)
+        case .Off:
+            print("flashModeOff")
+            let flashOffImage = UIImage(named: "flashOff")
+            sender.setImage(flashOffImage, forState: .Normal)
+        case .Auto:
+            print("flashModeAuto")
+            let flashAutoImage = UIImage(named: "flashAuto")
+            sender.setImage(flashAutoImage, forState: .Normal)
+        }
+    }
     
     @IBAction func flipTheCamera(sender: UIButton) {
     
@@ -172,6 +171,14 @@ class CameraViewController: UIViewController {
         }
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let touch = event!.allTouches()!.first {
+            let position = touch.locationInView(self.view)
+            print("what i just got touched in my butt")
+            print("cameraDevice \(self.cameraManager.cameraDevice)")
+            self.cameraManager.focus(position)
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -180,10 +187,3 @@ class CameraViewController: UIViewController {
     
     
 }
-
-//                            let store: StoreImage = StoreImage()
-//Getting the number of pictures in the users local store
-//                            var mediaCount = self.storyFeedStore.storyFeedItemForId("1")?.mediaList.count
-//                            if mediaCount == nil {
-//                                mediaCount = 0
-//                            }

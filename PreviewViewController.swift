@@ -143,8 +143,14 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
         
         let store: StoreImage = StoreImage()
         if image != nil {
-            store.saveImage(image, mediaType: "image", storyTag: self.storyTagIdPicked!)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            if self.storyTagIdPicked == nil {
+              self.storyTagIdPicked = self.storyTagStore.storyTagList[0].id
+            }
+            
+            if storyTagIdPicked != nil {
+              store.saveImage(image, mediaType: "image", storyTag: self.storyTagIdPicked!)
+              self.dismissViewControllerAnimated(true, completion: nil)
+            }
         }
     }
 

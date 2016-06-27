@@ -88,6 +88,52 @@ class FetchMedia {
         self.storeImageToCache(fullPath, id: id, callback: callback)
     }
     
+    func fetchSome(storyFeedIndexArray: Int, windowSize: Int) {
+        //checking for bounds for start and end index
+        print("Inside fetch SOMEEEEE will fail hard")
+        let storyFeed = self.storyFeedStore.storyFeedList[storyFeedIndexArray]
+        let id = storyFeed.id
+        let mediaList = storyFeed.mediaList
+        
+        if storyImageTracker[id] == nil {
+            storyImageTracker[id] = 0
+        }
+        var count = 0
+        for (index, (_,path)) in mediaList.enumerate() {
+            if(index >= self.storyTagUrlList[id]?.count &&  count < windowSize){
+                let fullPath = "\(id)/\(path)"
+                self.storeImageToCache(fullPath, id: id)
+                count += 1
+            } else {
+//                self.storyImageTracker[id]! += count
+//                break
+            }
+        }
+    }
+    
+    func fetchStartEnd(storyFeedIndexArray: Int, startIndex: Int, endIndex: Int) {
+        //checking for bounds for start and end index
+        print("fetching for future startingAt: \(startIndex) ending at: \(endIndex)")
+        let storyFeed = self.storyFeedStore.storyFeedList[storyFeedIndexArray]
+        let id = storyFeed.id
+        let mediaList = storyFeed.mediaList
+        
+        if storyImageTracker[id] == nil {
+            storyImageTracker[id] = 0
+        }
+
+        for (index, (_,path)) in mediaList.enumerate() {
+            if(index >= startIndex &&  index < endIndex){
+                let fullPath = "\(id)/\(path)"
+                self.storeImageToCache(fullPath, id: id)
+                print("fetching for index: \(index)")
+                storyImageTracker[id]! += 1
+            } else if (index > endIndex) {
+                break
+            }
+        }
+    }
+    
     
     func storeImageToCache(fullPath: String, id: String, callback: (() -> Void)? = nil){
         let imageRef = self.gStoryFeedRef!.child(fullPath)
@@ -95,7 +141,7 @@ class FetchMedia {
             if error != nil {
                 print("cannot get the google storage link of the imagePath provided")
             } else {
-                self.gImageUrlList.append(gStorageUrl!)
+//                self.gImageUrlList.append(gStorageUrl!)
                 
                 //Making a dataStructure with storyTagId and its gStorageUrls
                 if self.storyTagUrlList[id] != nil {
