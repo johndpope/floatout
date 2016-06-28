@@ -112,9 +112,7 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
             //Need to cache the images in the storyFeed, this needs to be done once you know that the feed exists:-
             let endIndex = self.calculateEndIndex(storyFeed.mediaList.count)
             let indexStoryFeed = self.storyFeedStore.storyFeedListCount()-1
-            self.fetchMedia?.fetchImagesForStoryTagIdWithIndex(indexStoryFeed, endIndex: endIndex)
-            
-            
+            self.fetchMedia?.fetchImagesForStoryFeedArrayIndex(indexStoryFeed, endIndex: endIndex)
         })
         
         //Should delete the refs whenever they are deleted

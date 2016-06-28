@@ -15,6 +15,7 @@ class StoryFeed :NSObject {
     var id: String
     var ref: FIRDatabaseReference?
     var mediaList = [String:String]()
+    var imagesList = [String]()
     
     init(snapshot: FIRDataSnapshot){
         self.id = snapshot.key
@@ -25,6 +26,7 @@ class StoryFeed :NSObject {
             let key = mediaRef.key
             let url = mediaRef.value as! String
             self.mediaList[key] = url
+            self.imagesList.append(url)
         }
 
     }
