@@ -36,13 +36,17 @@ class FetchMedia {
     private var storyImageTracker = [String: Int]()
     
     //StoryID: [url1, url2, url3]
-    var storyTagUrlList = [String: [NSURL]]()
+    var storyTagUrlList = [String: [NSURL?]]()
     
     init(storyFeedStore: StoryFeedStore) {
         self.gStorageRef = gStorage.referenceForURL("gs://floatout-2417e.appspot.com")
         self.gStoryFeedRef = gStorageRef!.child("storyFeed")
         self.storyFeedRef = rootRef.child("storyFeed")
         self.storyFeedStore = storyFeedStore
+    }
+    
+    func getCacheCount(id: String) -> Int{
+        return self.storyImageTracker[id]!
     }
     
     func fetchImagesForStoryFeedArrayIndex(storyFeedIndexArray: Int, endIndex: Int) {
@@ -61,7 +65,7 @@ class FetchMedia {
             if(index >= storyImageTracker[id] && index < endIndex){
                 let fullPath = "\(id)/\(imagesList[index])"
                 self.storyImageTracker[id]! += 1
-                self.storeImageToCache(fullPath, id: id)
+                self.storeImageToCache(fullPath, id: id, atIndex: index, imageListCount: imagesList.count)
             } else {
                 break
             }
@@ -82,8 +86,8 @@ class FetchMedia {
         } else {
             storyImageTracker[id]! += 1
         }
-        
-        self.storeImageToCache(fullPath, id: id, callback: callback)
+    
+        self.storeImageToCache(fullPath, id: id, callback: callback, atIndex: mediaListArrayIndex, imageListCount: imagesList.count)
     }
     
     func fetchStartEnd(storyFeedIndexArray: Int, startIndex: Int, endIndex: Int) {
@@ -98,12 +102,11 @@ class FetchMedia {
         
         let imagesList = storyFeed.imagesList
         
-
         
         for index in 0..<imagesList.count {
             if(index >= startIndex &&  index < endIndex){
                 let fullPath = "\(id)/\(imagesList[index])"
-                self.storeImageToCache(fullPath, id: id)
+                self.storeImageToCache(fullPath, id: id, atIndex: index, imageListCount: imagesList.count)
                 print("fetching for index: \(index)")
                 storyImageTracker[id]! += 1
             } else if (index >= endIndex) {
@@ -113,18 +116,23 @@ class FetchMedia {
     }
     
     
-    func storeImageToCache(fullPath: String, id: String, callback: (() -> Void)? = nil){
+    func storeImageToCache(fullPath: String, id: String, callback: (() -> Void)? = nil, atIndex: Int, imageListCount: Int){
         let imageRef = self.gStoryFeedRef!.child(fullPath)
         imageRef.downloadURLWithCompletion { (gStorageUrl, error) -> Void in
             if error != nil {
                 print("cannot get the google storage link of the imagePath provided")
             } else {
-                
+                print(atIndex)
+                print("check")
                 //Making a dataStructure with storyTagId and its gStorageUrls
                 if self.storyTagUrlList[id] != nil {
-                    self.storyTagUrlList[id]?.append(gStorageUrl!)
+//                    self.storyTagUrlList[id]?.append(gStorageUrl!)
+                    self.storyTagUrlList[id]?[atIndex] = gStorageUrl!
                 } else {
-                    self.storyTagUrlList[id] = [gStorageUrl!]
+                    self.storyFeedStore.storyFeedListCount()
+                    self.storyTagUrlList[id] = [NSURL?](count: imageListCount, repeatedValue: nil)
+                    self.storyTagUrlList[id]?[atIndex] = gStorageUrl!
+//                    self.storyTagUrlList[id] = [gStorageUrl!]
                 }
                 
                 let manager : SDWebImageManager = SDWebImageManager()
