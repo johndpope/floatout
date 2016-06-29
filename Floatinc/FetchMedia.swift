@@ -35,8 +35,7 @@ class FetchMedia {
     //ID: beginning to end
     private var storyImageTracker = [String: Int]()
     
-    //StoryID: [url1, url2, url3]
-    var storyTagUrlList = [String: [NSURL?]]()
+    private var cacheImageList = [String: [Int:NSURL?]]()
     
     init(storyFeedStore: StoryFeedStore) {
         self.gStorageRef = gStorage.referenceForURL("gs://floatout-2417e.appspot.com")
@@ -102,7 +101,6 @@ class FetchMedia {
         
         let imagesList = storyFeed.imagesList
         
-        
         for index in 0..<imagesList.count {
             if(index >= startIndex &&  index < endIndex){
                 let fullPath = "\(id)/\(imagesList[index])"
@@ -122,17 +120,13 @@ class FetchMedia {
             if error != nil {
                 print("cannot get the google storage link of the imagePath provided")
             } else {
-                print(atIndex)
-                print("check")
-                //Making a dataStructure with storyTagId and its gStorageUrls
-                if self.storyTagUrlList[id] != nil {
-//                    self.storyTagUrlList[id]?.append(gStorageUrl!)
-                    self.storyTagUrlList[id]?[atIndex] = gStorageUrl!
+                
+                //Making a dataStructure with storyTagId and its gStorageUrls, this makes sure
+                //That the images being stored are the same order as the imageList.
+                if self.cacheImageList[id] != nil {
+                    self.cacheImageList[id]![atIndex] = gStorageUrl!
                 } else {
-                    self.storyFeedStore.storyFeedListCount()
-                    self.storyTagUrlList[id] = [NSURL?](count: imageListCount, repeatedValue: nil)
-                    self.storyTagUrlList[id]?[atIndex] = gStorageUrl!
-//                    self.storyTagUrlList[id] = [gStorageUrl!]
+                    self.cacheImageList[id] = [atIndex: gStorageUrl!]
                 }
                 
                 let manager : SDWebImageManager = SDWebImageManager()
@@ -151,4 +145,12 @@ class FetchMedia {
         }
     }
     
+    func getCacheList(storyFeedId: String) -> [Int : NSURL?]? {
+        return self.cacheImageList[storyFeedId]
+    }
+    
+    func getGsImageUrl(storyFeedId: String, index: Int) -> NSURL? {
+        return self.cacheImageList[storyFeedId]?[index]!
+ 
+    }
 }

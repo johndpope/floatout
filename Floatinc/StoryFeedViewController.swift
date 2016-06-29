@@ -74,7 +74,6 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     //5:startCount,5: windowSize ===== fetchImage from 5 to 10
     func preLoadSize(startIndex : Int , endIndex: Int , windowSize: Int) -> Int {
         
-//        let totalCachedCount = fetchMedia?.storyTagUrlList[self.storyFeedId!]?.count
         let totalCachedCount = fetchMedia?.getCacheCount(self.storyFeedId!)
         
         if (self.totalMediaListCount > totalCachedCount) {
@@ -130,13 +129,11 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
             if self.currentImage == 0 {
                 //Case where there are 10+ images and cache has only first two, this case we want to cache 2-7 !
                 if newWindowSize > windowSize {
-//                    startIndex = (self.fetchMedia?.storyTagUrlList[self.storyFeedId!]?.count)!
                     startIndex = (fetchMedia?.getCacheCount(self.storyFeedId!))!
                     print("initial images have still not been cached, user clicked before")
                 }
                 //case where there are less than 5 or equal to 5 images.
                 if newWindowSize < windowSize {
-//                    startIndex = (self.fetchMedia?.storyTagUrlList[self.storyFeedId!]?.count)!
                     startIndex = (fetchMedia?.getCacheCount(self.storyFeedId!))!
                     print("initial images have still not been cached and they are not even 5!!!")
                 }
@@ -147,7 +144,6 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
             else if ((self.currentImage % 5) == 0) {
                 print ("modding 5!")
                 if newWindowSize < windowSize {
-//                    startIndex = (self.fetchMedia?.storyTagUrlList[self.storyFeedId!]?.count)!
                     startIndex = (fetchMedia?.getCacheCount(self.storyFeedId!))!
                     print("initial images have still not been cached and they are not even 5!!!")
                 }
@@ -157,17 +153,16 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     }
     
     func SetImageView(index: Int){
-        let fetchMediaFeedList = fetchMedia?.storyTagUrlList[self.storyFeedId!]
-        let totalCachedCount = fetchMedia?.getCacheCount(self.storyFeedId!)
         
-//        if self.currentImage < fetchMediaFeedList?.count {
+        let totalCachedCount = fetchMedia?.getCacheCount(self.storyFeedId!)
+    
           if self.currentImage < totalCachedCount {
         
             if ((self.currentImage == 0) || (self.currentImage % 5 == 0)) {
               self.prepareForFuture()
             }
-            
-            let gStorageUrl = fetchMediaFeedList?[self.currentImage]
+
+            let gStorageUrl = fetchMedia!.getGsImageUrl(self.storyFeedId!, index: self.currentImage)
             
             if gStorageUrl != nil {
                 let manager : SDWebImageManager = SDWebImageManager()
