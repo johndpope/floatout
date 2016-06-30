@@ -24,7 +24,6 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     //viewWillAppear will set these variables
     var feed: StoryFeed?
     var totalMediaListCount: Int?
-    var cachedMediaFeedList: [NSURL]?
     
     @IBOutlet weak var imageView: UIImageView!
     
@@ -42,6 +41,11 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    
+    @IBAction func swipeUpToMain(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func swipeToMain(sender: UISwipeGestureRecognizer) {

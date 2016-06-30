@@ -11,9 +11,11 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 import SDWebImage
+import MapKit
+import CoreLocation
 
 
-class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
    //Reference to the table view
     @IBOutlet weak var tableView: UITableView!
     
@@ -34,10 +36,8 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     //StoryFeedStore
     let storyFeedStore: StoryFeedStore = StoryFeedStore()
     
-    //trying
-    var tryImage : UIImage?
-    var tryUrl: NSURL?
-    private var fixed : Int?
+    //trying location
+    let locationManager = CLLocationManager()
     
     //Controller
     var cameraViewController : CameraViewController?
@@ -119,25 +119,46 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         storyFeedRef!.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
             let storyFeed = StoryFeed(snapshot:snapshot)
             self.storyFeedStore.remove(storyFeed)
-            
+            //remove storyFeed from cacheImageList in fetchMedia
+            self.fetchMedia?.removeStoryFeed(storyFeed.id)
         })
 
         //childChanged should update the stale refs
         storyFeedRef!.observeEventType(.ChildChanged, withBlock: { (snapshot) in
             let storyFeed = StoryFeed(snapshot:snapshot)
             self.storyFeedStore.updateStoryFeed(storyFeed)
+            //remove from cacheImageList in fetchMedia
+            self.fetchMedia?.removeUrlFromStoryFeed(storyFeed.imagesList, storyFeedId: storyFeed.id)
         })
     
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         self.fetchMedia = FetchMedia(storyFeedStore: self.storyFeedStore)
         
+        //setting up location
+        //asking for user's permission for authorization
+        self.locationManager.requestAlwaysAuthorization()
+        //for use in background
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled(){
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+
         
         //These two lines are mandatory for making the rows dynamic in height,
         //atleast the first one. Second is for performance.
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 180
     }
+    
+//    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        var locValue: CLLocationCoordinate2D = (manager.location?.coordinate)!
+//        print("locations = \(locValue.latitude) \(locValue.longitude)")
+//        
+//    }
     
     //number of images to be cached based on the size of the mediaList
     func calculateEndIndex(count: Int) -> Int{

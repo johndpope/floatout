@@ -43,7 +43,10 @@ class StoreImage {
         let saveRef = gStoryFeedRef!.child(gUrlName)
         
         //upload the file to gstore
-        _ = saveRef.putData(data, metadata: nil){ metadata, error in
+        let metadata = FIRStorageMetadata()
+        metadata.contentType = "image/jpeg"
+        
+        _ = saveRef.putData(data, metadata: metadata){ metadata, error in
             if (error != nil) {
                 print("error")
             }
@@ -57,8 +60,6 @@ class StoreImage {
                 let uid = FIRAuth.auth()?.currentUser?.uid
                 let userFeed = self.storyTagStatsRef!.child("\(storyTag)/users/\(uid!)/contribution")
                 userFeed.child(storyMediaKey).setValue(gStorageUrl)
-                
-                
             }
         }
     }

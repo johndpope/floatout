@@ -12,7 +12,7 @@ import SDWebImage
 
 class CameraViewController: UIViewController {
     
-    //Segue
+    //Segue2
     var storyFeedStore : StoryFeedStore!
     var storyTagNames : [String]!
     var storyTagStore : StoryTagStore!

@@ -293,6 +293,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="hoa-Ar-h9I" appends="YES" id="u20-4K-CXH"/>
+                                    <outletCollection property="gestureRecognizers" destination="y3e-O8-oZz" appends="YES" id="b0d-t4-3GY"/>
                                 </connections>
                             </imageView>
                         </subviews>
@@ -323,6 +324,12 @@
                     <connections>
                         <action selector="nextImage:" destination="d9S-0G-TRl" id="DYj-Oi-KFB"/>
                         <outlet property="delegate" destination="nYN-f0-JYb" id="wkR-WX-PTQ"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="up" id="y3e-O8-oZz">
+                    <connections>
+                        <action selector="swipeUpToMain:" destination="d9S-0G-TRl" id="2Zd-h2-TwX"/>
+                        <outlet property="delegate" destination="nYN-f0-JYb" id="Ua0-9U-BPC"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>

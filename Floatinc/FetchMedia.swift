@@ -45,7 +45,10 @@ class FetchMedia {
     }
     
     func getCacheCount(id: String) -> Int{
-        return self.storyImageTracker[id]!
+        if let count = self.storyImageTracker[id] {
+            return count
+        }
+        return 0
     }
     
     func fetchImagesForStoryFeedArrayIndex(storyFeedIndexArray: Int, endIndex: Int) {
@@ -150,7 +153,47 @@ class FetchMedia {
     }
     
     func getGsImageUrl(storyFeedId: String, index: Int) -> NSURL? {
-        return self.cacheImageList[storyFeedId]?[index]!
- 
+        if let url =  self.cacheImageList[storyFeedId]?[index]{
+            return url
+        }
+        return nil
     }
+    //remove the entire storyFeed
+    func removeStoryFeed(storyFeedId: String) {
+        self.cacheImageList.removeValueForKey(storyFeedId)
+    }
+    
+    //remove stale urls from cacheImageList
+    
+    func removeUrlFromStoryFeed(urlList: [String], storyFeedId: String){
+  
+        for (key,url) in self.cacheImageList[storyFeedId]! {
+            
+            if(key >= urlList.count) {
+                var present = false
+                for imagePath in urlList {
+                    if((url?.path?.containsString(imagePath) != false)){
+                      present = true
+                      break
+                    }
+                }
+                
+                if (present == false) {
+                  self.cacheImageList[storyFeedId]!.removeValueForKey(key)
+                  self.storyImageTracker[storyFeedId]! -= 1
+                  
+                }
+            }
+            else {
+                if((url?.path?.containsString(urlList[key])) != false) {
+                    continue
+                } else {
+                    self.cacheImageList[storyFeedId]!.removeValueForKey(key)
+                    self.storyImageTracker[storyFeedId]! -= 1
+                     
+                }
+            }
+        }
+    }
+
 }
