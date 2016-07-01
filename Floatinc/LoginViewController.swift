@@ -52,13 +52,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-//    func userLoggedIn(user: FIRUser) {
-//        print("Pushing the main controller on the root controller and popping the login Controller off")
-//        let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
-//        let navRootController = appDelegate.window!.rootViewController as! UINavigationController
-//        navRootController.popViewControllerAnimated(true)
-//    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

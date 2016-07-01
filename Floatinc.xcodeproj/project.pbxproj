@@ -14,6 +14,7 @@
 		EA04C4011CED9EF900839C8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA04C4001CED9EF900839C8C /* Assets.xcassets */; };
 		EA04C4041CED9EF900839C8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA04C4021CED9EF900839C8C /* LaunchScreen.storyboard */; };
 		EA5FF1601CEF0AED00D860D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA5FF15F1CEF0AED00D860D9 /* GoogleService-Info.plist */; };
+		EA76E3471D26A0F500CFD725 /* textFieldCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA76E3461D26A0F500CFD725 /* textFieldCustom.swift */; };
 		EA8E830B1D118F62003801FD /* StoryFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E830A1D118F62003801FD /* StoryFeedViewController.swift */; };
 		EA8E830D1D11915F003801FD /* FetchMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E830C1D11915F003801FD /* FetchMedia.swift */; };
 		EA8E830F1D11C765003801FD /* segue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E830E1D11C765003801FD /* segue.swift */; };
@@ -47,6 +48,7 @@
 		EA04C4031CED9EF900839C8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA04C4051CED9EF900839C8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA5FF15F1CEF0AED00D860D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EA76E3461D26A0F500CFD725 /* textFieldCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textFieldCustom.swift; sourceTree = "<group>"; };
 		EA8E830A1D118F62003801FD /* StoryFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryFeedViewController.swift; sourceTree = "<group>"; };
 		EA8E830C1D11915F003801FD /* FetchMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMedia.swift; sourceTree = "<group>"; };
 		EA8E830E1D11C765003801FD /* segue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = segue.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				EABF25B71D05A6130082A738 /* PreviewViewController.swift */,
 				EABF25BB1D05B48D0082A738 /* CameraViewController.swift */,
 				EAEBD8D71D060AB8003BE566 /* StoreImage.swift */,
+				EA76E3461D26A0F500CFD725 /* textFieldCustom.swift */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				EAB60C411CF7123600303A3B /* RegisterViewController.swift in Sources */,
 				EAD6ABC11CF9E41C00205430 /* ScrollViewController.swift in Sources */,
 				EAD6ABB71CF99BC500205430 /* StoryTag.swift in Sources */,
+				EA76E3471D26A0F500CFD725 /* textFieldCustom.swift in Sources */,
 				EABF25B91D05A6130082A738 /* PreviewViewController.swift in Sources */,
 				EA8E830D1D11915F003801FD /* FetchMedia.swift in Sources */,
 				EAB60C3F1CF6F74800303A3B /* SplashViewController.swift in Sources */,

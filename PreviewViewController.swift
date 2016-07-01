@@ -17,13 +17,15 @@ enum Media {
     case Video(url: NSURL)
 }
 
-class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate, AKPickerViewDelegate, AKPickerViewDataSource {
+class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate, AKPickerViewDelegate, AKPickerViewDataSource, UITextFieldDelegate {
     
     var image : NSData!
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var buttonClose: UIButton!
     @IBOutlet weak var pickerView: AKPickerView!
+    
+    @IBOutlet weak var textField: UITextField!
     
     //Reading the value from CameraViewController->StoryFeed Passing it to cameraViewController
     var storyTagStore : StoryTagStore!
@@ -51,6 +53,16 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
         self.pickerView.interitemSpacing = 2.0
         self.pickerView.maskDisabled = false
         self.pickerView.reloadData()
+        
+        //textField delegate
+        self.textField.delegate = self
+        self.hideKeyboardWhenTappedAround()
+        
+        //textField draggable
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(PreviewViewController.userDragged(_:)))
+        self.textField.addGestureRecognizer(gesture)
+        self.textField.userInteractionEnabled = true
+        
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -137,6 +149,26 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
         return CGSizeMake(10, 30)
     }
     
+    //TextField Methods
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    //dragging the textfield around
+    func userDragged(gesture: UIPanGestureRecognizer){
+        let loc = gesture.locationInView(self.view)
+        self.textField.center = loc
+        let x = self.textField.frame.maxX
+        let y = self.textField.frame.maxY
+        
+        print("center: x: \(loc.x) y: \(loc.y)")
+        print("x: \(x), y: \(y)")
+        
+        print("checking")
+
+    }
+    
     @IBAction func sendMedia(sender: UIButton) {
         
         let store: StoreImage = StoreImage()
@@ -146,41 +178,65 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
             }
             
             if storyTagIdPicked != nil {
-                let textImage = textToImage("Whats up how is it going", inImage: self.imageView.image!, atPoint: CGPoint(x: 50, y: 15))
-                image =  UIImageJPEGRepresentation(textImage, 1.0)
+                
+                //If the user wrote text then time to change the image
+                if let text = self.textField.text {
+                    let font = textField.font
+                    let alpha = textField.alpha
+                    let textColor = textField.textColor
+                    let frame = textField.frame
+                    
+                    let editTextField = textField as! textFieldCustom
+                    let editTextFieldStart = editTextField.editingRectForBounds(textField.bounds)
+
+                    let textImage = textToImage(text,frameTextField: frame, inImage: self.imageView.image!,textFont: font, textColor: textColor, alpha: alpha, editTextFieldStart: editTextFieldStart, viewBound: self.view.bounds)
+                  image =  UIImageJPEGRepresentation(textImage, 1.0)
+                }
+                
               store.saveImage(image, mediaType: "image", storyTag: self.storyTagIdPicked!)
               self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
     }
 
+
+
 }
 
-
-func textToImage(drawText: NSString, inImage: UIImage, atPoint:CGPoint)->UIImage{
-    
-    // Setup the font specific variables
-    let textColor: UIColor = UIColor.whiteColor()
-    let textFont: UIFont = UIFont(name: "Helvetica Light", size: 20)!
+func textToImage(drawText: NSString,frameTextField: CGRect,  inImage: UIImage, textFont: UIFont?, textColor: UIColor?, alpha: CGFloat, editTextFieldStart: CGRect, viewBound: CGRect )->UIImage{
     
     //Setup the image context using the passed image.
-    UIGraphicsBeginImageContext(inImage.size)
+    UIGraphicsBeginImageContextWithOptions(inImage.size, true, 0.0)
     
     //Setups up the font attributes that will be later used to dictate how the text should be drawn
     let textFontAttributes = [
-        NSFontAttributeName: textFont,
-        NSForegroundColorAttributeName: textColor,
+        NSFontAttributeName: textFont!,
+        NSForegroundColorAttributeName: textColor!,
         ]
-    
+
     //Put the image into a rectangle as large as the original image.
     inImage.drawInRect(CGRectMake(0, 0, inImage.size.width, inImage.size.height))
     
+   
+    let displaceX = inImage.size.width - viewBound.size.width
+
+    
     // Creating a point within the space that is as bit as the image.
-    let rect: CGRect = CGRectMake(atPoint.x, atPoint.y, inImage.size.width, inImage.size.height)
+    let xPos = frameTextField.origin.x + editTextFieldStart.origin.x + displaceX
+    let yPos = frameTextField.origin.y + editTextFieldStart.origin.y
+
+    let rect: CGRect = CGRectMake(xPos, yPos, editTextFieldStart.width, editTextFieldStart.height)
     
-    //Now Draw the text into an image.
+
+   
+    //drawing the textField background.
+    let color = UIColor.whiteColor().colorWithAlphaComponent(alpha)
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), color.CGColor)
+    CGContextFillRect(UIGraphicsGetCurrentContext(), frameTextField)
+    
+    //Drawing the Text
     drawText.drawInRect(rect, withAttributes: textFontAttributes)
-    
+
     // Create a new image out of the images we have created
     let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
     
@@ -191,3 +247,10 @@ func textToImage(drawText: NSString, inImage: UIImage, atPoint:CGPoint)->UIImage
     return newImage
     
 }
+
+
+
+
+
+
+

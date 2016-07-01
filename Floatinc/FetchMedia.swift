@@ -72,7 +72,7 @@ class FetchMedia {
                 break
             }
         }
-        
+       
     }
     
     func fetchImageWithStoryFeedArrayIndex(storyFeedIndexArrary: Int, mediaListArrayIndex: Int, callback: ()->Void){
