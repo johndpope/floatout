@@ -43,10 +43,10 @@ class StoreImage {
         let saveRef = gStoryFeedRef!.child(gUrlName)
         
         //upload the file to gstore
-        let metadata = FIRStorageMetadata()
-        metadata.contentType = "image/jpeg"
+//        let metadata = FIRStorageMetadata()
+//        metadata.contentType = "image/jpeg"
         
-        _ = saveRef.putData(data, metadata: metadata){ metadata, error in
+        _ = saveRef.putData(data, metadata: nil){ metadata, error in
             if (error != nil) {
                 print("error")
             }
