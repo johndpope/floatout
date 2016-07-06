@@ -11,6 +11,8 @@ import UIKit
 import PBJVideoPlayer
 //import FLAnimatedImage
 import AKPickerView_Swift
+import MapKit
+import CoreLocation
 
 enum Media {
     case Photo(image: UIImage)
@@ -30,6 +32,7 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
     //Reading the value from CameraViewController->StoryFeed Passing it to cameraViewController
     var storyTagStore : StoryTagStore!
     var storyTagIdPicked : String?
+    var location : CLLocation?
 
     let screenWidth = UIScreen.mainScreen().bounds.size.width
     let screenHeight = UIScreen.mainScreen().bounds.size.height
@@ -168,9 +171,8 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
             if self.storyTagIdPicked == nil {
               self.storyTagIdPicked = self.storyTagStore.storyTagList[0].id
             }
-            
+            var descriptionText = ""
             if storyTagIdPicked != nil {
-                
                 //If the user wrote text then time to change the image
                 if let text = self.textField.text {
                     if text.isEmpty == false {
@@ -182,17 +184,20 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
                         let editTextField = textField as! textFieldCustom
                         let editTextFieldStart = editTextField.editingRectForBounds(textField.bounds)
                         
-                        let fixedS = CGSize(width: self.view.bounds.width, height: self.imageView.bounds.size.height)
-//                        self.imageView.bounds.size
+                        let fixedS = CGSize(width: self.imageView.bounds.size.width, height: self.imageView.bounds.size.height)
+                        
                         let someSize = CGSizeAspectFill(self.imageView.image!.size, minimumSize: fixedS)
 
                         let textImage = textToImage(text,frameTextField: frame, inImage: self.imageView.image!,textFont: font, textColor: textColor, alpha: alpha, editTextFieldStart: editTextFieldStart, viewBound: self.view.bounds, inImageSize: someSize)
                         image =  UIImageJPEGRepresentation(textImage, 1.0)
-                        
+                        descriptionText = text
                     }
                 }
-                
-              store.saveImage(image, mediaType: "image", storyTag: self.storyTagIdPicked!)
+            
+              store.saveImage(image, mediaType: "image",
+                              storyTag: self.storyTagIdPicked!,
+                              description: descriptionText,
+                              location: self.location)
               self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
@@ -217,6 +222,8 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
 
 }
 
+
+
 func textToImage(drawText: NSString,frameTextField: CGRect,  inImage: UIImage, textFont: UIFont?, textColor: UIColor?, alpha: CGFloat, editTextFieldStart: CGRect, viewBound: CGRect, inImageSize: CGSize )->UIImage{
     
     
@@ -235,19 +242,21 @@ func textToImage(drawText: NSString,frameTextField: CGRect,  inImage: UIImage, t
     inImage.drawInRect(CGRectMake(0, 0, inImage.size.width, inImage.size.height))
 
     // Creating a point within the space that is as bit as the image.
-    let xPos = frameTextField.origin.x + editTextFieldStart.origin.x + 20
-    let yPos = frameTextField.origin.y + editTextFieldStart.origin.y - 2
+    let xPos = frameTextField.origin.x + editTextFieldStart.origin.x + 40
+    let yPos = frameTextField.origin.y + editTextFieldStart.origin.y + 2
 
-    let textRect: CGRect = CGRectMake(xPos, yPos, editTextFieldStart.width, editTextFieldStart.height)
+    let textRect: CGRect = CGRectMake(xPos, yPos, (editTextFieldStart.width-editTextFieldStart.origin.x-40), editTextFieldStart.height)
     
     var updatedFrame = frameTextField
-    updatedFrame.origin.x += 20
+    updatedFrame.origin.x += (30+editTextFieldStart.origin.x)
+    updatedFrame.size.width -= (editTextFieldStart.origin.x+30)
+    updatedFrame.size.height -= 4
     
     //drawing the textField background.
     let color = UIColor.whiteColor().colorWithAlphaComponent(alpha)
     CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), color.CGColor)
 //    CGContextFillRect(UIGraphicsGetCurrentContext(), updatedFrame)
-    let path = UIBezierPath.init(roundedRect: updatedFrame, cornerRadius: 5)
+    let path = UIBezierPath.init(roundedRect: updatedFrame, cornerRadius: 8)
     path.fill()
     
     //Drawing the Text

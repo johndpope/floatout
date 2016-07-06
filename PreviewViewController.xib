@@ -33,7 +33,7 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RWZ-Kf-9CI">
-                    <rect key="frame" x="-20" y="0.0" width="640" height="515"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="515"/>
                 </imageView>
                 <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqX-cI-QIE">
                     <rect key="frame" x="10" y="8" width="29" height="26"/>
@@ -50,7 +50,7 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="This is a sad place, be happy." clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="vuY-Ag-sHG" customClass="textFieldCustom" customModule="Floatinc" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="243" width="600" height="30"/>
+                    <rect key="frame" x="20" y="243" width="560" height="30"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="twitter" keyboardAppearance="alert" returnKeyType="go"/>
@@ -62,11 +62,11 @@
                 <constraint firstItem="JfG-xC-tWu" firstAttribute="leading" secondItem="3wc-PH-Tvx" secondAttribute="leading" constant="2" id="3pb-3k-0gd"/>
                 <constraint firstAttribute="trailing" secondItem="JfG-xC-tWu" secondAttribute="trailing" constant="70" id="9DY-SL-sjj"/>
                 <constraint firstItem="vuY-Ag-sHG" firstAttribute="centerY" secondItem="RWZ-Kf-9CI" secondAttribute="centerY" id="ELa-4b-vhe"/>
-                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="leading" secondItem="3wc-PH-Tvx" secondAttribute="leading" constant="-20" id="Guo-28-ZeP"/>
                 <constraint firstAttribute="bottom" secondItem="RWZ-Kf-9CI" secondAttribute="bottom" constant="85" id="IYH-wl-P4f"/>
                 <constraint firstItem="RWZ-Kf-9CI" firstAttribute="centerX" secondItem="3wc-PH-Tvx" secondAttribute="centerX" id="Iuj-ht-2kQ"/>
                 <constraint firstItem="vuY-Ag-sHG" firstAttribute="leading" secondItem="RWZ-Kf-9CI" secondAttribute="leading" constant="20" id="Lgd-hM-x2D"/>
                 <constraint firstAttribute="bottom" secondItem="piL-Dd-Ayk" secondAttribute="bottom" constant="22" id="Soj-zA-K0A"/>
+                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="width" secondItem="3wc-PH-Tvx" secondAttribute="width" id="UiC-By-1jU"/>
                 <constraint firstItem="RWZ-Kf-9CI" firstAttribute="top" secondItem="3wc-PH-Tvx" secondAttribute="top" id="XgU-RE-299"/>
                 <constraint firstItem="piL-Dd-Ayk" firstAttribute="leading" secondItem="JfG-xC-tWu" secondAttribute="trailing" constant="8" id="f4K-Jb-seX"/>
                 <constraint firstAttribute="trailing" secondItem="piL-Dd-Ayk" secondAttribute="trailing" constant="2" id="gd1-Pk-AK3"/>

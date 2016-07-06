@@ -14,6 +14,7 @@
 		EA04C4011CED9EF900839C8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA04C4001CED9EF900839C8C /* Assets.xcassets */; };
 		EA04C4041CED9EF900839C8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA04C4021CED9EF900839C8C /* LaunchScreen.storyboard */; };
 		EA5FF1601CEF0AED00D860D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA5FF15F1CEF0AED00D860D9 /* GoogleService-Info.plist */; };
+		EA765F671D2BF2D400D595F4 /* MapLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA765F661D2BF2D400D595F4 /* MapLocationController.swift */; };
 		EA76E3471D26A0F500CFD725 /* textFieldCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA76E3461D26A0F500CFD725 /* textFieldCustom.swift */; };
 		EA8E830B1D118F62003801FD /* StoryFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E830A1D118F62003801FD /* StoryFeedViewController.swift */; };
 		EA8E830D1D11915F003801FD /* FetchMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E830C1D11915F003801FD /* FetchMedia.swift */; };
@@ -48,6 +49,7 @@
 		EA04C4031CED9EF900839C8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA04C4051CED9EF900839C8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA5FF15F1CEF0AED00D860D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EA765F661D2BF2D400D595F4 /* MapLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLocationController.swift; sourceTree = "<group>"; };
 		EA76E3461D26A0F500CFD725 /* textFieldCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textFieldCustom.swift; sourceTree = "<group>"; };
 		EA8E830A1D118F62003801FD /* StoryFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryFeedViewController.swift; sourceTree = "<group>"; };
 		EA8E830C1D11915F003801FD /* FetchMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMedia.swift; sourceTree = "<group>"; };
@@ -150,6 +152,14 @@
 			name = StoryTagStats;
 			sourceTree = "<group>";
 		};
+		EA765F651D2BF2BB00D595F4 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				EA765F661D2BF2D400D595F4 /* MapLocationController.swift */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
 		EA8E83091D118EEB003801FD /* storyFeed */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +192,7 @@
 		EAD6ABB01CF996DD00205430 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EA765F651D2BF2BB00D595F4 /* Maps */,
 				EAD6ABBA1CF9AA9600205430 /* tableViews */,
 				EA8E83091D118EEB003801FD /* storyFeed */,
 				EABF25BA1D05A6360082A738 /* Camera */,
@@ -395,6 +406,7 @@
 				EAEBD8D81D060AB8003BE566 /* StoreImage.swift in Sources */,
 				EA9F375D1CFF620200677D44 /* StoryTagStats.swift in Sources */,
 				EAB60C431CF7398900303A3B /* SettingsViewController .swift in Sources */,
+				EA765F671D2BF2D400D595F4 /* MapLocationController.swift in Sources */,
 				EA8E830F1D11C765003801FD /* segue.swift in Sources */,
 				EAA692D21D080D5A00C9CE0F /* StoryFeedStore.swift in Sources */,
 				EAD6ABB91CF9A1EB00205430 /* StoryListTableView.swift in Sources */,

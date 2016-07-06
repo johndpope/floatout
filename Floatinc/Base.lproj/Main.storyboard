@@ -276,6 +276,24 @@
             </objects>
             <point key="canvasLocation" x="-946" y="-710"/>
         </scene>
+        <!--Map Location Controller-->
+        <scene sceneID="BJA-PE-yd6">
+            <objects>
+                <viewController id="50U-Ip-gnY" customClass="MapLocationController" customModule="Floatinc" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fIK-bg-xrJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="niR-54-TtY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9P1-cC-k46">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RtO-vN-CAd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-119" y="-1455"/>
+        </scene>
         <!--Story Feed View Controller-->
         <scene sceneID="q2g-yP-J7z">
             <objects>
@@ -296,6 +314,17 @@
                                     <outletCollection property="gestureRecognizers" destination="y3e-O8-oZz" appends="YES" id="b0d-t4-3GY"/>
                                 </connections>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1EN-zo-zWH">
+                                <rect key="frame" x="560" y="5" width="31" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="PFM-bv-AVi"/>
+                                    <constraint firstAttribute="width" constant="31" id="xK2-pT-dyb"/>
+                                </constraints>
+                                <state key="normal" title="location" image="mapLocation"/>
+                                <connections>
+                                    <segue destination="50U-Ip-gnY" kind="presentation" identifier="showLocation" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="tcz-dz-Vy6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -303,14 +332,18 @@
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="centerY" secondItem="nYN-f0-JYb" secondAttribute="centerY" id="BZw-Ra-QXY"/>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="centerX" secondItem="nYN-f0-JYb" secondAttribute="centerX" id="fDu-qr-RoB"/>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="height" secondItem="nYN-f0-JYb" secondAttribute="height" id="mfK-Kg-cxe"/>
+                            <constraint firstItem="XUo-vT-bT2" firstAttribute="top" secondItem="1EN-zo-zWH" secondAttribute="bottom" constant="-39" id="mvL-5c-ORz"/>
+                            <constraint firstItem="1EN-zo-zWH" firstAttribute="leading" secondItem="XUo-vT-bT2" secondAttribute="trailing" constant="-40" id="q9j-4E-29n"/>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="width" secondItem="nYN-f0-JYb" secondAttribute="width" id="shF-Jt-8ZJ"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="5Pi-ar-cSz" appends="YES" id="7cN-Va-lqb"/>
+                            <outletCollection property="gestureRecognizers" destination="2IN-n4-PUC" appends="YES" id="ea1-Zz-qam"/>
                         </connections>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="XUo-vT-bT2" id="UuH-g0-Q2A"/>
+                        <outlet property="location" destination="1EN-zo-zWH" id="GVf-sb-K2F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bgi-vE-NP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -332,8 +365,11 @@
                         <outlet property="delegate" destination="nYN-f0-JYb" id="Ua0-9U-BPC"/>
                     </connections>
                 </swipeGestureRecognizer>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="2IN-n4-PUC">
+                    <rectEdge key="edges" left="YES"/>
+                </screenEdgePanGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-106" y="-806"/>
+            <point key="canvasLocation" x="-170" y="-548"/>
         </scene>
         <!--Camera-->
         <scene sceneID="haY-DP-HKl">
@@ -692,6 +728,7 @@
         <image name="float" width="48" height="58"/>
         <image name="go" width="40" height="40"/>
         <image name="imageClick" width="256" height="256"/>
+        <image name="mapLocation" width="256" height="256"/>
         <image name="selfie" width="256" height="256"/>
     </resources>
 </document>

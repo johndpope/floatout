@@ -9,8 +9,10 @@
 import UIKit
 import CameraManager
 import SDWebImage
+import MapKit
+import CoreLocation
 
-class CameraViewController: UIViewController {
+class CameraViewController: UIViewController, CLLocationManagerDelegate  {
     
     //Segue2
     var storyFeedStore : StoryFeedStore!
@@ -29,9 +31,7 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var selfieToggleButton: UIButton!
     @IBOutlet weak var mediaCaptureButton: UIButton!
     
-    //trying
-    var tryImage : UIImage?
-    var tryUrl : NSURL?
+    let locationManager = CLLocationManager()
     
     // MARK: UIViewController
     override func viewDidLoad() {
@@ -49,6 +49,12 @@ class CameraViewController: UIViewController {
         else if currentCameraState == .Ready {
             addCameraToView()
         }
+        
+        if CLLocationManager.locationServicesEnabled(){
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -59,12 +65,20 @@ class CameraViewController: UIViewController {
         super.viewWillAppear(animated)
         
         cameraManager.resumeCaptureSession()
+        locationManager.startUpdatingLocation()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         cameraManager.stopCaptureSession()
+        locationManager.stopUpdatingLocation()
     }
+    
+    //location
+        func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            var locValue: CLLocationCoordinate2D = (manager.location?.coordinate)!
+            print("locations = \(locValue.latitude) \(locValue.longitude)")
+        }
     
     //MARK: @IBActions
     
@@ -99,8 +113,8 @@ class CameraViewController: UIViewController {
                         previewViewController.media = Media.Photo(image: capturedImageTaken)
                         if  let imageData = UIImageJPEGRepresentation(capturedImageTaken, 1.0){
                             previewViewController.image = imageData
+                            previewViewController.location = self.locationManager.location
                         }
-                        
                         self.presentViewController(previewViewController, animated: true, completion: nil)
                     }
                 }

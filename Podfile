@@ -10,5 +10,6 @@ target 'Floatinc' do
   pod 'PBJVideoPlayer'
   pod 'AKPickerView-Swift'
   pod 'SDWebImage', '~>3.8'
+  pod 'GoogleMaps'
 end
 

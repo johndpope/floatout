@@ -10,7 +10,7 @@ import UIKit
 import PBJVideoPlayer
 import SDWebImage
 
-class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegate {
+class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegate{
     
     var image : NSData?
     
@@ -26,6 +26,7 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     var totalMediaListCount: Int?
     
     @IBOutlet weak var imageView: UIImageView!
+    var scrollView : UIScrollView!
     
     let screenWidth = UIScreen.mainScreen().bounds.size.width
     let screenHeight = UIScreen.mainScreen().bounds.size.height
@@ -39,10 +40,12 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     var media: Media?
     var playerController: PBJVideoPlayerController!
     
+    @IBOutlet weak var location: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.location.hidden = true
     }
-    
     
     @IBAction func swipeUpToMain(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -59,6 +62,7 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         else {
             self.currentImage = self.currentImage-1
             print ("Display the previous image")
+            self.addAnimationPresentToViewOut(self.imageView)
             SetImageView(self.currentImage)
         }
     }
@@ -68,6 +72,7 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         //Get the count of the mediaList
         if  self.currentImage < self.totalMediaListCount!-1 {
             self.currentImage += 1
+            self.addAnimationPresentToView(self.imageView)
             SetImageView(self.currentImage)
         } else {
             print("end of feed going back to the story")
@@ -97,7 +102,7 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
                     return newWindowSize
                 }
             }
-        
+            
             //if totalImages: 13, start = 10, windowSize = 5, then make the newWindowSize = 3
             if (startIndex + windowSize) > self.totalMediaListCount {
                 newWindowSize = self.totalMediaListCount! - startIndex
@@ -176,10 +181,18 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
                         if image != nil && finished == true {
                             print("setting inside the feed on swipe")
                             self.media = Media.Photo(image: image)
+                            
+                            //Show or hide the location button
+                            if self.feed?.locationList[self.currentImage].count>0 {
+                                self.location.hidden = false
+                            } else {
+                                self.location.hidden = true
+                            }
+
                             if  let imageData = UIImageJPEGRepresentation(image, 1.0){
                                 self.image = imageData
                                 self.imageView.image = image
-                            }
+                                                          }
                         }
                 })
                 //Very important to return from here
@@ -257,10 +270,46 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         videoPlayer.playFromBeginning()
     }
     
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        
+        if segue.identifier == "showLocation" {
+            if let mapVc = segue.destinationViewController as? MapLocationController {
+              mapVc.latitude =
+            }
+        }
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func addAnimationPresentToViewOut(viewTobeAnimated: UIView) {
+        let transition: CATransition = CATransition()
+        transition.duration = 0.40
+        transition.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionLinear)
+        transition.setValue("IntroAnimation", forKey: "IntroSwipeIn")
+        transition.fillMode = kCAFillModeForwards
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft
+        viewTobeAnimated.layer.addAnimation(transition, forKey: nil)
+    }
+    
+    func addAnimationPresentToView(viewToBeAnimated: UIView){
+        let transition: CATransition = CATransition()
+        transition.duration = 0.40
+        transition.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionLinear)
+        transition.setValue("IntroSwipeIn", forKey: "IntroAnimation")
+        transition.fillMode = kCAFillModeForwards
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        viewToBeAnimated.layer.addAnimation(transition, forKey: nil)
+    }
+    
+    
     
 }
 

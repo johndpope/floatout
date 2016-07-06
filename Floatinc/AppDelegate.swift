@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate{
@@ -52,6 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
                 self.navToLogin(navController)
             }
        })
+        
+        //Adding the API key for google maps
+        GMSServices.provideAPIKey("AIzaSyDDpJNdJcPzjeAGl4vqAGgkiAd8g_a_1UQ")
         
         return true
     }

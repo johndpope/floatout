@@ -11,6 +11,7 @@ import Firebase
 import FirebaseStorage
 import FirebaseAuth
 import FirebaseDatabase
+import CoreLocation
 
 class StoreImage {
     
@@ -32,7 +33,7 @@ class StoreImage {
         self.storyTagStatsRef = rootRef.child("storyTagStats")
     }
     
-    func saveImage(data: NSData, mediaType: String, storyTag: String) {
+    func saveImage(data: NSData, mediaType: String, storyTag: String, description: String, location: AnyObject?) {
         
         let nameFirstPart = FIRAuth.auth()?.currentUser?.email
         let storyMedia = self.storyFeedRef!.child("\(storyTag)")
@@ -54,8 +55,17 @@ class StoreImage {
                 print("PhotoHasBeenUploaded. Done")
                 //save to Firebase storyFeed
                 let gStorageUrl = metadata?.name
-                storyMedia.child(storyMediaKey).setValue(gStorageUrl)
-                
+//                storyMedia.child(storyMediaKey).setValue(gStorageUrl)
+
+                if let location = location {
+                    let latitude = location.coordinate.latitude 
+                    let longitude = location.coordinate.longitude
+                    let metadataDict = ["location": ["latitude": latitude, "longitude": longitude]]
+                    storyMedia.child(storyMediaKey).setValue(["url": gStorageUrl!,"description": description, "metadata": metadataDict])
+                } else {
+                    storyMedia.child(storyMediaKey).setValue(["url": gStorageUrl!,"description": description])
+                }
+    
                 //save to Firebase storyTagStats contribution:
                 let uid = FIRAuth.auth()?.currentUser?.uid
                 let userFeed = self.storyTagStatsRef!.child("\(storyTag)/users/\(uid!)/contribution")

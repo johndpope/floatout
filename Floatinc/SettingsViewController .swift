@@ -25,7 +25,6 @@ class SettingsViewController : UIViewController, UINavigationControllerDelegate 
         navController.popToRootViewControllerAnimated(false)
         let loginViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewControllerWithIdentifier("loginVC")
         navController.pushViewController(loginViewController, animated: false)
-        
     }
     
     @IBAction func backToStoryViewController(sender: UIBarButtonItem) {

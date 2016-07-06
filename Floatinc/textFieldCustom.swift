@@ -15,7 +15,7 @@ class textFieldCustom : UITextField {
     
     override func textRectForBounds(bounds: CGRect) -> CGRect {
         let rect: CGRect = super.textRectForBounds(bounds)
-        let insets: UIEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0)
+        let insets: UIEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0)
         return UIEdgeInsetsInsetRect(rect, insets)
     }
     // Text position
