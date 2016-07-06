@@ -275,12 +275,11 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         
         if segue.identifier == "showLocation" {
             if let mapVc = segue.destinationViewController as? MapLocationController {
-              mapVc.latitude =
+                mapVc.latitude = self.feed?.locationList[self.currentImage][0]
+                mapVc.longitude = self.feed?.locationList[self.currentImage][1]
             }
         }
     }
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -308,8 +307,4 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         transition.subtype = kCATransitionFromRight
         viewToBeAnimated.layer.addAnimation(transition, forKey: nil)
     }
-    
-    
-    
 }
-
