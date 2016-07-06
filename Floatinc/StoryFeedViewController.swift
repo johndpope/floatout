@@ -42,6 +42,10 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     
     @IBOutlet weak var location: UIButton!
     
+    let interactor = Interactor()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.location.hidden = true
@@ -275,6 +279,8 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         
         if segue.identifier == "showLocation" {
             if let mapVc = segue.destinationViewController as? MapLocationController {
+                mapVc.transitioningDelegate = self
+                mapVc.interactor = interactor
                 mapVc.latitude = self.feed?.locationList[self.currentImage][0]
                 mapVc.longitude = self.feed?.locationList[self.currentImage][1]
             }
@@ -306,5 +312,14 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromRight
         viewToBeAnimated.layer.addAnimation(transition, forKey: nil)
+    }
+}
+
+extension StoryFeedViewController: UIViewControllerTransitioningDelegate {
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
+    }
+    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
     }
 }
