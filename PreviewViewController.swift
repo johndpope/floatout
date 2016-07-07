@@ -222,8 +222,6 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
 
 }
 
-
-
 func textToImage(drawText: NSString,frameTextField: CGRect,  inImage: UIImage, textFont: UIFont?, textColor: UIColor?, alpha: CGFloat, editTextFieldStart: CGRect, viewBound: CGRect, inImageSize: CGSize )->UIImage{
     
     

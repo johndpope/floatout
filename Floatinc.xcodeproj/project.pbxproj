@@ -160,6 +160,8 @@
 			isa = PBXGroup;
 			children = (
 				EA765F661D2BF2D400D595F4 /* MapLocationController.swift */,
+				EA065EA61D2CF62000D5C9FB /* DismissAnimator.swift */,
+				EA065EA81D2CF64600D5C9FB /* Interactor.swift */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -202,8 +204,6 @@
 				EABF25BA1D05A6360082A738 /* Camera */,
 				EAD6ABB21CF9972600205430 /* Workflow */,
 				EAD6ABB11CF996F600205430 /* Login */,
-				EA065EA61D2CF62000D5C9FB /* DismissAnimator.swift */,
-				EA065EA81D2CF64600D5C9FB /* Interactor.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
