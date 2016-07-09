@@ -6,10 +6,11 @@ target 'Floatinc' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
-  pod 'CameraManager', '~> 2.2'
+  pod 'Firebase/Messaging'
+  pod 'CameraManager'
   pod 'PBJVideoPlayer'
   pod 'AKPickerView-Swift'
-  pod 'SDWebImage', '~>3.8'
+  pod 'SDWebImage'
   pod 'GoogleMaps'
 end
 

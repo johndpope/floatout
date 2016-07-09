@@ -67,7 +67,7 @@ github "imaginary-cloud/CameraManager" >= 1.0
 And run `carthage update` to build the dynamic framework.
 
 ## How to use
-To use it you just add the preview layer to your desired view, you'll get back the state of the camera if it's unavailable, ready or the user denied assess to it. Have in mind that in order to retain the AVCaptureSession you will need to retain cameraManager instance somewhere, ex. as an instance constant.
+To use it you just add the preview layer to your desired view, you'll get back the state of the camera if it's unavailable, ready or the user denied access to it. Have in mind that in order to retain the AVCaptureSession you will need to retain cameraManager instance somewhere, ex. as an instance constant.
 ```swift
 let cameraManager = CameraManager()
 cameraManager.addPreviewLayerToView(self.cameraView)
@@ -141,7 +141,7 @@ cameraManager.showErrorBlock = { (erTitle: String, erMessage: String) -> Void in
 
 To shoot image all you need to do is call:
 ```swift
-cameraManager.capturePictureWithCompletition({ (image, error) -> Void in
+cameraManager.capturePictureWithCompletion({ (image, error) -> Void in
 	self.myImage = image             
 })
 ```
@@ -149,7 +149,7 @@ cameraManager.capturePictureWithCompletition({ (image, error) -> Void in
 To record video you do:
 ```swift
 cameraManager.startRecordingVideo()
-cameraManager.stopRecordingVideo({ (videoURL, error) -> Void in
+cameraManager.stopVideoRecording({ (videoURL, error) -> Void in
 	NSFileManager.defaultManager().copyItemAtURL(videoURL, toURL: self.myVideoURL, error: &error)
 })
 ```

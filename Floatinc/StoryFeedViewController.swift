@@ -9,6 +9,7 @@
 import UIKit
 import PBJVideoPlayer
 import SDWebImage
+import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
@@ -50,6 +51,7 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         self.location.hidden = true
+        FIRDatabase.database().persistenceEnabled = true
     }
     
     @IBAction func swipeDownToMain(sender: AnyObject) {

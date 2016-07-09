@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 import GoogleMaps
 
 @UIApplicationMain
@@ -30,10 +31,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
 
         //FirApp user setup
         FIRApp.configure()
+        FIRDatabase.database().persistenceEnabled = true
 
        listener = FIRAuth.auth()?.addAuthStateDidChangeListener({ (auth, user) in
             if let user = user {
                 print("lord has floated in with his identity email \(user.email)")
+
                 user.getTokenForcingRefresh(false, completion: { (tokenId, error) in
                     if let error = error {
                         print("Could not get the token, let the login begin \(error)")

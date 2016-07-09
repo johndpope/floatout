@@ -76,7 +76,7 @@ class CameraViewController: UIViewController, CLLocationManagerDelegate  {
     
     //location
         func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            var locValue: CLLocationCoordinate2D = (manager.location?.coordinate)!
+            let locValue: CLLocationCoordinate2D = (manager.location?.coordinate)!
             print("locations = \(locValue.latitude) \(locValue.longitude)")
         }
     
@@ -101,7 +101,7 @@ class CameraViewController: UIViewController, CLLocationManagerDelegate  {
     
         switch (cameraManager.cameraOutputMode) {
         case .StillImage:
-            cameraManager.capturePictureWithCompletition({ (capturedImage, error) in
+            cameraManager.capturePictureWithCompletion({ (capturedImage, error) in
                 if let errorOccurred = error {
                     self.cameraManager.showErrorBlock(erTitle: "Error occured", erMessage: errorOccurred.localizedDescription)
                 }
@@ -164,7 +164,7 @@ class CameraViewController: UIViewController, CLLocationManagerDelegate  {
     //MARK: ViewController
     
     func askForCameraPermissions() {
-        cameraManager.askUserForCameraPermissions { (permissionGranted) in
+        cameraManager.askUserForCameraPermission { (permissionGranted) in
             if permissionGranted {
                 self.addCameraToView()
             }

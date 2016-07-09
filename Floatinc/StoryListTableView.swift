@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
@@ -44,6 +45,7 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        FIRDatabase.database().persistenceEnabled = true
         
         storyTagsRef = rootRef.child("storyTags")
         storyTagStatsRef = rootRef.child("storyTagStats")
