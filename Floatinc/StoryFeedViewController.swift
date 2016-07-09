@@ -9,6 +9,8 @@
 import UIKit
 import PBJVideoPlayer
 import SDWebImage
+import FirebaseDatabase
+import FirebaseAuth
 
 class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegate, UIPopoverPresentationControllerDelegate{
     
@@ -39,20 +41,25 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     
     var media: Media?
     var playerController: PBJVideoPlayerController!
+    var overlay : UIView?
     
     @IBOutlet weak var location: UIButton!
     
-//    let interactor = Interactor()
-    
-    
-    
+    @IBOutlet weak var likeImageView: UIImageView!
+       
     override func viewDidLoad() {
         super.viewDidLoad()
         self.location.hidden = true
     }
     
-    @IBAction func swipeUpToMain(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func swipeDownToMain(sender: AnyObject) {
+        CATransaction.begin()
+        CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
+        let transition: CATransition = CATransition()
+        transition.type = kCATransitionFade
+        self.navigationController?.view.layer.addAnimation(transition, forKey: "someAnimation")
+        self.navigationController?.popViewControllerAnimated(false)
+        CATransaction.commit()
     }
     
     @IBAction func swipeToMain(sender: UISwipeGestureRecognizer) {
@@ -83,6 +90,65 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
             self.navigationController?.popViewControllerAnimated(true)
         }
     }
+    
+    
+    
+    @IBAction func swipUpToLike(sender: UISwipeGestureRecognizer) {
+
+        let bounds = self.likeImageView.bounds
+        let center = self.likeImageView.center
+        self.likeImageView.hidden = false
+        
+        
+        UIView.animateWithDuration(0.5,delay: 0.1, options: .TransitionFlipFromBottom , animations: {
+            self.likeImageView.center.y -= (self.view.bounds.height/2)
+        }) { (finished: Bool) in
+                self.likeImageView.hidden = true
+                self.likeImageView.center = center
+                self.likeImageView.bounds = bounds
+        }
+        
+        
+        if let feedImageKey = self.feed?.imageKeysList[self.currentImage] {
+            
+            if let imageInFeedForKey = self.feed?.ref?.child(feedImageKey){
+                imageInFeedForKey.runTransactionBlock({ (currentData) -> FIRTransactionResult in
+                    if currentData.value != nil {
+                        var imageObject = currentData.value as? [String: AnyObject]
+                        let uid = FIRAuth.auth()?.currentUser?.uid
+
+                        if let likes = imageObject?["likes"] {
+                           var  numberOfLikes = likes["likeCount"] as! Int
+                            if numberOfLikes == 0 {
+                                //adding user for the first time
+                                numberOfLikes += 1
+                                var userArray = [String: Bool]()
+                                userArray = [uid!: true]
+                                imageObject?["likes"] = ["likeCount": numberOfLikes, "users": userArray]
+                                currentData.value = imageObject
+                                return FIRTransactionResult.successWithValue(currentData)
+                            }
+                            else {
+                                //if the user id exists and has not liked by the user till now
+                                var userArray = likes["users"] as! [String: Bool]
+                                
+                                if userArray[uid!] == nil {
+                                    //increase the number
+                                    numberOfLikes += 1
+                                    userArray[uid!] = true
+                                    imageObject?["likes"] = ["likeCount": numberOfLikes, "users": userArray]
+                                    currentData.value = imageObject
+                                }
+                                return FIRTransactionResult.successWithValue(currentData)
+                            }
+                        }
+                    }
+                    return FIRTransactionResult.successWithValue(currentData)
+                })
+            }
+        }
+    }
+    
     
     //5:startCount,5: windowSize ===== fetchImage from 5 to 10
     func preLoadSize(startIndex : Int , endIndex: Int , windowSize: Int) -> Int {
@@ -280,19 +346,13 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         if segue.identifier == "showLocation" {
             if let mapVc = segue.destinationViewController as? MapLocationController {
                 
+                overlay = UIView(frame: CGRectMake(0, 0, self.imageView.frame.size.width, self.imageView.frame.size.height))
+                overlay!.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.4)
+                self.imageView.addSubview(overlay!)
                 
-//                let blurView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.ExtraLight))
-//                blurView.frame = self.view.bounds
-//                self.view.addSubview(blurView)
-                let y = self.location.frame.origin.y + self.location.frame.height
-                
+                let popOverYAxis = self.location.frame.origin.y + self.location.frame.height
                 mapVc.preferredContentSize = CGSizeMake(self.imageView.bounds.size.width-20, self.imageView.bounds.size.height-60)
-                mapVc.popoverPresentationController?.sourceRect = CGRect(x: 100, y: y, width: 0, height: 0)
-          
-
-//                mapVc.transitioningDelegate = self
-//                mapVc.interactor = interactor
-
+                mapVc.popoverPresentationController?.sourceRect = CGRect(x: 100, y: popOverYAxis, width: 0, height: 0)
                 
                 mapVc.popoverPresentationController!.delegate = self
                 
@@ -306,6 +366,12 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None
+    }
+    
+    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
+        if self.overlay != nil {
+            self.overlay?.removeFromSuperview()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -335,12 +401,3 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         viewToBeAnimated.layer.addAnimation(transition, forKey: nil)
     }
 }
-
-//extension StoryFeedViewController: UIViewControllerTransitioningDelegate {
-//    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        return DismissAnimator()
-//    }
-//    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-//        return interactor.hasStarted ? interactor : nil
-//    }
-//}

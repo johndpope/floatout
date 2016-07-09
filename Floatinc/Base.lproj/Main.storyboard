@@ -342,14 +342,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XUo-vT-bT2">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XUo-vT-bT2" userLabel="mainPicture">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="hoa-Ar-h9I" appends="YES" id="u20-4K-CXH"/>
-                                    <outletCollection property="gestureRecognizers" destination="y3e-O8-oZz" appends="YES" id="b0d-t4-3GY"/>
+                                    <outletCollection property="gestureRecognizers" destination="y3e-O8-oZz" appends="YES" id="hGH-ju-S7K"/>
+                                    <outletCollection property="gestureRecognizers" destination="hoa-Ar-h9I" appends="YES" id="e2a-nj-rfM"/>
+                                    <outletCollection property="gestureRecognizers" destination="5Pi-ar-cSz" appends="YES" id="2x9-mI-wUs"/>
                                 </connections>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uhe-47-x0h" userLabel="swipeUpView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="474"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="wde-zv-pkA" appends="YES" id="K7e-hz-pl3"/>
+                                    <outletCollection property="gestureRecognizers" destination="hoa-Ar-h9I" appends="YES" id="wAD-FJ-RUr"/>
+                                    <outletCollection property="gestureRecognizers" destination="5Pi-ar-cSz" appends="YES" id="848-NL-con"/>
+                                    <outletCollection property="gestureRecognizers" destination="y3e-O8-oZz" appends="YES" id="fV9-Ru-bcd"/>
+                                </connections>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1EN-zo-zWH">
                                 <rect key="frame" x="560" y="5" width="31" height="34"/>
                                 <constraints>
@@ -363,43 +374,66 @@
                                     </segue>
                                 </connections>
                             </button>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="Mq6-b5-Mxs">
+                                <rect key="frame" x="240" y="324" width="120" height="100"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="DEu-lL-IeV"/>
+                                    <constraint firstAttribute="height" constant="100" id="O4r-HM-S3y"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="Uhe-47-x0h" firstAttribute="trailing" secondItem="XUo-vT-bT2" secondAttribute="trailing" id="1hg-3L-g8U"/>
+                            <constraint firstItem="Uhe-47-x0h" firstAttribute="leading" secondItem="XUo-vT-bT2" secondAttribute="leading" id="5fu-g5-nzS"/>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="centerY" secondItem="nYN-f0-JYb" secondAttribute="centerY" id="BZw-Ra-QXY"/>
+                            <constraint firstItem="Uhe-47-x0h" firstAttribute="bottom" secondItem="Mq6-b5-Mxs" secondAttribute="bottom" constant="50" id="Z3k-A5-Bew"/>
+                            <constraint firstItem="XUo-vT-bT2" firstAttribute="top" secondItem="Mq6-b5-Mxs" secondAttribute="bottom" constant="-424" id="cBu-mZ-15n"/>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="centerX" secondItem="nYN-f0-JYb" secondAttribute="centerX" id="fDu-qr-RoB"/>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="height" secondItem="nYN-f0-JYb" secondAttribute="height" id="mfK-Kg-cxe"/>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="top" secondItem="1EN-zo-zWH" secondAttribute="bottom" constant="-39" id="mvL-5c-ORz"/>
                             <constraint firstItem="1EN-zo-zWH" firstAttribute="leading" secondItem="XUo-vT-bT2" secondAttribute="trailing" constant="-40" id="q9j-4E-29n"/>
+                            <constraint firstItem="Mq6-b5-Mxs" firstAttribute="centerX" secondItem="XUo-vT-bT2" secondAttribute="centerX" id="qmH-we-It7"/>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="width" secondItem="nYN-f0-JYb" secondAttribute="width" id="shF-Jt-8ZJ"/>
+                            <constraint firstItem="Uhe-47-x0h" firstAttribute="top" secondItem="XUo-vT-bT2" secondAttribute="top" id="uoj-uA-XOL"/>
                         </constraints>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="5Pi-ar-cSz" appends="YES" id="7cN-Va-lqb"/>
+                            <outletCollection property="gestureRecognizers" destination="hoa-Ar-h9I" appends="YES" id="WK9-dq-sGy"/>
+                            <outletCollection property="gestureRecognizers" destination="5Pi-ar-cSz" appends="YES" id="2CV-eY-BzW"/>
+                            <outletCollection property="gestureRecognizers" destination="y3e-O8-oZz" appends="YES" id="gu7-ln-9Ib"/>
                         </connections>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="XUo-vT-bT2" id="UuH-g0-Q2A"/>
+                        <outlet property="likeImageView" destination="Mq6-b5-Mxs" id="wAI-6J-EUK"/>
                         <outlet property="location" destination="1EN-zo-zWH" id="GVf-sb-K2F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bgi-vE-NP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="hoa-Ar-h9I">
+                <swipeGestureRecognizer direction="right" id="hoa-Ar-h9I" userLabel="RightSwipe">
                     <connections>
                         <action selector="swipeToMain:" destination="d9S-0G-TRl" id="555-gV-he2"/>
                         <outlet property="delegate" destination="nYN-f0-JYb" id="xgc-0X-LFt"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="5Pi-ar-cSz">
+                <swipeGestureRecognizer direction="left" id="5Pi-ar-cSz" userLabel="swipeLeft">
                     <connections>
                         <action selector="nextImage:" destination="d9S-0G-TRl" id="DYj-Oi-KFB"/>
                         <outlet property="delegate" destination="nYN-f0-JYb" id="wkR-WX-PTQ"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="up" id="y3e-O8-oZz">
+                <swipeGestureRecognizer direction="down" id="y3e-O8-oZz" userLabel="swipeDown">
                     <connections>
-                        <action selector="swipeUpToMain:" destination="d9S-0G-TRl" id="2Zd-h2-TwX"/>
+                        <action selector="swipeDownToMain:" destination="d9S-0G-TRl" id="inv-Yk-YyP"/>
                         <outlet property="delegate" destination="nYN-f0-JYb" id="Ua0-9U-BPC"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="up" id="wde-zv-pkA" userLabel="SwipeUpLike">
+                    <connections>
+                        <action selector="swipUpToLike:" destination="d9S-0G-TRl" id="jPA-fr-19I"/>
+                        <outlet property="delegate" destination="Uhe-47-x0h" id="Dv4-tk-Dst"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -763,6 +797,7 @@
         <image name="float" width="48" height="58"/>
         <image name="go" width="40" height="40"/>
         <image name="imageClick" width="256" height="256"/>
+        <image name="like" width="156" height="135"/>
         <image name="mapLocation" width="256" height="256"/>
         <image name="selfie" width="256" height="256"/>
     </resources>

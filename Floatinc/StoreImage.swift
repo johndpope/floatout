@@ -53,21 +53,25 @@ class StoreImage {
             }
             else {
                 print("PhotoHasBeenUploaded. Done")
+                let uid = FIRAuth.auth()?.currentUser?.uid
                 //save to Firebase storyFeed
                 let gStorageUrl = metadata?.name
-//                storyMedia.child(storyMediaKey).setValue(gStorageUrl)
-
+                var feedAttributes = [String: AnyObject]()
+                feedAttributes = ["url": gStorageUrl!, "userid": uid!, "description": description, "likes": ["likeCount": 0]]
+                
                 if let location = location {
                     let latitude = location.coordinate.latitude 
                     let longitude = location.coordinate.longitude
                     let metadataDict = ["location": ["latitude": latitude, "longitude": longitude]]
-                    storyMedia.child(storyMediaKey).setValue(["url": gStorageUrl!,"description": description, "metadata": metadataDict])
-                } else {
-                    storyMedia.child(storyMediaKey).setValue(["url": gStorageUrl!,"description": description])
+                    feedAttributes["metadata"] = metadataDict
+                    storyMedia.child(storyMediaKey).setValue(feedAttributes)
+                }
+                else {
+                    storyMedia.child(storyMediaKey).setValue(feedAttributes)
                 }
     
                 //save to Firebase storyTagStats contribution:
-                let uid = FIRAuth.auth()?.currentUser?.uid
+               
                 let userFeed = self.storyTagStatsRef!.child("\(storyTag)/users/\(uid!)/contribution")
                 userFeed.child(storyMediaKey).setValue(gStorageUrl)
             }

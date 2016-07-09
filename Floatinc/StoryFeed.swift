@@ -18,6 +18,7 @@ class StoryFeed :NSObject {
     var imagesList = [String]()
     var descriptionList = [String]()
     var locationList = [[Double]]()
+    var imageKeysList = [String]()
     
     init(snapshot: FIRDataSnapshot){
         self.id = snapshot.key
@@ -42,6 +43,7 @@ class StoryFeed :NSObject {
                     locationArray = [latitude, longitude]
                 }
             }
+            self.imageKeysList.append(key)
             self.mediaList[key] = url
             self.imagesList.append(url)
             self.descriptionList.append(description)
