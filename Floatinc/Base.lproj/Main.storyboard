@@ -356,8 +356,6 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="wde-zv-pkA" appends="YES" id="K7e-hz-pl3"/>
-                                    <outletCollection property="gestureRecognizers" destination="hoa-Ar-h9I" appends="YES" id="wAD-FJ-RUr"/>
-                                    <outletCollection property="gestureRecognizers" destination="5Pi-ar-cSz" appends="YES" id="848-NL-con"/>
                                     <outletCollection property="gestureRecognizers" destination="y3e-O8-oZz" appends="YES" id="fV9-Ru-bcd"/>
                                 </connections>
                             </view>
@@ -381,6 +379,9 @@
                                     <constraint firstAttribute="width" constant="120" id="DEu-lL-IeV"/>
                                     <constraint firstAttribute="height" constant="100" id="O4r-HM-S3y"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="y3e-O8-oZz" appends="YES" id="ZK9-15-qGT"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

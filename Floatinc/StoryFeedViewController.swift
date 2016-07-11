@@ -51,7 +51,7 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         self.location.hidden = true
-        FIRDatabase.database().persistenceEnabled = true
+       
     }
     
     @IBAction func swipeDownToMain(sender: AnyObject) {
@@ -59,7 +59,7 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
         let transition: CATransition = CATransition()
         transition.type = kCATransitionFade
-        self.navigationController?.view.layer.addAnimation(transition, forKey: "someAnimation")
+        self.navigationController?.view.layer.addAnimation(transition, forKey: "swipeDownAnimation")
         self.navigationController?.popViewControllerAnimated(false)
         CATransaction.commit()
     }

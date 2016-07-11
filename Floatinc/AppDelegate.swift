@@ -23,15 +23,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             FIRAuth.auth()?.removeAuthStateDidChangeListener(listener!)
         }
     }
-
+    override init() {
+        super.init()
+        FIRApp.configure()
+        FIRDatabase.database().persistenceEnabled = true
+        
+    }
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Override point for customization after application launch.
         let navController = self.window?.rootViewController as! UINavigationController
 
         //FirApp user setup
-        FIRApp.configure()
-        FIRDatabase.database().persistenceEnabled = true
+//        FIRApp.configure()
+
 
        listener = FIRAuth.auth()?.addAuthStateDidChangeListener({ (auth, user) in
             if let user = user {

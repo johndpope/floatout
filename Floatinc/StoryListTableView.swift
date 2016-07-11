@@ -45,11 +45,14 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        FIRDatabase.database().persistenceEnabled = true
         
         storyTagsRef = rootRef.child("storyTags")
         storyTagStatsRef = rootRef.child("storyTagStats")
         storyFeedRef = rootRef.child("storyFeed")
+        
+        storyTagsRef.keepSynced(true)
+        storyTagStatsRef.keepSynced(true)
+        storyFeedRef?.keepSynced(true)
         
         //StoryTagStats Observers/////////////////////////////////////////////////////////////////////
         
