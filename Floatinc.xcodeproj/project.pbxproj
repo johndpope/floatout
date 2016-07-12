@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE02293365857DB1D34E31CA /* Pods_Floatinc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 149151BC2C0BB61F533A6CF2 /* Pods_Floatinc.framework */; };
 		EA04C3FA1CED9EF900839C8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA04C3F91CED9EF900839C8C /* AppDelegate.swift */; };
 		EA04C3FC1CED9EF900839C8C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA04C3FB1CED9EF900839C8C /* LoginViewController.swift */; };
 		EA04C3FF1CED9EF900839C8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA04C3FD1CED9EF900839C8C /* Main.storyboard */; };
 		EA04C4011CED9EF900839C8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA04C4001CED9EF900839C8C /* Assets.xcassets */; };
 		EA04C4041CED9EF900839C8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA04C4021CED9EF900839C8C /* LaunchScreen.storyboard */; };
-		EA06023D1D31329800CEEEB4 /* Pods_Floatinc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA06023B1D31329800CEEEB4 /* Pods_Floatinc.framework */; };
 		EA065EA71D2CF62000D5C9FB /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA065EA61D2CF62000D5C9FB /* DismissAnimator.swift */; };
 		EA065EA91D2CF64600D5C9FB /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA065EA81D2CF64600D5C9FB /* Interactor.swift */; };
 		EA5FF1601CEF0AED00D860D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA5FF15F1CEF0AED00D860D9 /* GoogleService-Info.plist */; };
@@ -36,6 +36,7 @@
 		EAD6ABBC1CF9B84400205430 /* StoryTagStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD6ABBB1CF9B84400205430 /* StoryTagStore.swift */; };
 		EAD6ABBF1CF9BE7B00205430 /* StoryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD6ABBE1CF9BE7B00205430 /* StoryListTableViewCell.swift */; };
 		EAD6ABC11CF9E41C00205430 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD6ABC01CF9E41C00205430 /* ScrollViewController.swift */; };
+		EADA1FD21D338A2400E2A4E6 /* Pods_Floatinc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADA1FD11D338A2400E2A4E6 /* Pods_Floatinc.framework */; };
 		EAEBD8D81D060AB8003BE566 /* StoreImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEBD8D71D060AB8003BE566 /* StoreImage.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,11 @@
 		EAD6ABBB1CF9B84400205430 /* StoryTagStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTagStore.swift; sourceTree = "<group>"; };
 		EAD6ABBE1CF9BE7B00205430 /* StoryListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryListTableViewCell.swift; sourceTree = "<group>"; };
 		EAD6ABC01CF9E41C00205430 /* ScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
+		EADA1FC91D3389F900E2A4E6 /* AKPickerView_Swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AKPickerView_Swift.framework; path = "Pods/../build/Debug-iphoneos/AKPickerView-Swift/AKPickerView_Swift.framework"; sourceTree = "<group>"; };
+		EADA1FCA1D3389F900E2A4E6 /* CameraManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CameraManager.framework; path = "Pods/../build/Debug-iphoneos/CameraManager/CameraManager.framework"; sourceTree = "<group>"; };
+		EADA1FCB1D3389F900E2A4E6 /* PBJVideoPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PBJVideoPlayer.framework; path = "Pods/../build/Debug-iphoneos/PBJVideoPlayer/PBJVideoPlayer.framework"; sourceTree = "<group>"; };
+		EADA1FCC1D3389F900E2A4E6 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "Pods/../build/Debug-iphoneos/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
+		EADA1FD11D338A2400E2A4E6 /* Pods_Floatinc.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Floatinc.framework; path = "Pods/../build/Debug-iphoneos/Pods_Floatinc.framework"; sourceTree = "<group>"; };
 		EAEBD8D71D060AB8003BE566 /* StoreImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,7 +93,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA06023D1D31329800CEEEB4 /* Pods_Floatinc.framework in Frameworks */,
+				EADA1FD21D338A2400E2A4E6 /* Pods_Floatinc.framework in Frameworks */,
+				CE02293365857DB1D34E31CA /* Pods_Floatinc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +113,11 @@
 		1C3AF47B28A584F9B519A180 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EADA1FD11D338A2400E2A4E6 /* Pods_Floatinc.framework */,
+				EADA1FC91D3389F900E2A4E6 /* AKPickerView_Swift.framework */,
+				EADA1FCA1D3389F900E2A4E6 /* CameraManager.framework */,
+				EADA1FCB1D3389F900E2A4E6 /* PBJVideoPlayer.framework */,
+				EADA1FCC1D3389F900E2A4E6 /* SDWebImage.framework */,
 				EA06023A1D31329800CEEEB4 /* CameraManager.framework */,
 				EA06023B1D31329800CEEEB4 /* Pods_Floatinc.framework */,
 				EA0602321D31317C00CEEEB4 /* AKPickerView_Swift.framework */,
@@ -490,6 +502,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -498,9 +511,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
@@ -511,18 +526,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Release-iphoneos/AKPickerView-Swift",
-					"$(PROJECT_DIR)/build/Release-iphoneos/CameraManager",
-					"$(PROJECT_DIR)/build/Release-iphoneos/PBJVideoPlayer",
-					"$(PROJECT_DIR)/build/Release-iphoneos/SDWebImage",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Floatinc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.FloatOut.Floatasdf;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FloatOut.Floatout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -550,6 +560,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -558,9 +569,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -571,18 +584,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Release-iphoneos/AKPickerView-Swift",
-					"$(PROJECT_DIR)/build/Release-iphoneos/CameraManager",
-					"$(PROJECT_DIR)/build/Release-iphoneos/PBJVideoPlayer",
-					"$(PROJECT_DIR)/build/Release-iphoneos/SDWebImage",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Floatinc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.FloatOut.Floatasdf;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FloatOut.Floatout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

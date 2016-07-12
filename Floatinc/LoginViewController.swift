@@ -34,9 +34,35 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func signUp(sender: UIButton) {
         print("Login is being pressed, fucking let the user get in.")
+        if let passwordCount = password.text?.characters.count {
+            if passwordCount < 6 {
+                print("Alert: password should be greater or equal to 6 characters atleast")
+                return
+            }
+        }
         FIRAuth.auth()?.signInWithEmail(email.text!, password: password.text!) { (user, error) in
             if let e = error {
                 print("Unable to login, error is \(e)")
+                let errorString = e.userInfo["error_name"] as! String
+                
+                
+                switch(errorString) {
+                case "ERROR_WRONG_PASSWORD":
+                    print("bad password, try again or reset your password")
+                    break
+                case "ERROR_USER_NOT_FOUND":
+                    print("no user with the corresponding emailId, create a new Account")
+                    break
+                case "ERROR_INVALID_EMAIL":
+                    print("The email address is badly formatted, Invalid")
+                    break
+                default:
+                    print("unable to login, please contact us")
+                    break
+                }
+                
+                
+                
             } else {
                 print("You are logged in, common float it now \(user?.email)")
                 print("Popping the loginController leading to splashSCreen")

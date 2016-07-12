@@ -32,7 +32,7 @@ class StoreImage {
         self.storyFeedRef = rootRef.child("storyFeed")
         self.storyTagStatsRef = rootRef.child("storyTagStats")
     }
-    
+
     func saveImage(data: NSData, mediaType: String, storyTag: String, description: String, location: AnyObject?) {
         
         let nameFirstPart = FIRAuth.auth()?.currentUser?.email
@@ -52,7 +52,9 @@ class StoreImage {
                 print("error")
             }
             else {
+                self.displayToastWithMessage("Added to the story :)")
                 print("PhotoHasBeenUploaded. Done")
+
                 let uid = FIRAuth.auth()?.currentUser?.uid
                 //save to Firebase storyFeed
                 let gStorageUrl = metadata?.name
@@ -76,5 +78,27 @@ class StoreImage {
                 userFeed.child(storyMediaKey).setValue(gStorageUrl)
             }
         }
+    }
+    
+    
+    func displayToastWithMessage(toastMessage: String) {
+        NSOperationQueue.mainQueue().addOperationWithBlock({() -> Void in
+            let keyWindow: UIWindow = UIApplication.sharedApplication().keyWindow!
+            let toastView: UILabel = UILabel()
+            toastView.text = toastMessage
+            toastView.textColor = UIColor.whiteColor()
+            toastView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
+            toastView.textAlignment = .Center
+            toastView.frame = CGRectMake(0.0, 0.0, keyWindow.frame.size.width / 1.3, 50.0)
+            toastView.layer.cornerRadius = 10
+            toastView.layer.masksToBounds = true
+            toastView.center = keyWindow.center
+            keyWindow.addSubview(toastView)
+            UIView.animateWithDuration(3.0, delay: 0.0, options: .CurveEaseOut, animations: {() -> Void in
+                toastView.alpha = 0.0
+                }, completion: {(finished: Bool) -> Void in
+                    toastView.removeFromSuperview()
+            })
+        })
     }
 }

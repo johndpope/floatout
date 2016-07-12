@@ -13,7 +13,7 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
-class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegate, UIPopoverPresentationControllerDelegate{
+class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegate, UIPopoverPresentationControllerDelegate, UIGestureRecognizerDelegate{
     
     var image : NSData?
     
@@ -47,14 +47,43 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     @IBOutlet weak var location: UIButton!
     
     @IBOutlet weak var likeImageView: UIImageView!
-       
+    
+//    var swipeRight = UISwipeGestureRecognizer()
+    
+    @IBOutlet var LikeGesture: UISwipeGestureRecognizer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.location.hidden = true
-       
+        self.LikeGesture.delegate = self
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeAction(_:)))
+        swipeRight.direction = .Right
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeAction(_:)))
+        swipeLeft.direction = .Left
+        
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeAction(_:)))
+        swipeDown.direction = .Down
+    
+        self.view.addGestureRecognizer(swipeRight)
+        self.view.addGestureRecognizer(swipeLeft)
+        self.view.addGestureRecognizer(swipeDown)
     }
     
-    @IBAction func swipeDownToMain(sender: AnyObject) {
+    func swipeAction(sender: UISwipeGestureRecognizer) {
+        if sender.direction == .Right {
+           swipeToMain()
+        } else if sender.direction == .Left {
+            nextImage()
+        } else if sender.direction == .Down {
+             swipeDownToMain()
+        }
+    }
+    
+    func swipeDownToMain() {
         CATransaction.begin()
         CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
         let transition: CATransition = CATransition()
@@ -64,7 +93,9 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         CATransaction.commit()
     }
     
-    @IBAction func swipeToMain(sender: UISwipeGestureRecognizer) {
+
+    
+    func swipeToMain() {
         swipeBack()
     }
     
@@ -75,18 +106,18 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         else {
             self.currentImage = self.currentImage-1
             print ("Display the previous image")
-            self.addAnimationPresentToViewOut(self.imageView)
-            SetImageView(self.currentImage)
+//            self.addAnimationPresentToViewOut(self.imageView)
+            SetImageView(self.currentImage, animationDirection: "backward")
         }
     }
     
-    @IBAction func nextImage(sender: UISwipeGestureRecognizer) {
+    func nextImage() {
         //Bounds
         //Get the count of the mediaList
         if  self.currentImage < self.totalMediaListCount!-1 {
             self.currentImage += 1
-            self.addAnimationPresentToView(self.imageView)
-            SetImageView(self.currentImage)
+//            self.addAnimationPresentToView(self.imageView)
+            SetImageView(self.currentImage, animationDirection: "forward")
         } else {
             print("end of feed going back to the story")
             self.navigationController?.popViewControllerAnimated(true)
@@ -233,7 +264,7 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         }
     }
     
-    func SetImageView(index: Int){
+    func SetImageView(index: Int, animationDirection: String? = nil){
         
         let totalCachedCount = fetchMedia?.getCacheCount(self.storyFeedId!)
     
@@ -260,11 +291,16 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
                             } else {
                                 self.location.hidden = true
                             }
-
+                            
                             if  let imageData = UIImageJPEGRepresentation(image, 1.0){
                                 self.image = imageData
+                                if animationDirection == "forward" {
+                                    self.addAnimationPresentToView(self.imageView)
+                                } else if animationDirection == "backward" {
+                                    self.addAnimationPresentToViewOut(self.imageView)
+                                }
                                 self.imageView.image = image
-                                                          }
+                            }
                         }
                 })
                 //Very important to return from here
