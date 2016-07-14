@@ -166,31 +166,32 @@ class FetchMedia {
     //remove stale urls from cacheImageList
     
     func removeUrlFromStoryFeed(urlList: [String], storyFeedId: String){
-  
-        for (key,url) in self.cacheImageList[storyFeedId]! {
-            
-            if(key >= urlList.count) {
-                var present = false
-                for imagePath in urlList {
-                    if((url?.path?.containsString(imagePath) != false)){
-                      present = true
-                      break
+        if let cacheList = self.cacheImageList[storyFeedId] {
+            for (key,url) in cacheList{
+                
+                if(key >= urlList.count) {
+                    var present = false
+                    for imagePath in urlList {
+                        if((url?.path?.containsString(imagePath) != false)){
+                            present = true
+                            break
+                        }
+                    }
+                    
+                    if (present == false) {
+                        self.cacheImageList[storyFeedId]!.removeValueForKey(key)
+                        self.storyImageTracker[storyFeedId]! -= 1
+                        
                     }
                 }
-                
-                if (present == false) {
-                  self.cacheImageList[storyFeedId]!.removeValueForKey(key)
-                  self.storyImageTracker[storyFeedId]! -= 1
-                  
-                }
-            }
-            else {
-                if((url?.path?.containsString(urlList[key])) != false) {
-                    continue
-                } else {
-                    self.cacheImageList[storyFeedId]!.removeValueForKey(key)
-                    self.storyImageTracker[storyFeedId]! -= 1
-                     
+                else {
+                    if((url?.path?.containsString(urlList[key])) != false) {
+                        continue
+                    } else {
+                        self.cacheImageList[storyFeedId]!.removeValueForKey(key)
+                        self.storyImageTracker[storyFeedId]! -= 1
+                        
+                    }
                 }
             }
         }

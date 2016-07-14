@@ -37,6 +37,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func registerUser(sender: UIButton) {
         
+        if userName.text?.characters.count <= 0 {
+            showAlert("No User Name", message: "Please set a User Name.")
+            return
+        }
         FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text!, completion: { (user, error) in
             if let e = error {
                 print("unable to register: Error is \(e)")
@@ -45,15 +49,20 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 switch(errorString) {
                 case "ERROR_WEAK_PASSWORD":
                     print("weak password should be atleast 6 characters")
+                    self.showAlert("Weak Password", message: "Password not strong enough, should be atleast 6 characters", textField: self.passwordField)
                     break
                 case "ERROR_EMAIL_ALREADY_IN_USE":
                     print("The address is already in use by another account, Try resetting your password if you have an account with this email")
+                    
+                    self.showAlert("Email Address already in use", message: "Try resetting your password if you have an account with this emailId", textField: self.emailField)
                     break
                 case "ERROR_INVALID_EMAIL":
                     print("The email address is badly formatted, Invalid")
+                    self.showAlert("Bad format for Email", message: "The email address is badly formatted", textField: self.emailField)
                     break
                 default:
                     print("something else went wrong")
+                    self.showAlert("Cannot Login", message: errorString, textField: self.passwordField)
                     break
                 }
             } else {
