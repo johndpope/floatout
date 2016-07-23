@@ -46,6 +46,7 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
     var media: Media!
     var playerController: PBJVideoPlayerController!
     
+    @IBOutlet weak var fixedTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,6 +60,9 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
         
         //textField delegate
         self.textField.delegate = self
+        
+        //fixed
+        self.fixedTextField.delegate = self
         self.hideKeyboardWhenTappedAround()
         
         //textField draggable
@@ -70,6 +74,26 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
     
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        animateViewMoving(true, moveValue: 250)
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        animateViewMoving(false, moveValue: 250)
+    }
+    
+    // Lifting the view up
+    func animateViewMoving (up:Bool, moveValue :CGFloat){
+        self.fixedTextField.center = self.view.center
+//        let movementDuration:NSTimeInterval = 0.3
+//        let movement:CGFloat = ( up ? -moveValue : moveValue)
+//        UIView.beginAnimations( "animateView", context: nil)
+//        UIView.setAnimationBeginsFromCurrentState(true)
+//        UIView.setAnimationDuration(movementDuration )
+//        self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
+//        UIView.commitAnimations()
     }
     
     @IBAction func closePreview(sender: UIButton) {
@@ -161,6 +185,10 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
     //dragging the textfield around
     func userDragged(gesture: UIPanGestureRecognizer){
         let loc = gesture.locationInView(self.view)
+        if loc.x < 100 {
+            return
+        }
+        let a = self.textField.center.x 
         self.textField.center = loc
     }
     

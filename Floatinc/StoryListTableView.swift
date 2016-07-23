@@ -20,6 +20,7 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
    //Reference to the table view
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     //Firebase refs
     let rootRef = FIRDatabase.database().reference()
     var storyTagsRef : FIRDatabaseReference!
@@ -152,11 +153,22 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
             locationManager.startUpdatingLocation()
         }
 
-        
         //These two lines are mandatory for making the rows dynamic in height,
         //atleast the first one. Second is for performance.
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 180
+        
+        //This is being used for padding the tableview to start below the navBar
+        let edgeHeight = self.navigationBar.frame.height
+        self.tableView.contentInset = UIEdgeInsetsMake(edgeHeight,0,0,0);
+        
+        //Added the image on the navBar
+        self.navigationBar.topItem?.titleView = UIImageView.init(image: UIImage(named :"headerLogo"))
+        
+        //This is for removing the bottom border of the navBar
+        navigationBar.setBackgroundImage(UIImage(), forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
+        navigationBar.shadowImage = UIImage()
+
     }
     
     
@@ -189,12 +201,32 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         
         cell.label.text = storyTagStore.storyTagList[indexPath.row].storyName
         
+        if indexPath.row == 0 {
+            return cell
+        }
+        
         cell.layer.borderColor = UIColor.lightGrayColor().CGColor
         cell.layer.borderWidth = 0.1
         cell.layer.cornerRadius = 4.0
         
         return cell
     }
+    
+    
+    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        //going up
+        if targetContentOffset.memory.y < scrollView.contentOffset.y {
+            UIView.animateWithDuration(0.10, delay: 0.0, options: .BeginFromCurrentState, animations: {
+                self.tableView.contentInset = UIEdgeInsetsMake(-10,0,0,0);
+                }, completion: nil)
+        } else {
+            //going down
+            UIView.animateWithDuration(0.10, delay: 0.0, options: .BeginFromCurrentState, animations: {
+                self.tableView.contentInset = UIEdgeInsetsMake(self.navigationBar.frame.height,0,0,0);
+                }, completion: nil)
+        }
+    }
+
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

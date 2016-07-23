@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PreviewViewController" customModule="Floatinc" customModuleProvider="target">
             <connections>
                 <outlet property="buttonClose" destination="qqX-cI-QIE" id="3vS-Ta-T1h"/>
+                <outlet property="fixedTextField" destination="b7S-dg-yTR" id="81V-HG-xRd"/>
                 <outlet property="imageView" destination="RWZ-Kf-9CI" id="JXI-v4-JpF"/>
                 <outlet property="pickerView" destination="JfG-xC-tWu" id="7Hz-DG-SWl"/>
                 <outlet property="textField" destination="vuY-Ag-sHG" id="94y-Rr-1DX"/>
@@ -19,22 +20,22 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JfG-xC-tWu" customClass="AKPickerView" customModule="AKPickerView_Swift">
-                    <rect key="frame" x="2" y="515" width="528" height="85"/>
-                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="piL-Dd-Ayk">
-                    <rect key="frame" x="538" y="530" width="60" height="48"/>
-                    <state key="normal" image="postBlack">
-                        <color key="titleColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="sendMedia:" destination="-1" eventType="touchUpInside" id="ToP-2Y-RFK"/>
-                    </connections>
-                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RWZ-Kf-9CI">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="515"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
+                <textField opaque="NO" clipsSubviews="YES" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="This is a sad place, be happy." clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="vuY-Ag-sHG" customClass="textFieldCustom" customModule="Floatinc" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="307" width="600" height="30"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="twitter" keyboardAppearance="alert" returnKeyType="go"/>
+                </textField>
+                <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JfG-xC-tWu" customClass="AKPickerView" customModule="AKPickerView_Swift">
+                    <rect key="frame" x="0.0" y="533" width="542" height="67"/>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="67" id="ozb-vK-Ed7"/>
+                    </constraints>
+                </view>
                 <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqX-cI-QIE">
                     <rect key="frame" x="10" y="8" width="29" height="26"/>
                     <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -49,39 +50,55 @@
                         <action selector="closePreview:" destination="-1" eventType="touchUpInside" id="Yk2-wA-014"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="This is a sad place, be happy." clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="vuY-Ag-sHG" customClass="textFieldCustom" customModule="Floatinc" customModuleProvider="target">
-                    <rect key="frame" x="20" y="243" width="560" height="30"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="twitter" keyboardAppearance="alert" returnKeyType="go"/>
+                <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="piL-Dd-Ayk">
+                    <rect key="frame" x="542" y="533" width="58" height="67"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="58" id="6XN-In-8Ly"/>
+                        <constraint firstAttribute="height" constant="67" id="iQb-2Y-AzN"/>
+                    </constraints>
+                    <state key="normal" title="FloatIt">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="sendMedia:" destination="-1" eventType="touchUpInside" id="ToP-2Y-RFK"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Write up! " borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b7S-dg-yTR" userLabel="TEXT!">
+                    <rect key="frame" x="0.0" y="504" width="600" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
                 </textField>
             </subviews>
             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="qqX-cI-QIE" firstAttribute="leading" secondItem="3wc-PH-Tvx" secondAttribute="leading" constant="10" id="1Ug-38-Bk0"/>
-                <constraint firstItem="JfG-xC-tWu" firstAttribute="leading" secondItem="3wc-PH-Tvx" secondAttribute="leading" constant="2" id="3pb-3k-0gd"/>
-                <constraint firstAttribute="trailing" secondItem="JfG-xC-tWu" secondAttribute="trailing" constant="70" id="9DY-SL-sjj"/>
-                <constraint firstItem="vuY-Ag-sHG" firstAttribute="centerY" secondItem="RWZ-Kf-9CI" secondAttribute="centerY" id="ELa-4b-vhe"/>
-                <constraint firstAttribute="bottom" secondItem="RWZ-Kf-9CI" secondAttribute="bottom" constant="85" id="IYH-wl-P4f"/>
-                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="centerX" secondItem="3wc-PH-Tvx" secondAttribute="centerX" id="Iuj-ht-2kQ"/>
-                <constraint firstItem="vuY-Ag-sHG" firstAttribute="leading" secondItem="RWZ-Kf-9CI" secondAttribute="leading" constant="20" id="Lgd-hM-x2D"/>
-                <constraint firstAttribute="bottom" secondItem="piL-Dd-Ayk" secondAttribute="bottom" constant="22" id="Soj-zA-K0A"/>
-                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="width" secondItem="3wc-PH-Tvx" secondAttribute="width" id="UiC-By-1jU"/>
-                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="top" secondItem="3wc-PH-Tvx" secondAttribute="top" id="XgU-RE-299"/>
-                <constraint firstItem="piL-Dd-Ayk" firstAttribute="leading" secondItem="JfG-xC-tWu" secondAttribute="trailing" constant="8" id="f4K-Jb-seX"/>
-                <constraint firstAttribute="trailing" secondItem="piL-Dd-Ayk" secondAttribute="trailing" constant="2" id="gd1-Pk-AK3"/>
-                <constraint firstAttribute="bottom" secondItem="JfG-xC-tWu" secondAttribute="bottom" id="hKh-aA-6O7"/>
-                <constraint firstItem="JfG-xC-tWu" firstAttribute="top" secondItem="RWZ-Kf-9CI" secondAttribute="bottom" id="jMj-rj-8pe"/>
-                <constraint firstItem="vuY-Ag-sHG" firstAttribute="trailing" secondItem="RWZ-Kf-9CI" secondAttribute="trailing" constant="-20" id="jq6-6q-aOZ"/>
-                <constraint firstItem="qqX-cI-QIE" firstAttribute="top" secondItem="3wc-PH-Tvx" secondAttribute="top" constant="8" id="rCw-hl-gJM"/>
-                <constraint firstItem="piL-Dd-Ayk" firstAttribute="top" secondItem="RWZ-Kf-9CI" secondAttribute="bottom" constant="15" id="rSc-yT-LQj"/>
-                <constraint firstItem="vuY-Ag-sHG" firstAttribute="centerX" secondItem="RWZ-Kf-9CI" secondAttribute="centerX" id="ugn-iE-55R"/>
+                <constraint firstItem="JfG-xC-tWu" firstAttribute="trailing" secondItem="piL-Dd-Ayk" secondAttribute="trailing" constant="-58" id="CCF-wp-6KZ"/>
+                <constraint firstItem="vuY-Ag-sHG" firstAttribute="leading" secondItem="RWZ-Kf-9CI" secondAttribute="leading" id="LeX-1D-H1x"/>
+                <constraint firstItem="JfG-xC-tWu" firstAttribute="top" secondItem="b7S-dg-yTR" secondAttribute="bottom" constant="-1" id="NJc-QU-IX1"/>
+                <constraint firstItem="b7S-dg-yTR" firstAttribute="leading" secondItem="RWZ-Kf-9CI" secondAttribute="leading" id="NmH-lY-zdN"/>
+                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="width" secondItem="3wc-PH-Tvx" secondAttribute="width" id="Obh-6R-9sI"/>
+                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="height" secondItem="3wc-PH-Tvx" secondAttribute="height" id="QQK-M1-rJG"/>
+                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="centerX" secondItem="3wc-PH-Tvx" secondAttribute="centerX" id="TIh-Bd-8Lc"/>
+                <constraint firstAttribute="bottom" secondItem="JfG-xC-tWu" secondAttribute="bottom" id="WYE-RE-fuH"/>
+                <constraint firstAttribute="trailing" secondItem="piL-Dd-Ayk" secondAttribute="trailing" id="ZxH-dh-BmZ"/>
+                <constraint firstItem="b7S-dg-yTR" firstAttribute="trailing" secondItem="RWZ-Kf-9CI" secondAttribute="trailing" id="aEW-iT-7WN"/>
+                <constraint firstItem="JfG-xC-tWu" firstAttribute="top" secondItem="vuY-Ag-sHG" secondAttribute="bottom" constant="196" id="auU-Bm-rvQ"/>
+                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="leading" secondItem="qqX-cI-QIE" secondAttribute="trailing" constant="-39" id="dcK-yr-TcD"/>
+                <constraint firstItem="JfG-xC-tWu" firstAttribute="leading" secondItem="3wc-PH-Tvx" secondAttribute="leading" id="edN-Rj-mCr"/>
+                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="top" secondItem="qqX-cI-QIE" secondAttribute="bottom" constant="-34" id="kNz-At-mae"/>
+                <constraint firstItem="RWZ-Kf-9CI" firstAttribute="centerY" secondItem="3wc-PH-Tvx" secondAttribute="centerY" id="oiD-TD-siu"/>
+                <constraint firstItem="vuY-Ag-sHG" firstAttribute="trailing" secondItem="RWZ-Kf-9CI" secondAttribute="trailing" id="py2-RG-Ar2"/>
+                <constraint firstAttribute="bottom" secondItem="piL-Dd-Ayk" secondAttribute="bottom" id="tJo-SQ-lNG"/>
             </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="vuY-Ag-sHG"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="758" y="375"/>
         </view>
     </objects>
     <resources>
         <image name="close" width="128" height="128"/>
-        <image name="postBlack" width="270" height="145"/>
     </resources>
 </document>
