@@ -165,12 +165,21 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         //Added the image on the navBar
         self.navigationBar.topItem?.titleView = UIImageView.init(image: UIImage(named :"headerLogo"))
         
+        //textField draggable
+      
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(StoryListTableView.tapButton(_:)))
+        self.navigationBar.topItem?.titleView?.addGestureRecognizer(tapGesture)
+        self.navigationBar.topItem?.titleView?.userInteractionEnabled = true
+        
         //This is for removing the bottom border of the navBar
         navigationBar.setBackgroundImage(UIImage(), forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
         navigationBar.shadowImage = UIImage()
 
     }
     
+    func tapButton(gesture: UITapGestureRecognizer) {
+        self.performSegueWithIdentifier("showSettings", sender: gesture)
+    }
     
     //number of images to be cached based on the size of the mediaList
     func calculateEndIndex(count: Int) -> Int{
@@ -195,6 +204,7 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         return self.storyTagStore.storyTagListCount()
     }
     
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "StoryListTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! StoryListTableViewCell
@@ -202,23 +212,27 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         cell.label.text = storyTagStore.storyTagList[indexPath.row].storyName
         
         if indexPath.row == 0 {
+            cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width);
+            cell.layer.borderWidth = 0.0
             return cell
         }
-        
-        cell.layer.borderColor = UIColor.lightGrayColor().CGColor
-        cell.layer.borderWidth = 0.1
-        cell.layer.cornerRadius = 4.0
-        
-        return cell
+        else {
+            
+            cell.layer.borderColor = UIColor.lightGrayColor().CGColor
+            cell.layer.borderWidth = 0.1
+            cell.layer.cornerRadius = 4.0
+            
+            return cell
+        }
     }
     
     
     func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         //going up
         if targetContentOffset.memory.y < scrollView.contentOffset.y {
-            UIView.animateWithDuration(0.10, delay: 0.0, options: .BeginFromCurrentState, animations: {
-                self.tableView.contentInset = UIEdgeInsetsMake(-10,0,0,0);
-                }, completion: nil)
+//            UIView.animateWithDuration(0.10, delay: 0.0, options: .BeginFromCurrentState, animations: {
+//                self.tableView.contentInset = UIEdgeInsetsMake(-10,0,0,0);
+//                }, completion: nil)
         } else {
             //going down
             UIView.animateWithDuration(0.10, delay: 0.0, options: .BeginFromCurrentState, animations: {
@@ -226,7 +240,10 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
                 }, completion: nil)
         }
     }
-
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 60
+    }
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

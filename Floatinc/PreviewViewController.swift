@@ -19,7 +19,7 @@ enum Media {
     case Video(url: NSURL)
 }
 
-class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate, AKPickerViewDelegate, AKPickerViewDataSource, UITextFieldDelegate {
+class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate, AKPickerViewDelegate, AKPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate {
     
     var image : NSData!
     
@@ -28,6 +28,8 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
     @IBOutlet weak var pickerView: AKPickerView!
     
     @IBOutlet weak var textField: UITextField!
+    
+    @IBOutlet weak var textViewEdit: UITextView!
     
     //Reading the value from CameraViewController->StoryFeed Passing it to cameraViewController
     var storyTagStore : StoryTagStore!
@@ -46,7 +48,10 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
     var media: Media!
     var playerController: PBJVideoPlayerController!
     
-    @IBOutlet weak var fixedTextField: UITextField!
+     //getting or trying viewwithtext for snapshot
+    @IBOutlet weak var imageTextView: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,41 +66,27 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
         //textField delegate
         self.textField.delegate = self
         
-        //fixed
-        self.fixedTextField.delegate = self
         self.hideKeyboardWhenTappedAround()
         
         //textField draggable
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(PreviewViewController.userDragged(_:)))
-        self.textField.addGestureRecognizer(gesture)
-        self.textField.userInteractionEnabled = true
+//        let gesture = UIPanGestureRecognizer(target: self, action: #selector(PreviewViewController.userDragged(_:)))
+//        self.textField.addGestureRecognizer(gesture)
+//        self.textField.userInteractionEnabled = true
         
+        //making the textView draggable
+        let textViewGesture = UIPanGestureRecognizer(target: self, action: #selector(PreviewViewController.userDraggedTextView(_:)))
+        self.textViewEdit.addGestureRecognizer(textViewGesture)
+        self.textViewEdit.userInteractionEnabled = true
+        
+        self.textViewEdit.delegate = self
+
     }
     
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-        animateViewMoving(true, moveValue: 250)
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        animateViewMoving(false, moveValue: 250)
-    }
-    
-    // Lifting the view up
-    func animateViewMoving (up:Bool, moveValue :CGFloat){
-        self.fixedTextField.center = self.view.center
-//        let movementDuration:NSTimeInterval = 0.3
-//        let movement:CGFloat = ( up ? -moveValue : moveValue)
-//        UIView.beginAnimations( "animateView", context: nil)
-//        UIView.setAnimationBeginsFromCurrentState(true)
-//        UIView.setAnimationDuration(movementDuration )
-//        self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
-//        UIView.commitAnimations()
-    }
-    
+
     @IBAction func closePreview(sender: UIButton) {
         print("some one is trying to close me baby")
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -182,14 +173,16 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
         return true
     }
     
-    //dragging the textfield around
-    func userDragged(gesture: UIPanGestureRecognizer){
+    func userDraggedTextView(gesture: UIPanGestureRecognizer){
         let loc = gesture.locationInView(self.view)
-        if loc.x < 100 {
-            return
-        }
-        let a = self.textField.center.x 
-        self.textField.center = loc
+        self.textViewEdit.frame.origin.x = 0
+        self.textViewEdit.frame.origin.y = loc.y
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
+        let numberOfChars = newText.characters.count // for Swift use count(newText)
+        return numberOfChars < 30;
     }
     
     @IBAction func sendMedia(sender: UIButton) {
@@ -202,107 +195,118 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
             var descriptionText = ""
             if storyTagIdPicked != nil {
                 //If the user wrote text then time to change the image
-                if let text = self.textField.text {
-                    if text.isEmpty == false {
-                        let font = textField.font
-                        let alpha = textField.alpha
-                        let textColor = textField.textColor
-                        let frame = textField.frame
-                        
-                        let editTextField = textField as! textFieldCustom
-                        let editTextFieldStart = editTextField.editingRectForBounds(textField.bounds)
-                        
-                        let fixedS = CGSize(width: self.imageView.bounds.size.width, height: self.imageView.bounds.size.height)
-                        
-                        let someSize = CGSizeAspectFill(self.imageView.image!.size, minimumSize: fixedS)
-
-                        let textImage = textToImage(text,frameTextField: frame, inImage: self.imageView.image!,textFont: font, textColor: textColor, alpha: alpha, editTextFieldStart: editTextFieldStart, viewBound: self.view.bounds, inImageSize: someSize)
-                        image =  UIImageJPEGRepresentation(textImage, 1.0)
-                        descriptionText = text
-                    }
+//                if let text = self.textField.text {
+//                    if text.isEmpty == false {
+//                        let font = textField.font
+//                        let alpha = textField.alpha
+//                        let textColor = textField.textColor
+//                        let frame = textField.frame
+//                        
+//                        let editTextField = textField as! textFieldCustom
+//                        let editTextFieldStart = editTextField.editingRectForBounds(textField.bounds)
+//                        
+//                        let fixedS = CGSize(width: self.imageView.bounds.size.width, height: self.imageView.bounds.size.height)
+//                        
+//                        let someSize = CGSizeAspectFill(self.imageView.image!.size, minimumSize: fixedS)
+//
+//                        let textImage = textToImage(text,frameTextField: frame, inImage: self.imageView.image!,textFont: font, textColor: textColor, alpha: alpha, editTextFieldStart: editTextFieldStart, viewBound: self.view.bounds, inImageSize: someSize)
+//                        image =  UIImageJPEGRepresentation(textImage, 1.0)       
+//                        descriptionText = text
+//                    }
+//                }
+                
+                //taking a screenShot and saving it as an image
+                let textImage = self.view.pb_takeSnapshot(self.imageTextView)
+                image = UIImageJPEGRepresentation(textImage, 1.0)
+                //saving the text in firebase
+                if let text = self.textViewEdit.text  {
+                    descriptionText = text
                 }
-            
-              store.saveImage(image, mediaType: "image",
-                              storyTag: self.storyTagIdPicked!,
+                store.saveImage(image, mediaType: "image",
+                                storyTag: self.storyTagIdPicked!,
                               description: descriptionText,
                               location: self.location)
               self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
     }
+}
 
-    func CGSizeAspectFill(aspectRatio : CGSize, minimumSize: CGSize)-> CGSize
-    {
-        var aspectFillSize: CGSize = CGSizeMake(minimumSize.width, minimumSize.height)
-       
-        let mW = minimumSize.width / aspectRatio.width
-        let mH = minimumSize.height / aspectRatio.height
-        
-        if mH > mW {
-            aspectFillSize.width = mH * aspectRatio.width
-        }
-        else if mW > mH {
-            aspectFillSize.height = mW * aspectRatio.height
-        }
-        
-        return aspectFillSize
+
+extension UIView {
+    
+    func pb_takeSnapshot(textView: UIView) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.mainScreen().scale)
+        textView.drawViewHierarchyInRect(textView.bounds, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
     }
-
-}
-
-func textToImage(drawText: NSString,frameTextField: CGRect,  inImage: UIImage, textFont: UIFont?, textColor: UIColor?, alpha: CGFloat, editTextFieldStart: CGRect, viewBound: CGRect, inImageSize: CGSize )->UIImage{
-    
-    
-    //Setup the image context using the passed image.
-    UIGraphicsBeginImageContextWithOptions(inImage.size, true, 0.0)
-    CGContextSetAlpha(UIGraphicsGetCurrentContext(), alpha)
-
-    
-    //Setups up the font attributes that will be later used to dictate how the text should be drawn
-    let textFontAttributes = [
-        NSFontAttributeName: textFont!,
-        NSForegroundColorAttributeName: textColor!,
-        ]
-
-    //Put the image into a rectangle as large as the original image.
-    inImage.drawInRect(CGRectMake(0, 0, inImage.size.width, inImage.size.height))
-
-    // Creating a point within the space that is as bit as the image.
-    let xPos = frameTextField.origin.x + editTextFieldStart.origin.x + 40
-    let yPos = frameTextField.origin.y + editTextFieldStart.origin.y + 2
-
-    let textRect: CGRect = CGRectMake(xPos, yPos, (editTextFieldStart.width-editTextFieldStart.origin.x-40), editTextFieldStart.height)
-    
-    var updatedFrame = frameTextField
-    updatedFrame.origin.x += (30+editTextFieldStart.origin.x)
-    updatedFrame.size.width -= (editTextFieldStart.origin.x+30)
-    updatedFrame.size.height -= 4
-    
-    //drawing the textField background.
-    let color = UIColor.whiteColor().colorWithAlphaComponent(alpha)
-    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), color.CGColor)
-//    CGContextFillRect(UIGraphicsGetCurrentContext(), updatedFrame)
-    let path = UIBezierPath.init(roundedRect: updatedFrame, cornerRadius: 8)
-    path.fill()
-    
-    //Drawing the Text
-    drawText.drawInRect(textRect, withAttributes: textFontAttributes)
-
-    // Create a new image out of the images we have created
-    let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
-    
-    // End the context now that we have the image we need
-    UIGraphicsEndImageContext()
-    
-    //And pass it back up to the caller.
-    return newImage
 }
 
 
+//
+//func textToImage(drawText: NSString,frameTextField: CGRect,  inImage: UIImage, textFont: UIFont?, textColor: UIColor?, alpha: CGFloat, editTextFieldStart: CGRect, viewBound: CGRect, inImageSize: CGSize )->UIImage{
+//    
+//    
+//    //Setup the image context using the passed image.
+//    UIGraphicsBeginImageContextWithOptions(inImage.size, true, 0.0)
+//    CGContextSetAlpha(UIGraphicsGetCurrentContext(), alpha)
+//    
+//    
+//    //Setups up the font attributes that will be later used to dictate how the text should be drawn
+//    let textFontAttributes = [
+//        NSFontAttributeName: textFont!,
+//        NSForegroundColorAttributeName: textColor!,
+//        ]
+//    
+//    //Put the image into a rectangle as large as the original image.
+//    inImage.drawInRect(CGRectMake(0, 0, inImage.size.width, inImage.size.height))
+//    
+//    // Creating a point within the space that is as bit as the image.
+//    let xPos = frameTextField.origin.x + editTextFieldStart.origin.x + 40
+//    let yPos = frameTextField.origin.y + editTextFieldStart.origin.y + 2
+//    
+//    let textRect: CGRect = CGRectMake(xPos, yPos, (editTextFieldStart.width-editTextFieldStart.origin.x-40), editTextFieldStart.height)
+//    
+//    var updatedFrame = frameTextField
+//    updatedFrame.origin.x += (30+editTextFieldStart.origin.x)
+//    updatedFrame.size.width -= (editTextFieldStart.origin.x+30)
+//    updatedFrame.size.height -= 4
+//    
+//    //drawing the textField background.
+//    let color = UIColor.whiteColor().colorWithAlphaComponent(alpha)
+//    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), color.CGColor)
+//    //    CGContextFillRect(UIGraphicsGetCurrentContext(), updatedFrame)
+//    let path = UIBezierPath.init(roundedRect: updatedFrame, cornerRadius: 8)
+//    path.fill()
+//    
+//    //Drawing the Text
+//    drawText.drawInRect(textRect, withAttributes: textFontAttributes)
+//    
+//    // Create a new image out of the images we have created
+//    let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+//    
+//    // End the context now that we have the image we need
+//    UIGraphicsEndImageContext()
+//    
+//    //And pass it back up to the caller.
+//    return newImage
+//}
 
-
-
-
-
-
+//func CGSizeAspectFill(aspectRatio : CGSize, minimumSize: CGSize)-> CGSize {
+//    var aspectFillSize: CGSize = CGSizeMake(minimumSize.width, minimumSize.height)
+//    
+//    let mW = minimumSize.width / aspectRatio.width
+//    let mH = minimumSize.height / aspectRatio.height
+//    
+//    if mH > mW {
+//        aspectFillSize.width = mH * aspectRatio.width
+//    }
+//    else if mW > mH {
+//        aspectFillSize.height = mW * aspectRatio.height
+//    }
+//    
+//    return aspectFillSize
+//}
 
