@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>674398397041-10dc46g6l9sakd278lv2od2coa9cs1mv.apps.googleusercontent.com</string>
+	<string>674398397041-lrft2a2tirbidk2ju4rmv9t57o4cug0b.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.674398397041-10dc46g6l9sakd278lv2od2coa9cs1mv</string>
+	<string>com.googleusercontent.apps.674398397041-lrft2a2tirbidk2ju4rmv9t57o4cug0b</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDDpJNdJcPzjeAGl4vqAGgkiAd8g_a_1UQ</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.FloatOut.Floatinc</string>
+	<string>com.out.floatout</string>
 	<key>PROJECT_ID</key>
 	<string>floatout-2417e</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:674398397041:ios:86da0c17732a8a68</string>
+	<string>1:674398397041:ios:0aff583c3271f3f8</string>
 	<key>DATABASE_URL</key>
 	<string>https://floatout-2417e.firebaseio.com</string>
 </dict>

@@ -15,7 +15,6 @@
 		EA04C4041CED9EF900839C8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA04C4021CED9EF900839C8C /* LaunchScreen.storyboard */; };
 		EA065EA71D2CF62000D5C9FB /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA065EA61D2CF62000D5C9FB /* DismissAnimator.swift */; };
 		EA065EA91D2CF64600D5C9FB /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA065EA81D2CF64600D5C9FB /* Interactor.swift */; };
-		EA5FF1601CEF0AED00D860D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA5FF15F1CEF0AED00D860D9 /* GoogleService-Info.plist */; };
 		EA765F671D2BF2D400D595F4 /* MapLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA765F661D2BF2D400D595F4 /* MapLocationController.swift */; };
 		EA76E3471D26A0F500CFD725 /* textFieldCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA76E3461D26A0F500CFD725 /* textFieldCustom.swift */; };
 		EA8E830B1D118F62003801FD /* StoryFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E830A1D118F62003801FD /* StoryFeedViewController.swift */; };
@@ -31,6 +30,7 @@
 		EAB60C411CF7123600303A3B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB60C401CF7123600303A3B /* RegisterViewController.swift */; };
 		EAB60C431CF7398900303A3B /* SettingsViewController .swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB60C421CF7398900303A3B /* SettingsViewController .swift */; };
 		EABF25BC1D05B48D0082A738 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABF25BB1D05B48D0082A738 /* CameraViewController.swift */; };
+		EAD019F31D48CD6200DF1F6A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAD019F21D48CD6200DF1F6A /* GoogleService-Info.plist */; };
 		EAD6ABB71CF99BC500205430 /* StoryTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD6ABB61CF99BC500205430 /* StoryTag.swift */; };
 		EAD6ABB91CF9A1EB00205430 /* StoryListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD6ABB81CF9A1EB00205430 /* StoryListTableView.swift */; };
 		EAD6ABBC1CF9B84400205430 /* StoryTagStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD6ABBB1CF9B84400205430 /* StoryTagStore.swift */; };
@@ -59,7 +59,6 @@
 		EA06023B1D31329800CEEEB4 /* Pods_Floatinc.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Floatinc.framework; path = "Pods/../build/Debug-iphoneos/Pods_Floatinc.framework"; sourceTree = "<group>"; };
 		EA065EA61D2CF62000D5C9FB /* DismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 		EA065EA81D2CF64600D5C9FB /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
-		EA5FF15F1CEF0AED00D860D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EA765F661D2BF2D400D595F4 /* MapLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLocationController.swift; sourceTree = "<group>"; };
 		EA76E3461D26A0F500CFD725 /* textFieldCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textFieldCustom.swift; sourceTree = "<group>"; };
 		EA8E830A1D118F62003801FD /* StoryFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryFeedViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +74,7 @@
 		EAB60C401CF7123600303A3B /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		EAB60C421CF7398900303A3B /* SettingsViewController .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SettingsViewController .swift"; sourceTree = "<group>"; };
 		EABF25BB1D05B48D0082A738 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		EAD019F21D48CD6200DF1F6A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EAD6ABB61CF99BC500205430 /* StoryTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTag.swift; sourceTree = "<group>"; };
 		EAD6ABB81CF9A1EB00205430 /* StoryListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryListTableView.swift; sourceTree = "<group>"; };
 		EAD6ABBB1CF9B84400205430 /* StoryTagStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTagStore.swift; sourceTree = "<group>"; };
@@ -155,8 +155,8 @@
 				EAD6ABB41CF9977900205430 /* Layouts */,
 				EAD6ABB31CF9976C00205430 /* Models */,
 				EA04C4001CED9EF900839C8C /* Assets.xcassets */,
+				EAD019F21D48CD6200DF1F6A /* GoogleService-Info.plist */,
 				EA04C4051CED9EF900839C8C /* Info.plist */,
-				EA5FF15F1CEF0AED00D860D9 /* GoogleService-Info.plist */,
 				EA8E830E1D11C765003801FD /* segue.swift */,
 			);
 			path = Floatinc;
@@ -325,6 +325,14 @@
 					EA04C3F51CED9EF900839C8C = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = N6FW23NWXD;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -353,8 +361,8 @@
 			files = (
 				EA04C4041CED9EF900839C8C /* LaunchScreen.storyboard in Resources */,
 				EA8FF7BB1D2E73D0007D2FB1 /* PreviewViewController.xib in Resources */,
-				EA5FF1601CEF0AED00D860D9 /* GoogleService-Info.plist in Resources */,
 				EA04C4011CED9EF900839C8C /* Assets.xcassets in Resources */,
+				EAD019F31D48CD6200DF1F6A /* GoogleService-Info.plist in Resources */,
 				EA04C3FF1CED9EF900839C8C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
