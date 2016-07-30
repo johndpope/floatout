@@ -148,11 +148,11 @@
                     <exclude reference="JfG-xC-tWu"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="ZxH-dh-BmZ"/>
                     <exclude reference="CCF-wp-6KZ"/>
                     <exclude reference="T5d-X9-AeG"/>
                     <exclude reference="WYE-RE-fuH"/>
                     <exclude reference="edN-Rj-mCr"/>
-                    <exclude reference="ZxH-dh-BmZ"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="886" y="-15"/>

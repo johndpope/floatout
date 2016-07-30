@@ -57,6 +57,7 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
      //getting or trying viewwithtext for snapshot
     @IBOutlet weak var imageTextView: UIView!
     
+    @IBOutlet weak var placeHolderLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -138,6 +139,11 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
         let newText = (textView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
         let numberOfChars = newText.characters.count // for Swift use count(newText)
         return numberOfChars < 30;
+    }
+    
+
+    func textViewDidBeginEditing(textView: UITextView) {
+         self.placeHolderLabel.hidden = true
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
