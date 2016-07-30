@@ -9,7 +9,6 @@ target 'Floatinc' do
   pod 'Firebase/Messaging'
   pod 'CameraManager'
   pod 'PBJVideoPlayer'
-  pod 'AKPickerView-Swift'
   pod 'SDWebImage'
   pod 'GoogleMaps'
 end

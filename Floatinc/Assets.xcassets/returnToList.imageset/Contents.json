@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Retake close picture.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Retake close picture@2x.png",
+      "filename" : "Return from camera icon@2x.png",
       "scale" : "2x"
     },
     {

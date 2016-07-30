@@ -30,6 +30,7 @@ class CameraViewController: UIViewController, CLLocationManagerDelegate  {
     @IBOutlet weak var flashModeButton: UIButton!
     @IBOutlet weak var selfieToggleButton: UIButton!
     @IBOutlet weak var mediaCaptureButton: UIButton!
+    @IBOutlet weak var autoImage: UIImageView!
     
     let locationManager = CLLocationManager()
     
@@ -55,6 +56,8 @@ class CameraViewController: UIViewController, CLLocationManagerDelegate  {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+        
+        self.mediaCaptureButton.setBackgroundImage(UIImage(named: "cameraButtonPressed"), forState: .Highlighted)
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -80,12 +83,7 @@ class CameraViewController: UIViewController, CLLocationManagerDelegate  {
             print("locations = \(locValue.latitude) \(locValue.longitude)")
         }
     
-    //MARK: @IBActions
     
-    @IBAction func backToStory(sender: AnyObject) {
-        print("exiting the camera and going back to the storyList")
-        self.navigationController?.popViewControllerAnimated(true)
-    }
     
 //    cameraManager.cameraOutputMode = cameraManager.cameraOutputMode == CameraOutputMode.VideoWithMic ? CameraOutputMode.StillImage : CameraOutputMode.VideoWithMic
 //    
@@ -97,50 +95,57 @@ class CameraViewController: UIViewController, CLLocationManagerDelegate  {
 //    print("hello still work under progress")
 //    }
     
-    @IBAction func mediaCaptureButtonTapped(sender: UIButton) {
-    
-        switch (cameraManager.cameraOutputMode) {
-        case .StillImage:
-            cameraManager.capturePictureWithCompletion({ (capturedImage, error) in
-                if let errorOccurred = error {
-                    self.cameraManager.showErrorBlock(erTitle: "Error occured", erMessage: errorOccurred.localizedDescription)
-                }
-                    
-                else {
-                    if let capturedImageTaken = capturedImage {
-                        let previewViewController = PreviewViewController(nibName: "PreviewViewController", bundle: nil)
-                        previewViewController.storyTagStore = self.storyTagStore
-                        previewViewController.media = Media.Photo(image: capturedImageTaken)
-                        if  let imageData = UIImageJPEGRepresentation(capturedImageTaken, 1.0){
-                            previewViewController.image = imageData
-                            previewViewController.location = self.locationManager.location
-                        }
-                        self.presentViewController(previewViewController, animated: true, completion: nil)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "previewSegue" {
+            print("hello")
+            switch (cameraManager.cameraOutputMode) {
+            case .StillImage:
+                cameraManager.capturePictureWithCompletion({ (capturedImage, error) in
+                    if let errorOccurred = error {
+                        self.cameraManager.showErrorBlock(erTitle: "Error occured", erMessage: errorOccurred.localizedDescription)
                     }
-                }
-            })
-            
-        case .VideoOnly, .VideoWithMic:
-            print("work under progress")
+                        
+                    else {
+                        if let capturedImageTaken = capturedImage {
+                            let previewViewController = segue.destinationViewController as! PreviewViewController
+                            previewViewController.storyTagStore = self.storyTagStore
+                            previewViewController.media = Media.Photo(image: capturedImageTaken)
+                            if  let imageData = UIImageJPEGRepresentation(capturedImageTaken, 1.0){
+                                previewViewController.image = imageData
+                                previewViewController.location = self.locationManager.location
+                            }
+                        }
+                    }
+                })
+                
+            case .VideoOnly, .VideoWithMic:
+                print("work under progress")
+            }
         }
+    }
+    
+    @IBAction func unwindToCameraView(segue: UIStoryboardSegue) {
+    
     }
     
     @IBAction func flash(sender: UIButton) {
         self.cameraManager.changeFlashMode()
         print(self.cameraManager.flashMode)
+        self.autoImage.hidden = true
         switch(self.cameraManager.flashMode) {
         case .On:
             print("flashModeOn")
-            let flashOnImage = UIImage(named: "flashOn")
+            let flashOnImage = UIImage(named: "flashActive")
             sender.setImage(flashOnImage, forState: .Normal)
         case .Off:
             print("flashModeOff")
-            let flashOffImage = UIImage(named: "flashOff")
+            let flashOffImage = UIImage(named: "flashInactive")
             sender.setImage(flashOffImage, forState: .Normal)
         case .Auto:
             print("flashModeAuto")
-            let flashAutoImage = UIImage(named: "flashAuto")
+            let flashAutoImage = UIImage(named: "flashActive")
             sender.setImage(flashAutoImage, forState: .Normal)
+            self.autoImage.hidden = false
         }
     }
     
@@ -148,16 +153,16 @@ class CameraViewController: UIViewController, CLLocationManagerDelegate  {
     
      cameraManager.cameraDevice = cameraManager.cameraDevice == CameraDevice.Front ? CameraDevice.Back : CameraDevice.Front
         
-        switch (cameraManager.cameraDevice){
-        case .Front:
-            print("front camera on")
-            let frontImage = UIImage(named: "selfie")
-            sender.setImage(frontImage, forState: .Normal)
-        case .Back:
-            print ("back camera on")
-            let backImage = UIImage(named: "storyCamera")
-            sender.setImage(backImage, forState: .Normal)
-        }
+//        switch (cameraManager.cameraDevice){
+//        case .Front:
+//            print("front camera on")
+//            let frontImage = UIImage(named: "selfie")
+//            sender.setImage(frontImage, forState: .Normal)
+//        case .Back:
+//            print ("back camera on")
+//            let backImage = UIImage(named: "storyCamera")
+//            sender.setImage(backImage, forState: .Normal)
+//        }
     }
     
 

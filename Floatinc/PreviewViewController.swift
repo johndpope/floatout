@@ -10,7 +10,6 @@
 import UIKit
 import PBJVideoPlayer
 //import FLAnimatedImage
-import AKPickerView_Swift
 import MapKit
 import CoreLocation
 
@@ -19,21 +18,25 @@ enum Media {
     case Video(url: NSURL)
 }
 
-class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate, AKPickerViewDelegate, AKPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate {
+class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UIPopoverPresentationControllerDelegate {
     
     var image : NSData!
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var buttonClose: UIButton!
-    @IBOutlet weak var pickerView: AKPickerView!
     
-    @IBOutlet weak var textField: UITextField!
+    //Buttons that will change dynamically
+    @IBOutlet weak var forwardButtonImage: UIImageView!
+    @IBOutlet weak var finalUploadButton: UIButton!
+    @IBOutlet weak var finalUploadImage: UIImageView!
+    @IBOutlet weak var forwardButton: UIButton!
+    
     
     @IBOutlet weak var textViewEdit: UITextView!
     
     //Reading the value from CameraViewController->StoryFeed Passing it to cameraViewController
     var storyTagStore : StoryTagStore!
-    var storyTagIdPicked : String?
+//    var storyTagIdPicked : String?
     var location : CLLocation?
 
     let screenWidth = UIScreen.mainScreen().bounds.size.width
@@ -47,31 +50,16 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
     
     var media: Media!
     var playerController: PBJVideoPlayerController!
+    var overlay : UIView?
+    
+    var storyPickerVC : StoryPickerTableView?
     
      //getting or trying viewwithtext for snapshot
     @IBOutlet weak var imageTextView: UIView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.pickerView.delegate = self
-        self.pickerView.dataSource = self
-        self.pickerView.font = UIFont(name: "HelveticaNeue-Bold", size: 20)!
-        self.pickerView.pickerViewStyle = .Wheel
-        self.pickerView.interitemSpacing = 2.0
-        self.pickerView.maskDisabled = false
-        self.pickerView.reloadData()
-        
-        //textField delegate
-        self.textField.delegate = self
-        
         self.hideKeyboardWhenTappedAround()
-        
-        //textField draggable
-//        let gesture = UIPanGestureRecognizer(target: self, action: #selector(PreviewViewController.userDragged(_:)))
-//        self.textField.addGestureRecognizer(gesture)
-//        self.textField.userInteractionEnabled = true
         
         //making the textView draggable
         let textViewGesture = UIPanGestureRecognizer(target: self, action: #selector(PreviewViewController.userDraggedTextView(_:)))
@@ -84,12 +72,6 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
     
     override func prefersStatusBarHidden() -> Bool {
         return true
-    }
-    
-
-    @IBAction func closePreview(sender: UIButton) {
-        print("some one is trying to close me baby")
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     private func playVideo(url: NSURL) {
@@ -139,33 +121,6 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
         videoPlayer.playFromBeginning()
     }
     
-    //AKPicker Data Source
-    func numberOfItemsInPickerView(pickerView: AKPickerView) -> Int {
-        return self.storyTagStore.storyTagList.count
-    }
-    
-    func pickerView(pickerView: AKPickerView, titleForItem item: Int) -> String {
-        return self.storyTagStore.storyTagList[item].storyName
-    }
-    
-    // AKPicker Delegate
-    func pickerView(pickerView: AKPickerView, didSelectItem item: Int) {
-        print("Your favorite city is \(self.storyTagStore.storyTagList[item].storyName)")
-        self.storyTagIdPicked = self.storyTagStore.storyTagList[item].id
-        
-    }
-    
-    //AKPicker Label customization
-    func pickerView(pickerView: AKPickerView, configureLabel label: UILabel, forItem item: Int) {
-        label.textColor = UIColor(red: 243.0/255.0, green: 148.0/255.0, blue: 143.0/255.0, alpha: 1.0)
-        label.highlightedTextColor = UIColor.blackColor()
-        label.backgroundColor = UIColor(red: 247.0, green: 166.0, blue: 160.0, alpha: 0.3)
-    }
-    
-    //AKPicker margins
-    func pickerView(pickerView: AKPickerView, marginForItem item: Int) -> CGSize {
-        return CGSizeMake(10, 30)
-    }
     
     //TextField Methods
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -185,53 +140,76 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
         return numberOfChars < 30;
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        
+        if segue.identifier == "showStoryPicker" {
+          
+            if let storyListPreviewPickerVc = segue.destinationViewController as? StoryPickerTableView {
+                
+                storyListPreviewPickerVc.storyTagStore = self.storyTagStore
+                storyListPreviewPickerVc.preferredContentSize = CGSizeMake(self.imageView.bounds.size.width-20, self.imageView.bounds.size.height-180)
+                storyListPreviewPickerVc.popoverPresentationController!.delegate = self
+                storyListPreviewPickerVc.popoverPresentationController?.sourceView = self.view
+                storyListPreviewPickerVc.popoverPresentationController?.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds)-20,0,0)
+                
+                self.imageTextView.userInteractionEnabled = false
+//                self.buttonClose.hidden = true
+                storyListPreviewPickerVc.popoverPresentationController?.passthroughViews = [self.view, self.imageView, self.imageTextView, self.buttonClose, self.forwardButtonImage, self.forwardButton, self.finalUploadImage, self.finalUploadButton]
+                
+                self.storyPickerVC = storyListPreviewPickerVc
+            }
+        }
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+    }
+    
+    private func toggleCameraButtons() {
+        self.forwardButton.hidden = !self.forwardButton.hidden
+        self.forwardButtonImage.hidden = !self.forwardButtonImage.hidden
+        
+        self.finalUploadButton.hidden = !self.finalUploadButton.hidden
+        self.finalUploadImage.hidden = !self.finalUploadImage.hidden
+        
+    }
+    
+    @IBAction func forwardButtonAction(sender: UIButton) {
+        //Need to toggle cam buttons
+        self.toggleCameraButtons()
+    }
+    
+    
     @IBAction func sendMedia(sender: UIButton) {
         
         let store: StoreImage = StoreImage()
         if image != nil {
-            if self.storyTagIdPicked == nil {
-              self.storyTagIdPicked = self.storyTagStore.storyTagList[0].id
+            var selectedRow = 0
+            //Have to get the row number from the storyPickerTableView
+            if self.storyPickerVC != nil {
+                selectedRow = self.storyPickerVC!.rowSelected()
             }
+        
+            let storyTagIdPicked = self.storyTagStore.storyTagList[selectedRow].id
+            
             var descriptionText = ""
-            if storyTagIdPicked != nil {
-                //If the user wrote text then time to change the image
-//                if let text = self.textField.text {
-//                    if text.isEmpty == false {
-//                        let font = textField.font
-//                        let alpha = textField.alpha
-//                        let textColor = textField.textColor
-//                        let frame = textField.frame
-//                        
-//                        let editTextField = textField as! textFieldCustom
-//                        let editTextFieldStart = editTextField.editingRectForBounds(textField.bounds)
-//                        
-//                        let fixedS = CGSize(width: self.imageView.bounds.size.width, height: self.imageView.bounds.size.height)
-//                        
-//                        let someSize = CGSizeAspectFill(self.imageView.image!.size, minimumSize: fixedS)
-//
-//                        let textImage = textToImage(text,frameTextField: frame, inImage: self.imageView.image!,textFont: font, textColor: textColor, alpha: alpha, editTextFieldStart: editTextFieldStart, viewBound: self.view.bounds, inImageSize: someSize)
-//                        image =  UIImageJPEGRepresentation(textImage, 1.0)       
-//                        descriptionText = text
-//                    }
-//                }
-                
-                //taking a screenShot and saving it as an image
-                let textImage = self.view.pb_takeSnapshot(self.imageTextView)
-                image = UIImageJPEGRepresentation(textImage, 1.0)
-                //saving the text in firebase
-                if let text = self.textViewEdit.text  {
-                    descriptionText = text
-                }
-                store.saveImage(image, mediaType: "image",
-                                storyTag: self.storyTagIdPicked!,
-                              description: descriptionText,
-                              location: self.location)
-              self.dismissViewControllerAnimated(true, completion: nil)
+            
+            //taking a screenShot and saving it as an image
+            let textImage = self.view.pb_takeSnapshot(self.imageTextView)
+            image = UIImageJPEGRepresentation(textImage, 1.0)
+            //saving the text in firebase
+            if let text = self.textViewEdit.text  {
+                descriptionText = text
             }
+            store.saveImage(image, mediaType: "image",
+                            storyTag: storyTagIdPicked,
+                            description: descriptionText,
+                            location: self.location)
+            
+            performSegueWithIdentifier("unwindToStoryListViewSegue", sender: self)
         }
     }
 }
-
 
 extension UIView {
     
@@ -243,70 +221,3 @@ extension UIView {
         return image
     }
 }
-
-
-//
-//func textToImage(drawText: NSString,frameTextField: CGRect,  inImage: UIImage, textFont: UIFont?, textColor: UIColor?, alpha: CGFloat, editTextFieldStart: CGRect, viewBound: CGRect, inImageSize: CGSize )->UIImage{
-//    
-//    
-//    //Setup the image context using the passed image.
-//    UIGraphicsBeginImageContextWithOptions(inImage.size, true, 0.0)
-//    CGContextSetAlpha(UIGraphicsGetCurrentContext(), alpha)
-//    
-//    
-//    //Setups up the font attributes that will be later used to dictate how the text should be drawn
-//    let textFontAttributes = [
-//        NSFontAttributeName: textFont!,
-//        NSForegroundColorAttributeName: textColor!,
-//        ]
-//    
-//    //Put the image into a rectangle as large as the original image.
-//    inImage.drawInRect(CGRectMake(0, 0, inImage.size.width, inImage.size.height))
-//    
-//    // Creating a point within the space that is as bit as the image.
-//    let xPos = frameTextField.origin.x + editTextFieldStart.origin.x + 40
-//    let yPos = frameTextField.origin.y + editTextFieldStart.origin.y + 2
-//    
-//    let textRect: CGRect = CGRectMake(xPos, yPos, (editTextFieldStart.width-editTextFieldStart.origin.x-40), editTextFieldStart.height)
-//    
-//    var updatedFrame = frameTextField
-//    updatedFrame.origin.x += (30+editTextFieldStart.origin.x)
-//    updatedFrame.size.width -= (editTextFieldStart.origin.x+30)
-//    updatedFrame.size.height -= 4
-//    
-//    //drawing the textField background.
-//    let color = UIColor.whiteColor().colorWithAlphaComponent(alpha)
-//    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), color.CGColor)
-//    //    CGContextFillRect(UIGraphicsGetCurrentContext(), updatedFrame)
-//    let path = UIBezierPath.init(roundedRect: updatedFrame, cornerRadius: 8)
-//    path.fill()
-//    
-//    //Drawing the Text
-//    drawText.drawInRect(textRect, withAttributes: textFontAttributes)
-//    
-//    // Create a new image out of the images we have created
-//    let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
-//    
-//    // End the context now that we have the image we need
-//    UIGraphicsEndImageContext()
-//    
-//    //And pass it back up to the caller.
-//    return newImage
-//}
-
-//func CGSizeAspectFill(aspectRatio : CGSize, minimumSize: CGSize)-> CGSize {
-//    var aspectFillSize: CGSize = CGSizeMake(minimumSize.width, minimumSize.height)
-//    
-//    let mW = minimumSize.width / aspectRatio.width
-//    let mH = minimumSize.height / aspectRatio.height
-//    
-//    if mH > mW {
-//        aspectFillSize.width = mH * aspectRatio.width
-//    }
-//    else if mW > mH {
-//        aspectFillSize.height = mW * aspectRatio.height
-//    }
-//    
-//    return aspectFillSize
-//}
-

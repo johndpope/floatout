@@ -99,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     }
     
     // NOTE: Need to use this when swizzling is disabled
-    public func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    internal func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         
         FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.Sandbox)
         //change the production TODOOOOOO

@@ -92,9 +92,7 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         self.navigationController?.popViewControllerAnimated(false)
         CATransaction.commit()
     }
-    
 
-    
     func swipeToMain() {
         swipeBack()
     }
@@ -123,7 +121,6 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
             self.navigationController?.popViewControllerAnimated(true)
         }
     }
-    
     
     
     @IBAction func swipUpToLike(sender: UISwipeGestureRecognizer) {
@@ -382,13 +379,14 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
         
         if segue.identifier == "showLocation" {
+            self.location.setImage(UIImage(named: "pinLocationActive"), forState: .Normal)
             if let mapVc = segue.destinationViewController as? MapLocationController {
                 
                 overlay = UIView(frame: CGRectMake(0, 0, self.imageView.frame.size.width, self.imageView.frame.size.height))
                 overlay!.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.4)
                 self.imageView.addSubview(overlay!)
                 
-                let popOverYAxis = self.location.frame.origin.y + self.location.frame.height
+                let popOverYAxis = self.location.frame.origin.y + (self.location.frame.height/1.5)
                 mapVc.preferredContentSize = CGSizeMake(self.imageView.bounds.size.width-20, self.imageView.bounds.size.height-60)
                 mapVc.popoverPresentationController?.sourceRect = CGRect(x: 100, y: popOverYAxis, width: 0, height: 0)
                 
@@ -408,6 +406,7 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
         if self.overlay != nil {
+            self.location.setImage(UIImage(named: "pinLocationInactive"), forState: .Normal)
             self.overlay?.removeFromSuperview()
         }
     }

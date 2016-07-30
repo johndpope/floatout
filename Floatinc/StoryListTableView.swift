@@ -226,25 +226,9 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    
-    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        //going up
-        if targetContentOffset.memory.y < scrollView.contentOffset.y {
-//            UIView.animateWithDuration(0.10, delay: 0.0, options: .BeginFromCurrentState, animations: {
-//                self.tableView.contentInset = UIEdgeInsetsMake(-10,0,0,0);
-//                }, completion: nil)
-        } else {
-            //going down
-            UIView.animateWithDuration(0.10, delay: 0.0, options: .BeginFromCurrentState, animations: {
-                self.tableView.contentInset = UIEdgeInsetsMake(self.navigationBar.frame.height,0,0,0);
-                }, completion: nil)
-        }
-    }
-    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 60
     }
-    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let storyTag = self.storyTagStore.storyTagList[indexPath.row]
@@ -310,6 +294,20 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        //going up
+        if targetContentOffset.memory.y < scrollView.contentOffset.y {
+            //            UIView.animateWithDuration(0.10, delay: 0.0, options: .BeginFromCurrentState, animations: {
+            //                self.tableView.contentInset = UIEdgeInsetsMake(-10,0,0,0);
+            //                }, completion: nil)
+        } else {
+            //going down
+            UIView.animateWithDuration(0.10, delay: 0.0, options: .BeginFromCurrentState, animations: {
+                self.tableView.contentInset = UIEdgeInsetsMake(self.navigationBar.frame.height,0,0,0);
+                }, completion: nil)
+        }
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "cameraSegue" {
@@ -334,6 +332,10 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
             feedController!.storyFeedArrayIndex = storyFeedArrayIndex
             feedController!.storyFeedId = storyFeed.id
         }
+    }
+    
+    @IBAction func unwindToStoryListTableView(segue: UIStoryboardSegue) {
+    
     }
     
     @IBAction func recordStory(sender: UIButton) {

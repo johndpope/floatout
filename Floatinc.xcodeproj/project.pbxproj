@@ -15,6 +15,9 @@
 		EA04C4041CED9EF900839C8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA04C4021CED9EF900839C8C /* LaunchScreen.storyboard */; };
 		EA065EA71D2CF62000D5C9FB /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA065EA61D2CF62000D5C9FB /* DismissAnimator.swift */; };
 		EA065EA91D2CF64600D5C9FB /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA065EA81D2CF64600D5C9FB /* Interactor.swift */; };
+		EA5C6DAA1D4A2D74005DC5A8 /* storyListPreviewPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C6DA91D4A2D74005DC5A8 /* storyListPreviewPicker.swift */; };
+		EA5C6DAD1D4BDD20005DC5A8 /* StoryPickerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C6DAC1D4BDD20005DC5A8 /* StoryPickerTableView.swift */; };
+		EA5C6DAF1D4BDD3D005DC5A8 /* StoryPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C6DAE1D4BDD3D005DC5A8 /* StoryPickerTableViewCell.swift */; };
 		EA765F671D2BF2D400D595F4 /* MapLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA765F661D2BF2D400D595F4 /* MapLocationController.swift */; };
 		EA76E3471D26A0F500CFD725 /* textFieldCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA76E3461D26A0F500CFD725 /* textFieldCustom.swift */; };
 		EA8E830B1D118F62003801FD /* StoryFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E830A1D118F62003801FD /* StoryFeedViewController.swift */; };
@@ -59,6 +62,9 @@
 		EA06023B1D31329800CEEEB4 /* Pods_Floatinc.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Floatinc.framework; path = "Pods/../build/Debug-iphoneos/Pods_Floatinc.framework"; sourceTree = "<group>"; };
 		EA065EA61D2CF62000D5C9FB /* DismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 		EA065EA81D2CF64600D5C9FB /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		EA5C6DA91D4A2D74005DC5A8 /* storyListPreviewPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = storyListPreviewPicker.swift; path = ../storyListPreviewPicker.swift; sourceTree = "<group>"; };
+		EA5C6DAC1D4BDD20005DC5A8 /* StoryPickerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPickerTableView.swift; sourceTree = "<group>"; };
+		EA5C6DAE1D4BDD3D005DC5A8 /* StoryPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPickerTableViewCell.swift; sourceTree = "<group>"; };
 		EA765F661D2BF2D400D595F4 /* MapLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLocationController.swift; sourceTree = "<group>"; };
 		EA76E3461D26A0F500CFD725 /* textFieldCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textFieldCustom.swift; sourceTree = "<group>"; };
 		EA8E830A1D118F62003801FD /* StoryFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryFeedViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +186,15 @@
 			name = StoryTagStats;
 			sourceTree = "<group>";
 		};
+		EA5C6DAB1D4BDD09005DC5A8 /* storyListPicker */ = {
+			isa = PBXGroup;
+			children = (
+				EA5C6DAC1D4BDD20005DC5A8 /* StoryPickerTableView.swift */,
+				EA5C6DAE1D4BDD3D005DC5A8 /* StoryPickerTableViewCell.swift */,
+			);
+			name = storyListPicker;
+			sourceTree = "<group>";
+		};
 		EA765F651D2BF2BB00D595F4 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +228,7 @@
 			children = (
 				EA8FF7B81D2E73D0007D2FB1 /* PreviewViewController.swift */,
 				EABF25BB1D05B48D0082A738 /* CameraViewController.swift */,
+				EA5C6DA91D4A2D74005DC5A8 /* storyListPreviewPicker.swift */,
 				EAEBD8D71D060AB8003BE566 /* StoreImage.swift */,
 				EA76E3461D26A0F500CFD725 /* textFieldCustom.swift */,
 			);
@@ -274,6 +290,7 @@
 		EAD6ABBA1CF9AA9600205430 /* tableViews */ = {
 			isa = PBXGroup;
 			children = (
+				EA5C6DAB1D4BDD09005DC5A8 /* storyListPicker */,
 				EAD6ABBD1CF9BE3D00205430 /* storyList */,
 			);
 			name = tableViews;
@@ -440,6 +457,7 @@
 				EAD6ABBF1CF9BE7B00205430 /* StoryListTableViewCell.swift in Sources */,
 				EA9F375F1CFF64F100677D44 /* StoryTagStatsStore.swift in Sources */,
 				EA04C3FC1CED9EF900839C8C /* LoginViewController.swift in Sources */,
+				EA5C6DAD1D4BDD20005DC5A8 /* StoryPickerTableView.swift in Sources */,
 				EABF25BC1D05B48D0082A738 /* CameraViewController.swift in Sources */,
 				EAEBD8D81D060AB8003BE566 /* StoreImage.swift in Sources */,
 				EA9F375D1CFF620200677D44 /* StoryTagStats.swift in Sources */,
@@ -450,6 +468,7 @@
 				EAA692D21D080D5A00C9CE0F /* StoryFeedStore.swift in Sources */,
 				EA065EA71D2CF62000D5C9FB /* DismissAnimator.swift in Sources */,
 				EAD6ABB91CF9A1EB00205430 /* StoryListTableView.swift in Sources */,
+				EA5C6DAA1D4A2D74005DC5A8 /* storyListPreviewPicker.swift in Sources */,
 				EA04C3FA1CED9EF900839C8C /* AppDelegate.swift in Sources */,
 				EAD6ABBC1CF9B84400205430 /* StoryTagStore.swift in Sources */,
 				EAB60C411CF7123600303A3B /* RegisterViewController.swift in Sources */,
@@ -457,6 +476,7 @@
 				EAD6ABB71CF99BC500205430 /* StoryTag.swift in Sources */,
 				EA76E3471D26A0F500CFD725 /* textFieldCustom.swift in Sources */,
 				EA8E830D1D11915F003801FD /* FetchMedia.swift in Sources */,
+				EA5C6DAF1D4BDD3D005DC5A8 /* StoryPickerTableViewCell.swift in Sources */,
 				EAB60C3F1CF6F74800303A3B /* SplashViewController.swift in Sources */,
 				EA8E830B1D118F62003801FD /* StoryFeedViewController.swift in Sources */,
 				EAA692D01D080D5100C9CE0F /* StoryFeed.swift in Sources */,
