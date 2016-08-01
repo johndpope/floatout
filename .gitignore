@@ -36,7 +36,9 @@ xcuserdata/
 #
 # Pods/
 /Pods/GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/GoogleMaps
-
+/Pods/GoogleMaps/Subspecs/Base/Frameworks/GoogleMapsBase.framework/Versions/A/GoogleMapsBase
+/Pods/GoogleMaps/Subspecs/Maps/Frameworks/GoogleMaps.framework/Versions/A/GoogleMaps
+/Pods/GoogleMaps/Subspecs/Maps/Frameworks/GoogleMapsCore.framework/Versions/A/GoogleMapsCore
 # Carthage
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.

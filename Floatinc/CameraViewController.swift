@@ -12,6 +12,7 @@ import SDWebImage
 import MapKit
 import CoreLocation
 
+
 class CameraViewController: UIViewController, CLLocationManagerDelegate  {
     
     //Segue2
@@ -42,6 +43,8 @@ class CameraViewController: UIViewController, CLLocationManagerDelegate  {
 
         let currentCameraState = cameraManager.currentCameraStatus()
         cameraManager.cameraOutputQuality = .Medium
+        cameraManager.writeFilesToPhoneLibrary = false
+    
         print(currentCameraState)
         
         if currentCameraState == .NotDetermined {
@@ -56,6 +59,7 @@ class CameraViewController: UIViewController, CLLocationManagerDelegate  {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+        
         
         self.mediaCaptureButton.setBackgroundImage(UIImage(named: "cameraButtonPressed"), forState: .Highlighted)
     }
@@ -83,47 +87,36 @@ class CameraViewController: UIViewController, CLLocationManagerDelegate  {
             print("locations = \(locValue.latitude) \(locValue.longitude)")
         }
     
+    @IBAction func takePicture(sender: AnyObject) {
     
-    
-//    cameraManager.cameraOutputMode = cameraManager.cameraOutputMode == CameraOutputMode.VideoWithMic ? CameraOutputMode.StillImage : CameraOutputMode.VideoWithMic
-//    
-//    switch (cameraManager.cameraOutputMode) {
-//    case .StillImage:
-//    mediaCaptureButton.selected = false
-//    mediaCaptureButton.backgroundColor = UIColor.purpleColor()
-//    case .VideoWithMic, .VideoOnly:
-//    print("hello still work under progress")
-//    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "previewSegue" {
-            print("hello")
-            switch (cameraManager.cameraOutputMode) {
-            case .StillImage:
-                cameraManager.capturePictureWithCompletion({ (capturedImage, error) in
-                    if let errorOccurred = error {
-                        self.cameraManager.showErrorBlock(erTitle: "Error occured", erMessage: errorOccurred.localizedDescription)
-                    }
-                        
-                    else {
-                        if let capturedImageTaken = capturedImage {
-                            let previewViewController = segue.destinationViewController as! PreviewViewController
-                            previewViewController.storyTagStore = self.storyTagStore
-                            previewViewController.media = Media.Photo(image: capturedImageTaken)
-                            if  let imageData = UIImageJPEGRepresentation(capturedImageTaken, 1.0){
-                                previewViewController.image = imageData
-                                previewViewController.location = self.locationManager.location
-                            }
+        print("hello")
+        switch (cameraManager.cameraOutputMode) {
+        case .StillImage:
+            cameraManager.capturePictureWithCompletion({ (capturedImage, error) in
+                if let errorOccurred = error {
+                    self.cameraManager.showErrorBlock(erTitle: "Error occured", erMessage: errorOccurred.localizedDescription)
+                }
+                    
+                else {
+                    if let capturedImageTaken = capturedImage {
+                        let previewViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("previewViewController") as! PreviewViewController
+                        previewViewController.storyTagStore = self.storyTagStore
+                        previewViewController.media = Media.Photo(image: capturedImageTaken)
+                        if  let imageData = UIImageJPEGRepresentation(capturedImageTaken, 1.0){
+                            previewViewController.image = imageData
+                            previewViewController.location = self.locationManager.location
                         }
+                        self.presentViewController(previewViewController, animated: true, completion: nil)
                     }
-                })
-                
-            case .VideoOnly, .VideoWithMic:
-                print("work under progress")
-            }
+                }
+            })
+            
+        case .VideoOnly, .VideoWithMic:
+            print("work under progress")
         }
-    }
     
+    
+    }
     @IBAction func unwindToCameraView(segue: UIStoryboardSegue) {
     
     }
@@ -152,17 +145,6 @@ class CameraViewController: UIViewController, CLLocationManagerDelegate  {
     @IBAction func flipTheCamera(sender: UIButton) {
     
      cameraManager.cameraDevice = cameraManager.cameraDevice == CameraDevice.Front ? CameraDevice.Back : CameraDevice.Front
-        
-//        switch (cameraManager.cameraDevice){
-//        case .Front:
-//            print("front camera on")
-//            let frontImage = UIImage(named: "selfie")
-//            sender.setImage(frontImage, forState: .Normal)
-//        case .Back:
-//            print ("back camera on")
-//            let backImage = UIImage(named: "storyCamera")
-//            sender.setImage(backImage, forState: .Normal)
-//        }
     }
     
 

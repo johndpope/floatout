@@ -932,7 +932,8 @@ public class CameraManager: NSObject, AVCaptureFileOutputRecordingDelegate, UIGe
         _stopFollowingDeviceOrientation()
     }
 }
-public extension CameraManager {
+
+extension CameraManager {
     
     public func focus(atPoint: CGPoint) {
         let captureDevice = AVCaptureDevice.devices().first as? AVCaptureDevice
@@ -956,5 +957,3 @@ public extension CameraManager {
         }
     }
 }
-
-

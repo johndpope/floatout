@@ -58,6 +58,7 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
     @IBOutlet weak var imageTextView: UIView!
     
     @IBOutlet weak var placeHolderLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -130,9 +131,11 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
     }
     
     func userDraggedTextView(gesture: UIPanGestureRecognizer){
+//        self.placeHolderLabel.hidden = true
         let loc = gesture.locationInView(self.view)
         self.textViewEdit.frame.origin.x = 0
         self.textViewEdit.frame.origin.y = loc.y
+        self.placeHolderLabel.frame.origin.y = loc.y
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
@@ -159,7 +162,6 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
                 storyListPreviewPickerVc.popoverPresentationController?.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds)-20,0,0)
                 
                 self.imageTextView.userInteractionEnabled = false
-//                self.buttonClose.hidden = true
                 storyListPreviewPickerVc.popoverPresentationController?.passthroughViews = [self.view, self.imageView, self.imageTextView, self.buttonClose, self.forwardButtonImage, self.forwardButton, self.finalUploadImage, self.finalUploadButton]
                 
                 self.storyPickerVC = storyListPreviewPickerVc

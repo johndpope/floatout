@@ -7,10 +7,10 @@ target 'Floatinc' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
-  pod 'CameraManager'
   pod 'PBJVideoPlayer'
   pod 'SDWebImage'
   pod 'GoogleMaps'
+  pod 'CameraManager', '~> 2.2'
 end
 
 post_install do |installer|

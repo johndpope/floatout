@@ -66,7 +66,7 @@ application. Including legal notices as an independent menu item, or as
 part of an "About" menu item, is recommended.
 
 You can get the attribution text by making a call to
-[GMSServices openSourceLicenseInfo].
+GMSServices.openSourceLicenseInfo().
 
 
 ## GoogleNetworkingUtilities
