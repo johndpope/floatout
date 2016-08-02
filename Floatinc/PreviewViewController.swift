@@ -139,9 +139,15 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        
         let newText = (textView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
         let numberOfChars = newText.characters.count // for Swift use count(newText)
-        return numberOfChars < 30;
+        return numberOfChars < 40;
     }
     
 
@@ -201,9 +207,14 @@ class PreviewViewController: UIViewController, PBJVideoPlayerControllerDelegate,
             let storyTagIdPicked = self.storyTagStore.storyTagList[selectedRow].id
             
             var descriptionText = ""
+            let textImage : UIImage
             
             //taking a screenShot and saving it as an image
-            let textImage = self.view.pb_takeSnapshot(self.imageTextView)
+            if self.textViewEdit.hasText() {
+                textImage = self.view.pb_takeSnapshot(self.imageTextView)
+            } else {
+                textImage = self.view.pb_takeSnapshot(self.imageView)
+            }
             image = UIImageJPEGRepresentation(textImage, 1.0)
             //saving the text in firebase
             if let text = self.textViewEdit.text  {

@@ -33,12 +33,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        // [START register_for_notifications]
+        let settings: UIUserNotificationSettings =
+            UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+        // [END register_for_notifications]
+        
+        // Add observer for InstanceID token refresh callback.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.tokenRefreshNotification),name: kFIRInstanceIDTokenRefreshNotification, object: nil)
+        
+        
         // Override point for customization after application launch.
         let navController = self.window?.rootViewController as! UINavigationController
-
-        //FirApp user setup
-//        FIRApp.configure()
-
 
        listener = FIRAuth.auth()?.addAuthStateDidChangeListener({ (auth, user) in
             if let user = user {
@@ -64,15 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             }
        })
         
-        // [START register_for_notifications]
-        let settings: UIUserNotificationSettings =
-            UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        application.registerUserNotificationSettings(settings)
-        application.registerForRemoteNotifications()
-        // [END register_for_notifications]
-        
-        // Add observer for InstanceID token refresh callback.
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.tokenRefreshNotification),name: kFIRInstanceIDTokenRefreshNotification, object: nil)
+
         
         //Adding the API key for google maps
         GMSServices.provideAPIKey("AIzaSyDDpJNdJcPzjeAGl4vqAGgkiAd8g_a_1UQ")
@@ -101,8 +100,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     // NOTE: Need to use this when swizzling is disabled
     internal func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         
+        //change the production TODO
         FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.Sandbox)
-        //change the production TODOOOOOO
+        
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
@@ -144,6 +144,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        connectToFcm()
     }
 
     func applicationWillTerminate(application: UIApplication) {
