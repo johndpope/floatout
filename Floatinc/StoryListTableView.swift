@@ -50,10 +50,11 @@ class StoryListTableView: UIViewController, UITableViewDataSource, UITableViewDe
         storyTagsRef = rootRef.child("storyTags")
         storyTagStatsRef = rootRef.child("storyTagStats")
         storyFeedRef = rootRef.child("storyFeed")
-        
-        storyTagsRef.keepSynced(true)
-        storyTagStatsRef.keepSynced(true)
-        storyFeedRef?.keepSynced(true)
+//        
+//        storyTagsRef.keepSynced(true)
+//        storyTagStatsRef.keepSynced(true)
+//        storyFeedRef?.keepSynced(true)
+       
         
         //StoryTagStats Observers/////////////////////////////////////////////////////////////////////
         

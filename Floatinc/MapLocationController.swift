@@ -24,12 +24,25 @@ class MapLocationController : UIViewController {
         
         self.map1.camera = camera
         map1.myLocationEnabled = true
-
+        
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2DMake(self.latitude, self.longitude)
-        marker.title = "Delhi"
-        marker.snippet = "India"
-        marker.map = map1
+        
+        let aGMSGeocoder : GMSGeocoder = GMSGeocoder()
+        aGMSGeocoder.reverseGeocodeCoordinate(marker.position) { (GMSReverseGeocodeResponse, Error) in
+            if Error != nil {
+                marker.map = self.map1
+                return
+            }
+            
+            if let geoResponse = GMSReverseGeocodeResponse {
+                let gmsAddress : GMSAddress = geoResponse.firstResult()!
+                
+                marker.snippet = gmsAddress.country
+                marker.title = gmsAddress.locality
+                marker.map = self.map1
+            }
+        }
     }
 
     @IBAction func close(sender: UIButton) {

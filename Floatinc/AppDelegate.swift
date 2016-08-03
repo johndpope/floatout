@@ -70,8 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
                 self.navToLogin(navController)
             }
        })
-        
-
+       
         
         //Adding the API key for google maps
         GMSServices.provideAPIKey("AIzaSyDDpJNdJcPzjeAGl4vqAGgkiAd8g_a_1UQ")
@@ -80,11 +79,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     }
     
     func tokenRefreshNotification(notification: NSNotification) {
-        let refreshedToken = FIRInstanceID.instanceID().token()!
-        print("InstanceID token: \(refreshedToken)")
+        if let r =  FIRInstanceID.instanceID().token() {
+            let refreshedToken = r
+            print("InstanceID token: \(refreshedToken)")
+            
+            // Connect to FCM since connection may have failed when attempted before having a token.
+            connectToFcm()
+        }
         
-        // Connect to FCM since connection may have failed when attempted before having a token.
-        connectToFcm()
+    
     }
     
     func connectToFcm() {
@@ -126,9 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        
-        connectToFcm()
-    }
+            }
 
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
