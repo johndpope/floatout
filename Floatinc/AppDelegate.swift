@@ -113,7 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         // TODO: Handle data of notification
         
         // Print message ID.
-        print("Message ID: \(userInfo["gcm.message_id"]!)")
+        print("Messsage ID: \(userInfo["gcm.message_id"]!)")
         
         // Print full message.
         print("%@", userInfo)
