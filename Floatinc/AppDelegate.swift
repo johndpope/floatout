@@ -86,8 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             // Connect to FCM since connection may have failed when attempted before having a token.
             connectToFcm()
         }
-        
-    
+
     }
     
     func connectToFcm() {
