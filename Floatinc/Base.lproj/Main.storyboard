@@ -366,6 +366,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <gestureRecognizers/>
                             </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="Mq6-b5-Mxs">
+                                <rect key="frame" x="240" y="324" width="120" height="100"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="DEu-lL-IeV"/>
+                                    <constraint firstAttribute="height" constant="100" id="O4r-HM-S3y"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uhe-47-x0h" userLabel="swipeUpView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="474"/>
                                 <subviews>
@@ -378,24 +386,33 @@
                                             </segue>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3D-hH-Xtj" userLabel="Likes">
+                                        <rect key="frame" x="8" y="8" width="25" height="25"/>
+                                        <state key="normal" backgroundImage="unfilledLike"/>
+                                        <connections>
+                                            <action selector="likeAction:" destination="d9S-0G-TRl" eventType="touchUpInside" id="Sm8-pt-4Ey"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCH-nC-xlQ" userLabel="numberLikes">
+                                        <rect key="frame" x="21" y="21" width="0.0" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="10"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="wCH-nC-xlQ" firstAttribute="centerX" secondItem="k3D-hH-Xtj" secondAttribute="centerX" id="Hik-AW-onP"/>
+                                    <constraint firstItem="k3D-hH-Xtj" firstAttribute="top" secondItem="1EN-zo-zWH" secondAttribute="top" id="ImF-iP-WLK"/>
+                                    <constraint firstItem="wCH-nC-xlQ" firstAttribute="centerY" secondItem="k3D-hH-Xtj" secondAttribute="centerY" id="Ine-eU-k2u"/>
+                                    <constraint firstItem="k3D-hH-Xtj" firstAttribute="leading" secondItem="Uhe-47-x0h" secondAttribute="leading" constant="8" id="O8O-0k-O8Z"/>
                                     <constraint firstAttribute="trailing" secondItem="1EN-zo-zWH" secondAttribute="trailing" constant="8" id="iOg-66-ITl"/>
                                     <constraint firstItem="1EN-zo-zWH" firstAttribute="top" secondItem="Uhe-47-x0h" secondAttribute="top" constant="8" id="sly-5W-qYG"/>
                                 </constraints>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="wde-zv-pkA" appends="YES" id="K7e-hz-pl3"/>
+                                    <outletCollection property="gestureRecognizers" destination="wde-zv-pkA" appends="YES" id="jhb-xX-5KC"/>
                                 </connections>
                             </view>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="Mq6-b5-Mxs">
-                                <rect key="frame" x="240" y="324" width="120" height="100"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="DEu-lL-IeV"/>
-                                    <constraint firstAttribute="height" constant="100" id="O4r-HM-S3y"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -403,9 +420,13 @@
                             <constraint firstItem="Uhe-47-x0h" firstAttribute="trailing" secondItem="XUo-vT-bT2" secondAttribute="trailing" id="1hg-3L-g8U"/>
                             <constraint firstItem="Uhe-47-x0h" firstAttribute="leading" secondItem="XUo-vT-bT2" secondAttribute="leading" id="5fu-g5-nzS"/>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="centerY" secondItem="nYN-f0-JYb" secondAttribute="centerY" id="BZw-Ra-QXY"/>
+                            <constraint firstAttribute="trailing" secondItem="Uhe-47-x0h" secondAttribute="trailing" id="GMW-L8-3Ax"/>
+                            <constraint firstItem="Uhe-47-x0h" firstAttribute="top" secondItem="nYN-f0-JYb" secondAttribute="top" id="M4D-xJ-Osf"/>
+                            <constraint firstItem="Uhe-47-x0h" firstAttribute="leading" secondItem="nYN-f0-JYb" secondAttribute="leading" id="QTL-s7-A5q"/>
                             <constraint firstItem="Uhe-47-x0h" firstAttribute="bottom" secondItem="Mq6-b5-Mxs" secondAttribute="bottom" constant="50" id="Z3k-A5-Bew"/>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="top" secondItem="Mq6-b5-Mxs" secondAttribute="bottom" constant="-424" id="cBu-mZ-15n"/>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="centerX" secondItem="nYN-f0-JYb" secondAttribute="centerX" id="fDu-qr-RoB"/>
+                            <constraint firstItem="pqc-9n-oRR" firstAttribute="top" secondItem="Uhe-47-x0h" secondAttribute="bottom" constant="82" id="fRm-Zc-yrG"/>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="height" secondItem="nYN-f0-JYb" secondAttribute="height" id="mfK-Kg-cxe"/>
                             <constraint firstItem="Mq6-b5-Mxs" firstAttribute="centerX" secondItem="XUo-vT-bT2" secondAttribute="centerX" id="qmH-we-It7"/>
                             <constraint firstItem="XUo-vT-bT2" firstAttribute="width" secondItem="nYN-f0-JYb" secondAttribute="width" id="shF-Jt-8ZJ"/>
@@ -415,6 +436,8 @@
                     <connections>
                         <outlet property="LikeGesture" destination="wde-zv-pkA" id="XDz-ju-40F"/>
                         <outlet property="imageView" destination="XUo-vT-bT2" id="UuH-g0-Q2A"/>
+                        <outlet property="likeCount" destination="wCH-nC-xlQ" id="x6u-08-n0u"/>
+                        <outlet property="likeIcon" destination="k3D-hH-Xtj" id="vBK-RT-shN"/>
                         <outlet property="likeImageView" destination="Mq6-b5-Mxs" id="wAI-6J-EUK"/>
                         <outlet property="location" destination="1EN-zo-zWH" id="GVf-sb-K2F"/>
                     </connections>
@@ -422,7 +445,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bgi-vE-NP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="up" id="wde-zv-pkA" userLabel="SwipeUpLike">
                     <connections>
-                        <action selector="swipUpToLike:" destination="d9S-0G-TRl" id="jPA-fr-19I"/>
+                        <action selector="swipeUpToLike:" destination="d9S-0G-TRl" id="S4C-Qo-5DX"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -1081,6 +1104,7 @@
         <image name="pinLocationInactive" width="28" height="32"/>
         <image name="returnToList" width="30" height="30"/>
         <image name="switchCamera" width="50" height="34"/>
+        <image name="unfilledLike" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="XBQ-Z4-sGw"/>
