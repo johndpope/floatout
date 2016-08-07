@@ -48,9 +48,9 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     
     @IBOutlet weak var likeImageView: UIImageView!
     
-//    var swipeRight = UISwipeGestureRecognizer()
-    
     @IBOutlet var LikeGesture: UISwipeGestureRecognizer!
+    @IBOutlet weak var likeIcon: UIButton!
+    @IBOutlet weak var likeCount: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +83,11 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         }
     }
     
+    
+    @IBAction func likeAction(sender: UIButton) {
+        self.displayToastWithMessage("Swipe up to like the image :)")
+    }
+    
     func swipeDownToMain() {
         CATransaction.begin()
         CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
@@ -104,7 +109,6 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         else {
             self.currentImage = self.currentImage-1
             print ("Display the previous image")
-//            self.addAnimationPresentToViewOut(self.imageView)
             SetImageView(self.currentImage, animationDirection: "backward")
         }
     }
@@ -114,7 +118,6 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         //Get the count of the mediaList
         if  self.currentImage < self.totalMediaListCount!-1 {
             self.currentImage += 1
-//            self.addAnimationPresentToView(self.imageView)
             SetImageView(self.currentImage, animationDirection: "forward")
         } else {
             print("end of feed going back to the story")
@@ -123,12 +126,11 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
     }
     
     
-    @IBAction func swipUpToLike(sender: UISwipeGestureRecognizer) {
+    @IBAction func swipeUpToLike(sender: UISwipeGestureRecognizer) {
 
         let bounds = self.likeImageView.bounds
         let center = self.likeImageView.center
         self.likeImageView.hidden = false
-        
         
         UIView.animateWithDuration(0.5,delay: 0.1, options: .TransitionFlipFromBottom , animations: {
             self.likeImageView.center.y -= (self.view.bounds.height/2)
@@ -136,8 +138,11 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
                 self.likeImageView.hidden = true
                 self.likeImageView.center = center
                 self.likeImageView.bounds = bounds
+             self.likeIcon.setBackgroundImage(UIImage(named: "filledLike"), forState: .Normal)
+            
         }
         
+       
         
         if let feedImageKey = self.feed?.imageKeysList[self.currentImage] {
             
@@ -152,6 +157,12 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
                             if numberOfLikes == 0 {
                                 //adding user for the first time
                                 numberOfLikes += 1
+                                
+                                //changing the unfilled like to filledLike
+                                self.likeCount.text = String(numberOfLikes)
+                                //TODO: WILL NEED A BETTER SOLUTION AT SOMEPOINT
+                                self.feed?.likesCountList[self.currentImage] = numberOfLikes
+                                
                                 var userArray = [String: Bool]()
                                 userArray = [uid!: true]
                                 imageObject?["likes"] = ["likeCount": numberOfLikes, "users": userArray]
@@ -165,6 +176,8 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
                                 if userArray[uid!] == nil {
                                     //increase the number
                                     numberOfLikes += 1
+                                    //changing the number on the heart
+                                    self.likeCount.text = String(numberOfLikes)
                                     userArray[uid!] = true
                                     imageObject?["likes"] = ["likeCount": numberOfLikes, "users": userArray]
                                     currentData.value = imageObject
@@ -289,6 +302,15 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
                                 self.location.hidden = true
                             }
                             
+                            //Likes 
+                            if let likes = self.feed?.likesCountList[self.currentImage] {
+                                if likes>0 {
+                                  self.toggleLikeCount(likes)
+                                } else {
+                                    self.toggleLikeCount(likes)
+                                }
+                            }
+                            
                             if  let imageData = UIImageJPEGRepresentation(image, 1.0){
                                 self.image = imageData
                                 if animationDirection == "forward" {
@@ -309,6 +331,16 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         self.fetchMedia!.fetchImageWithStoryFeedArrayIndex(self.storyFeedArrayIndex!, mediaListArrayIndex: currentImage, callback: imageFetchCallback)
     }
     
+    private func toggleLikeCount(likes : Int) {
+        if likes > 0 {
+        self.likeIcon.setBackgroundImage(UIImage(named:"filledLike"), forState: .Normal)
+        self.likeCount.text = String(likes)
+        } else {
+            self.likeIcon.setBackgroundImage(UIImage(named:"unfilledLike"), forState: .Normal)
+            self.likeCount.text = ""
+        }
+    }
+    
     func imageFetchCallback() -> Void {
         print("inside imageFetchCallback, will be setting the image now.")
         self.SetImageView(self.currentImage)
@@ -325,7 +357,7 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
             //Setting up some variables
             self.feed = fetchMedia?.storyFeedStore.storyFeedItemForId(self.storyFeedId!)
             self.totalMediaListCount = (feed?.sizeMediaList())!
-            
+
             SetImageView(currentImage)            
         }
     }
@@ -437,4 +469,28 @@ class StoryFeedViewController: UIViewController, PBJVideoPlayerControllerDelegat
         transition.subtype = kCATransitionFromRight
         viewToBeAnimated.layer.addAnimation(transition, forKey: nil)
     }
+    
+    func displayToastWithMessage(toastMessage: String) {
+        NSOperationQueue.mainQueue().addOperationWithBlock({() -> Void in
+            let keyWindow: UIWindow = UIApplication.sharedApplication().keyWindow!
+            let toastView: UILabel = UILabel()
+            toastView.text = toastMessage
+            toastView.textColor = UIColor.whiteColor()
+            toastView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
+            toastView.textAlignment = .Center
+            toastView.frame = CGRectMake(0.0, 0.0, keyWindow.frame.size.width / 1.3, 50.0)
+            toastView.layer.cornerRadius = 10
+            toastView.layer.masksToBounds = true
+            toastView.center = keyWindow.center
+            keyWindow.addSubview(toastView)
+            UIView.animateWithDuration(3.0, delay: 0.0, options: .CurveEaseOut, animations: {() -> Void in
+                toastView.alpha = 0.0
+                }, completion: {(finished: Bool) -> Void in
+                    toastView.removeFromSuperview()
+            })
+        })
+    }
+    
 }
+
+

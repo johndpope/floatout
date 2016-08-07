@@ -16,9 +16,10 @@ class StoryFeed :NSObject {
     var ref: FIRDatabaseReference?
     var mediaList = [String:String]()
     var imagesList = [String]()
-    var descriptionList = [String]()
+//    var descriptionList = [String]()
     var locationList = [[Double]]()
     var imageKeysList = [String]()
+    var likesCountList = [Int]()
     
     init(snapshot: FIRDataSnapshot){
         self.id = snapshot.key
@@ -28,7 +29,7 @@ class StoryFeed :NSObject {
         while let mediaRef = enumerator.nextObject() as? FIRDataSnapshot {
             let key = mediaRef.key
             var url : String = ""
-            var description: String = ""
+//            var description: String = ""
             var locationArray = [Double]()
             //Once all the urls become become no need to cover this case
             if let u = mediaRef.value as? String{
@@ -36,17 +37,20 @@ class StoryFeed :NSObject {
             }
             else {
                 url = mediaRef.value!["url"] as! String
-                description = mediaRef.value!["description"] as! String
+//                description = mediaRef.value!["description"] as! String
                 if let location = mediaRef.value!["metadata"]??["location"] as? [String: Double] {
                     let latitude = location["latitude"]! as Double
                     let longitude = location["longitude"]! as Double
                     locationArray = [latitude, longitude]
                 }
+                if let likes = mediaRef.value!["likes"]??["likeCount"] as? Int {
+                    likesCountList.append(likes)
+                }
             }
             self.imageKeysList.append(key)
             self.mediaList[key] = url
             self.imagesList.append(url)
-            self.descriptionList.append(description)
+//            self.descriptionList.append(description)
             self.locationList.append(locationArray)
         }
 
